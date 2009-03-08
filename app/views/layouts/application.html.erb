@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title><%= get_page_title %></title>
+
+	<%= stylesheet_link_tag 'style' %>
+	<%= stylesheet_link_tag 'calendar' %>
+	<%= javascript_include_tag :defaults %>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="outerstripe">
+			<div class="middlestripe">
+				<div class="innerstripe">
+				  
+				  <div id = "logo">Addicted to Ian</div>
+				  
+					<div class="topnav">
+						<ul>
+							<li><%= link_to 'Calendar',  '/' %></li><li>--</li>
+							<li><%= link_to 'Posts',  '/posts' %></li><li>--</li>
+							<li><%= link_to 'Galleries', '/gallery' %></li>
+						</ul>
+					</div>
+					
+					<div class="clear"></div>
+						<% unless logged_in? %>					
+  						<div id="login">
+  							<%= link_to 'Login', login_url  %>
+  							<span class="space"></span>
+  							<%= link_to 'Sign up', signup_url %>
+  						</div>
+						<% else %>
+  						<div id="account">									
+  							Welcome <%= current_user.to_s %>
+  							<span class="space">&nbsp;</span>
+  							<%= link_to "Log out", logout_url %>
+  							<br/>
+  						</div>				
+						<% end %>
+						
+						<div class="clear"></div>
+
+            <div id = "title"><%= get_page_title %></div>
+            <div class = "clear"></div>
+            
+						<div id="main">
+						  <% if flash[:message] %>
+        				<div id="message_main" class="message">
+        					<%=  flash[:message] %>
+        				</div>
+      				<% elsif flash[:warning] %>
+        				<div id="message_main" class="message warning">
+        					<%=  flash[:warning] %>
+        				</div>
+      				<% end %>
+						  
+							<%= yield %>
+						</div>
+						<br />
+						<div class="clear"></div>
+						<div id="copy">
+						  &copy; Copyright 2008 Gibnai Productions. 
+						  (Well, not really, this project is open source and can be found on
+						  <%= link_to 'Github', 'http://github.com/ienders/addicted_to_ian/tree/master' %>)
+						</div>
+					</div>
+				</div>
+			</div>
+		</body>
+	</html>

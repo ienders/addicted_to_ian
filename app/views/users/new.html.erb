@@ -1,0 +1,24 @@
+<% set_page_title 'New Account' %>
+
+<br class = "clear" />
+
+<div class = "bordered">
+  <%= error_messages_for :user %>
+  
+  <h1>Enter Your Account Information:</h1>
+
+  <% form_for :user, :url => '/users/create' do |f| -%>
+    <div class = "input"><div class = "label">Login:</div><div class = "field"><%= f.text_field :login %></div></div>
+    <div class = "input"><div class = "label">Email:</div><div class = "field"><%= f.text_field :email %></div></div>
+    <div class = "input"><div class = "label">Password:</div><div class = "field"><%= f.password_field :password %></div></div>
+    <div class = "input"><div class = "label">Confirm Password:</div><div class = "field"><%= f.password_field :password_confirmation %></div></div>
+    <div class = "input"><div class = "label">First Name:</div><div class = "field"><%= f.text_field :first_name %></div></div>
+    <div class = "input"><div class = "label">Last Name:</div><div class = "field"><%= f.text_field :last_name %></div></div>
+  
+    <br class = "clear" />
+  
+    <%= submit_tag 'Sign up' %>
+  <% end -%>
+  
+  <br class = "clear" />
+</div>
