@@ -9,51 +9,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081122041913) do
-
-  create_table "articles", :force => true do |t|
-    t.string   "type"
-    t.string   "slug"
-    t.string   "title"
-    t.text     "content"
-    t.string   "filename"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "comments", :force => true do |t|
-    t.integer  "commentable_id",   :limit => 11
-    t.string   "commentable_type"
-    t.integer  "user_id",          :limit => 11
-    t.text     "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
-  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
-
-  create_table "images", :force => true do |t|
-    t.integer  "gallery_id", :limit => 11
-    t.string   "filename"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(:version => 20090329220246) do
 
   create_table "users", :force => true do |t|
-    t.string   "login"
-    t.string   "email"
-    t.string   "first_name"
-    t.string   "last_name"
+    t.string   "login",                     :limit => 40
+    t.string   "name",                      :limit => 100, :default => ""
+    t.string   "email",                     :limit => 100
     t.string   "crypted_password",          :limit => 40
     t.string   "salt",                      :limit => 40
-    t.boolean  "is_admin",                                :default => false
-    t.string   "remember_token"
-    t.datetime "remember_token_expires_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "remember_token",            :limit => 40
+    t.datetime "remember_token_expires_at"
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["login"], :name => "index_users_on_login", :unique => true
 
 end
