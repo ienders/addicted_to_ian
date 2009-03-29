@@ -1,2 +1,13 @@
-// Place your application-specific JavaScript functions and classes here
-// This file is automatically included by javascript_include_tag :defaults
+$(document).ready(function() {
+  $.sifr({ path: '/swf/', save: true });
+	$('h3').sifr({
+		font: 'tuffy',
+		fontSize: '30px',
+		color: '#454545'
+	});
+	$('#navigation ul li').sifr({
+		font: 'tuffy',
+		fontSize: '18px',
+		color: 'black'
+	});
+});
