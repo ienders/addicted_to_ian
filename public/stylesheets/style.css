@@ -1,5 +1,5 @@
 /********************************************
- *	thornton tomasetti						*
+ *	addicted to ian             						*
 \********************************************/
 
 html, * {
@@ -18,11 +18,11 @@ body {
 }
 
 a { text-decoration:none; cursor: pointer }
-a { color:#fd8340 }
-a:link {color: #fd8340}    
-a:visited {color: #fd8340} 
+a { color:#F26E25 }
+a:link {color: #F26E25}    
+a:visited {color: #F26E25} 
 a:hover { text-decoration:underline }   
-a:active {color: #fd8340}
+a:active {color: #F26E25}
 
 img { border:none }
 
@@ -131,6 +131,35 @@ img, div, input { behavior: url("scripts/iepngfix.htc") }
 	color: #F26E25;
 }
 
+
+.blog_nav {
+	float: left;
+	width: 100%;
+	margin-top: 15px;
+}
+
+.blog_nav div.previous {
+	float: left;
+	margin-top: 10px;
+	font-weight: bold;
+}
+
+.blog_nav img.previous {
+	float: left;
+	margin-right: 10px;	
+}
+
+.blog_nav div.next {
+	float: right;
+	margin-top: 10px;
+	font-weight: bold;
+}
+
+.blog_nav img.next {
+	float: right;
+	margin-left: 10px;
+}
+
 /********************************************
  *	footer									*
 \********************************************/
@@ -183,4 +212,75 @@ img.rss {
 	color: #454545;
 	font-size: 11px;
 	text-align:left;
+}
+
+/********************************************
+ *	widgets									                *
+\********************************************/
+
+#widgets {
+	width: 280px;
+	float: left;
+	margin-top: 17px;
+}
+
+.widget {
+	margin-top: 17px;
+	float: left;
+	width: 100%;
+}
+
+.widget h3 {
+	font-size:18px;
+	font-weight: normal;
+	color: #464646;
+}
+
+/********************************************
+ *	search widget  						              *
+\********************************************/
+
+.search_container {
+	margin-top: 5px;
+	position: relative;
+	width: 100%;
+	height: 40px;
+}
+
+input.search {
+	position: absolute;
+	border: 1px solid black;
+	padding: 2px;
+	width: 237px;
+	height: 20px;
+	left: 0px;
+	top: 3px;
+}
+
+.search_container input.go {
+	position: absolute;
+	right: 0px;
+	top: 0px;
+}
+
+/********************************************
+ *	tags widget   						              *
+\********************************************/
+
+.tags {
+	margin-top: 10px;
+	text-align: center;
+	width: 100%;
+}
+
+.tag_small {
+	font-size: 12px;
+}
+
+.tag_medium {
+	font-size: 18px;
+}
+
+.tag_large {
+	font-size: 24px;
 }

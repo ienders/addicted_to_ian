@@ -1,0 +1,80 @@
+.calendar {
+  margin: auto;
+}
+
+.monthName {
+	font-size: 20px;
+  font-weight: normal;
+  text-align: center;
+  padding-top: 1em;
+  padding-bottom: 0.7em;
+}
+
+.dayName th {
+  font-size: 17px;
+  color: black;
+  font-weight: normal;
+  text-transform: lowercase;
+  text-align: center;
+  border-bottom: 1px solid black;
+}
+
+th abbr {
+	border: 0px;
+}
+
+.otherMonth, .day, .specialDay {
+  padding: 0.7em 1em;
+  border-right: 1px solid white;
+}
+
+.otherMonth {
+  color: #eeeeee;
+}
+
+.saturday, .sunday {
+  background-color: #DDDDDD;
+}
+
+.saturday {
+	border-right: 1px solid black;
+}
+
+.day, .specialDay, .otherMonth {
+	vertical-align: top;
+  text-align: center;
+  border-bottom: 1px solid black;
+	width: 40px;
+	height: 30px;
+	border-left: 1px solid black;
+	font-size: 11px;
+	color: black;
+}
+
+.specialDay {
+  background-color: #d10a21;
+  color: white;
+}
+
+.specialDay a, .specialDay a:visited, .specialDay a:hover {
+  color: white;
+  text-decoration: none;
+  padding: 1em;
+}
+
+.specialDay a:hover {
+  color: white;
+  background-color: black;
+}
+
+.specialDay li {
+	margin-left: 20px;
+	padding-left: 0px;
+	font-size: 10px;
+}
+
+.today {
+	background: #dddddd;
+	border: 1px solid #247CCE;
+	color: black;
+}

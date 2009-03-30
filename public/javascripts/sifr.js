@@ -10,13 +10,18 @@ $(document).ready(function() {
     fontSize: '17px',
 		color: '#000000',
 		link: '#000000',
-		hover: '#FD8340'
+		hover: '#F26E25'
 	});
 	$('.footer_links div').sifr({
 		font: 'tuffy_bold',
 		fontSize: '14px',
 		color: '#000000',
 		link: '#000000',
-		hover: '#FD8340'
+		hover: '#F26E25'
+	});
+	$('.widget h3').sifr({
+		font: 'tuffy',
+		fontSize: '18px',
+		color: '#000000'
 	});
 });

@@ -1,7 +1,5 @@
 class BlogsController < ApplicationController
 
-  
-
   def index
     @blog = Blog.last
     render :action => :show
@@ -9,7 +7,6 @@ class BlogsController < ApplicationController
 
   def show
     @blog = Blog.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @blog }

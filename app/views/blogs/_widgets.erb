@@ -1,0 +1,47 @@
+<div id = "widgets">
+  
+  <div class = "widget">
+    <h3>search</h3>
+    <div class = "search_container">    
+      <% form_tag('/search') do |f| %>
+        <%= text_field_tag(:search, '', :class => 'search') %>
+        <%= image_submit_tag('button_go.jpg', :class => 'go') %>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class = "widget">
+    <h3>tags</h3>
+  
+    <div class = "tags">
+      <a href = "#" class = "tag_small">risus</a>
+      <a href = "#" class = "tag_large">toby</a>
+      <a href = "#" class = "tag_small">eu</a>
+      <a href = "#" class = "tag_medium">tortor</a>
+      <a href = "#" class = "tag_small">vehicula</a>
+      <a href = "#" class = "tag_small">suscipit</a> 
+      <a href = "#" class = "tag_medium">aucibus</a>
+      <a href = "#" class = "tag_small">sodales</a>
+      <a href = "#" class = "tag_medium">felis</a>
+      <a href = "#" class = "tag_small">nullam</a>
+      <a href = "#" class = "tag_large">ana</a>
+      <a href = "#" class = "tag_large">comics</a>
+      <a href = "#" class = "tag_small">praesent</a>
+      <a href = "#" class = "tag_medium">non</a>
+      <a href = "#" class = "tag_small">erat</a>
+    </div>
+  </div>
+  
+  <div class = "widget">
+    <h3>posts</h3>
+
+	  <%= stylesheet_link_tag 'calendar' %>
+	  
+    <% previous_month = link_to "&lt;&lt;", '/' %> <%# :action => 'index', :month => @previous[:month], :year => @previous[:year] %>
+    <% next_month     = link_to "&gt;&gt;", '/' %>  <%# :action => 'index', :month => @next[:month], :year => @next[:year] %>
+    <%= calendar(:year => 2009, :month => 4,  :abbrev => (0..0), :previous_month_text => previous_month, :next_month_text => next_month) %>
+
+  </div>
+  
+  
+</div>
