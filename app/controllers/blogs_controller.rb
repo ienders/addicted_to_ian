@@ -1,5 +1,7 @@
 class BlogsController < ApplicationController
 
+  
+
   def index
     @blog = Blog.last
     render :action => :show
