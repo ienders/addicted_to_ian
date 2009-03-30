@@ -41,38 +41,43 @@ img, div, input { behavior: url("scripts/iepngfix.htc") }
 \********************************************/
 
 #header {
-	height:100px;
+	height:156px;
 	width:100%;
 	border-bottom:1px solid #000;
 }
 
 #header_container {
-	height:100px;
+	height:100%;
 	margin:0 auto;
 	width:980px;
 	position:relative;
 }
 
 #header_container img {
-	float:left;
-	margin-top:56px;
+	position: absolute;
+	top: 112px;
+	left: 114px;
 }
 
-#navigation {
-	position:absolute;
-	top:83px;
-	right:0;
+.nav_links div {
+	position: absolute;
+	top: 136px;
 }
 
-#navigation ul li {
-  list-style-type:none;
-  display:inline;
-  margin-right:50px;
-  font-size:18px;
+#words {
+	left: 530px;
 }
 
-#navigation ul li a {
-  color:#000;
+#pictures {
+	left: 628px;
+}
+
+#plugs {
+	left: 743px;
+}
+
+#links {
+	left: 834px;
 }
 
 /********************************************
