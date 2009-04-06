@@ -1,27 +1,49 @@
 $(document).ready(function() {
-  $.sifr({ path: '/swf/', save: true });
+  $.sifr({ path: '/swf/', font: 'tuffy', color: '#000000', save: true });
 	$('.blog_content h3').sifr({
-		font: 'tuffy',
 		fontSize: '30px',
 		color: '#464646'
 	});
+	$('.blog_content h4').sifr({
+		fontSize: '20px',
+		color: '#464646'		
+	});
+	$('.blog_content h5').sifr({
+		fontSize: '15px',
+		color: '#464646'
+	});	
+	$('.blog_content h6').sifr({
+		fontSize: '12px',
+		color: '#464646'
+	});
 	$('.nav_links div').sifr({
-		font: 'tuffy',
     fontSize: '17px',
-		color: '#000000',
 		link: '#000000',
 		hover: '#F26E25'
 	});
 	$('.footer_links div').sifr({
 		font: 'tuffy_bold',
 		fontSize: '14px',
-		color: '#000000',
 		link: '#000000',
 		hover: '#F26E25'
 	});
 	$('.widget h3').sifr({
-		font: 'tuffy',
-		fontSize: '18px',
-		color: '#000000'
+		fontSize: '18px'
+	});
+	$('.month_name').sifr({
+		font: 'tuffy_bold',
+		fontSize: '14px',
+		color: '#888888',
+		link: '#464646',
+		hover: '#000000',
+	});
+	$('.month_nav').sifr({
+		font: 'tuffy_bold',
+		fontSize: '14px',
+		link: '#F26E25',
+		hover: '#000000'
 	});
 });
+
+
+

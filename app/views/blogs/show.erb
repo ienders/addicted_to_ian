@@ -1,0 +1,50 @@
+<% if_authorized? do %>
+  <script type = "text/javascript">
+    function toggle(div) {
+      $('#blog_display').toggle();
+      $('#' + div).toggle();
+    }
+  </script>
+<% end %>
+
+<div id = "blog_display" class="blog_content">
+  <h3 id = "blog_title"><%=h @blog.title %></h3>
+  <% if_authorized? do %>
+    <div class = "clear"></div>
+    <%= link_to_function 'edit',   "toggle('blog_edit')", :class => 'admin_link' %>
+    <%= link_to_function 'create', "toggle('blog_create')", :class => 'admin_link' %>
+    <%= link_to 'delete', blog_path(@blog), :method => :delete, :confirm => 'Are you sure?', :class => 'admin_link' %>
+  <% end %>
+  
+  <div class = "clear"></div>
+  
+  <div class = "blog_text">
+    <%= markdown(@blog.content) %>
+  </div>
+  
+  <div class = "blog_nav">
+    <% if prev = @blog.previous %>
+      <%= link_to(image_tag('button_left.jpg', :class => 'previous'), blog_path(prev)) %>
+      <div class = "previous"><%= link_to(truncate(prev.title, :length => 30), blog_path(prev)) %></div>
+    <% end %>
+
+    <% if nxt = @blog.next %>
+      <%= link_to(image_tag('button_right.jpg', :class => 'next'), blog_path(nxt)) %>
+      <div class = "next"><%= link_to(truncate(nxt.title, :length => 30), blog_path(nxt)) %></div>
+    <% end %>
+  </div>
+</div>
+
+<% if_authorized? do %>
+  <div id = "blog_edit" class = "blog_content" style = "display: none">
+    <%= render :partial => 'form', :locals => { :obj => @blog, :div => 'blog_edit' } %>
+  </div>
+  
+  <div id = "blog_create" class = "blog_content" style = "display: none">
+    <%= render :partial => 'form', :locals => { :obj => Blog.new, :div => 'blog_create' } %>
+  </div>
+<% end %>
+
+<% content_for :widgets do %>
+  <%= render :partial => 'widgets' %>
+<% end %>

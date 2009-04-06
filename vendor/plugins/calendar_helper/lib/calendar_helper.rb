@@ -98,16 +98,15 @@ module CalendarHelper
 
     # TODO Use some kind of builder instead of straight HTML
     cal = %(<table class="#{options[:table_class]}" border="0" cellspacing="0" cellpadding="0">)
-    cal << %(<thead><tr>)
-    if options[:previous_month_text] or options[:next_month_text]
-      cal << %(<th colspan="2">#{options[:previous_month_text]}</th>)
-      colspan=3
-    else
-      colspan=7
-    end
-    cal << %(<th colspan="#{colspan}" class="#{options[:month_name_class]}">#{Date::MONTHNAMES[options[:month]]}</th>)
-    cal << %(<th colspan="2">#{options[:next_month_text]}</th>) if options[:next_month_text]
+    cal << %(<thead><tr>)  
+    cal << %(<th colspan="7" align = "center">)
+    cal << %(<span class = "#{options[:month_nav_class]}">#{options[:previous_month_text]}</span> ) if options[:previous_month_text]
+    cal << %(<span class="#{options[:month_name_class]}">#{Date::MONTHNAMES[options[:month]].downcase}_#{options[:year].to_s[2..3]}</span>)
+    cal << %( <span class = "#{options[:month_nav_class]}">#{options[:next_month_text]}</span>) if options[:next_month_text]
+    cal << %(</th>)
+    cal << %(<th colspan="2" class ="#{options[:next_month_class]}">)
     cal << %(</tr><tr class="#{options[:day_name_class]}">)
+    
     day_names.each do |d|
       unless d[options[:abbrev]].eql? d
         cal << "<th scope='col'><abbr title='#{d}'>#{d[options[:abbrev]]}</abbr></th>"

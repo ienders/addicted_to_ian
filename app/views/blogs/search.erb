@@ -1,0 +1,26 @@
+<div id = "blog_display" class="blog_content">
+  <p>
+    <% if @by == 'tag' %>
+      Blog entries tagged with "<%= @value %>."
+    <% elsif @by == 'keyword' %>
+      Blog entries containing text "<%= @value %>."
+    <% elsif @by == 'date' %>
+      Blog entries created on <%= Date.new(params[:year].to_i, params[:month].to_i, params[:day].to_i).strftime('%B %d, %Y') %>
+    <% end %>
+  </p>
+  
+  <% @blogs.each do |blog| %>
+    <h4><%= highlight(blog.title, @value) %></h4>
+    <% if @by == 'keyword' %>
+      <p><%= highlight(excerpt(markdown(blog.content).gsub(/<\/?[^>]*>/, ''), @value, :radius => 30), @value) %></p>
+    <% else %>
+      <p><%= truncate(markdown(blog.content).gsub(/<\/?[^>]*>/, ''), 75) %></p>
+    <% end %>
+  <% end %>
+  
+  <div class = "clear"></div>
+</div>
+
+<% content_for :widgets do %>
+  <%= render :partial => 'widgets' %>
+<% end %>

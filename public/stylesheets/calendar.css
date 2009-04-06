@@ -28,10 +28,6 @@ th abbr {
   border-right: 1px solid white;
 }
 
-.otherMonth {
-  color: #eeeeee;
-}
-
 .saturday, .sunday {
   background-color: #DDDDDD;
 }
@@ -41,40 +37,30 @@ th abbr {
 }
 
 .day, .specialDay, .otherMonth {
-	vertical-align: top;
+	vertical-align: middle;
   text-align: center;
   border-bottom: 1px solid black;
 	width: 40px;
 	height: 30px;
 	border-left: 1px solid black;
-	font-size: 11px;
+	font-size: 10px;
 	color: black;
+	font-weight: bold;
+}
+
+.otherMonth {
+  color: #999999;
 }
 
 .specialDay {
-  background-color: #d10a21;
-  color: white;
-}
-
-.specialDay a, .specialDay a:visited, .specialDay a:hover {
-  color: white;
-  text-decoration: none;
-  padding: 1em;
-}
-
-.specialDay a:hover {
-  color: white;
-  background-color: black;
-}
-
-.specialDay li {
-	margin-left: 20px;
-	padding-left: 0px;
-	font-size: 10px;
+	font-size: 12px;
 }
 
 .today {
-	background: #dddddd;
-	border: 1px solid #247CCE;
-	color: black;
+	background-color: #d2e1e4;
+}
+
+.month_name, .month_nav {
+	font-weight: bold;
+	font-size: 14px;
 }

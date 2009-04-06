@@ -1,5 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :blogs
+  map.blog_calendar_day '/blogs/search/:by/:year/:month/:day', :controller => 'blogs', :action => 'search'
+  map.blog_search '/blogs/search/:by', :controller => 'blogs', :action => 'search'
 
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
