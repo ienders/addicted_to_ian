@@ -155,6 +155,28 @@ img, div, input { behavior: url("scripts/iepngfix.htc") }
 	color: #F26E25;
 }
 
+p.light {
+	color: #888888;
+	font-style: italic;
+	float: right;
+}
+
+.search_result {
+	border: 1px solid #333333;
+	margin-bottom: 5px;
+	padding: 0px 5px 0px 5px;
+}
+
+.result_num {
+	float: left;
+	font-weight: bold;
+	margin-top: 15px;
+	margin-right: 10px;
+}
+
+.result_preview {
+	margin-left: 23px;
+}
 
 .blog_nav {
 	float: left;
@@ -323,6 +345,9 @@ input.search {
 	text-decoration: underline;
 }
 
-.blog_content input {
-	float: left;
+.blog_content input, .blog_content textarea {
+	border:1px solid #888888;
+	float:left;
+	margin:10px 0;
+	padding:2px;
 }

@@ -1,12 +1,14 @@
-$(document).ready(function() {
-  $.sifr({ path: '/swf/', font: 'tuffy', color: '#000000', save: true });
+function sifrize() {
+	$.sifr({ path: '/swf/', font: 'tuffy', color: '#000000', save: true });
 	$('.blog_content h3').sifr({
 		fontSize: '30px',
 		color: '#464646'
 	});
 	$('.blog_content h4').sifr({
 		fontSize: '20px',
-		color: '#464646'		
+		color: '#464646',
+		link: '#F26E25',
+		hover: '#000000'
 	});
 	$('.blog_content h5').sifr({
 		fontSize: '15px',
@@ -43,6 +45,10 @@ $(document).ready(function() {
 		link: '#F26E25',
 		hover: '#000000'
 	});
+}
+
+$(document).ready(function() {
+  sifrize();
 });
 
 

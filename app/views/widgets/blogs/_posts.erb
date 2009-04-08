@@ -1,7 +1,7 @@
 <%= stylesheet_link_tag 'calendar' %>
 
-<% previous_month = link_to("&lt;&lt;", params.merge({:m => @previous[:month], :y => @previous[:year] })) %>
-<% next_month     = link_to("&gt;&gt;", params.merge({:m => @next[:month],     :y => @next[:year] })) %>
+<% previous_month = link_to("&lt;&lt;", params.merge({:mo => @previous[:month], :yr => @previous[:year] })) %>
+<% next_month     = link_to("&gt;&gt;", params.merge({:mo => @next[:month],     :yr => @next[:year] })) %>
 <%= calendar(:year => @year, :month => @month,  :abbrev => (0..0), :previous_month_text => previous_month, :next_month_text => next_month, :month_name_class => 'month_name', :month_nav_class => 'month_nav') do |d|
 
   if @selected_days.include?(d.mday)

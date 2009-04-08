@@ -2,14 +2,20 @@
   <%= f.error_messages %>
   <%= link_to_function 'cancel', "toggle('#{div}')", :class => 'admin_link', :style => 'float: right' %>
   
-  <label>Title:</label>
+  <h4>Title:</h4>
+  <div class = "clear"></div>
   <%= f.text_field :title %>
+  <div class = "clear"></div>
   
-  <label>Content:</label>
+  <h4>Content:</h4>
+  <div class = "clear"></div>
   <%= f.text_area :content, :rows => 30, :cols => 80 %>
+  <div class = "clear"></div>
   
-  <label>Tags:</label>
+  <h4>Tags:</h4>
+  <div class = "clear"></div>
   <%= f.text_field :tag_list, :size => 90 %>
+  <div class = "clear"></div>
   
   <%= f.submit "Save" %>
 <% end %>

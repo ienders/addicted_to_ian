@@ -82,8 +82,8 @@ class BlogsController < ApplicationController
   end
   
   def load_calendar
-    @year  = params[:y] ? params[:y].to_i : (@blog ? @blog.created_at.year  : Date.today.year)
-    @month = params[:m] ? params[:m].to_i : (@blog ? @blog.created_at.month : Date.today.month)
+    @year  = params[:yr] ? params[:yr].to_i : (@blog ? @blog.created_at.year  : Date.today.year)
+    @month = params[:mo] ? params[:mo].to_i : (@blog ? @blog.created_at.month : Date.today.month)
     @previous = { :year => @month == 1  ? @year - 1 : @year, :month => @month == 1  ? 12 : @month - 1 }
     @next     = { :year => @month == 12 ? @year + 1 : @year, :month => @month == 12 ? 1  : @month + 1 }
     
