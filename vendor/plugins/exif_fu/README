@@ -1,0 +1,48 @@
+ExifFu
+======
+This comes from one project that required reading exif tags for image rotation 
+
+Exif Fu assumes you're using attachment_fu as your file handler (thus exif_fu), although it is easy enough to hack the library to use any other file library.
+
+Exif Fu requires ExifTool by Phil Harvey (http://www.sno.phy.queensu.ca/~phil/exiftool/) and MiniExifTool (http://miniexiftool.rubyforge.org/) which you can install with gem install mini_exiftool
+
+Example
+======
+
+All you need to do is add exif_fu to your model and you're ready to go.  Here is one example:
+
+class Photo < ActiveRecord::Base
+  
+  exif_fu
+  
+  has_attachment :content_type => :image,
+                 :storage => :file_system,
+                 :processor => :mini_magick,
+                 :size => 500..5.megabytes,
+                 :path_prefix => "public/#{table_name}",
+                 :thumbnails => {:medium => '600x600>', :thumb => '100x100>' }
+
+  validates_as_attachment
+  
+end
+
+Usage
+=====
+
+Once you've setup your model, all you have to do is call some of the methods on the model, some examples:
+
+photo.iso
+would reutrn "800"
+
+photo.shot_by
+would reutrn "Matthew Vincent"
+
+photo.aperture
+would reutrn 4.0
+
+photo.exif_tag("MyCustomExifTag")
+would reutrn "You got your tag"
+
+You can see the rest of the included methods in the exif_fu.rb library, or just use the exif_tag to call any exif tag you want to.  Please note that exif tags are case sensitive.
+
+Copyright (c) 2008 Matthew Vincent, released under the MIT license

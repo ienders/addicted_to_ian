@@ -149,6 +149,7 @@ img, div, input { behavior: url("scripts/iepngfix.htc") }
 	margin-bottom: 5px;
 	line-height: 14pt;
 	font-weight: 550;
+	width: 100%;
 }
 
 .blog_content p a {

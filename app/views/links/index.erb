@@ -1,0 +1,43 @@
+<% if_authorized? do %>
+  <script type = "text/javascript">
+    function toggle(div, div2) {
+      $('#' + div).toggle();
+      if (div2 != null) {
+        $('#' + div2).toggle();
+      }
+      sifrize();
+    }
+  </script>
+<% end %>
+
+<div class="blog_content">
+  <% if_authorized? do %>
+    <%= link_to_function 'create', "toggle('link_create')", :class => 'admin_link' %>
+    <div id = "link_create" class = "blog_content" style = "display: none">
+      <%= render :partial => 'form', :locals => { :obj => Link.new, :div => 'link_create' } %>
+    </div>
+    <div class = "clear"></div>
+  <% end %>
+  
+  <% @links.each do |link| %>
+    <div id = "link_display_<%= link.id %>">
+      <h4><%= link_to(link.title, link.url) %></h4>
+      <% if_authorized? do %>
+        <div class = "clear"></div>
+        <%= link_to_function 'edit', "toggle('link_edit_#{link.id}', 'link_display_#{link.id}')", :class => 'admin_link' %>
+        <%= link_to 'delete', link_path(link), :method => :delete, :confirm => 'Are you sure?', :class => 'admin_link' %>
+      <% end %>
+      <%= markdown(link.description) %>
+      <div class = "clear"></div>
+    </div>
+    <% if_authorized? do %>
+      <div id = "link_edit_<%= link.id %>" style = "display: none">
+        <%= render :partial => 'form', :locals => { :obj => link, :div => "link_edit_#{link.id}", :div2 => "link_display_#{link.id}" } %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<%# content_for :widgets do %>
+  <%# render :partial => 'widgets' %>
+<%# end %>

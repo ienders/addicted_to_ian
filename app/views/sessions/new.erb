@@ -1,6 +1,20 @@
-<h1>Log In</h1>
-<% form_tag session_path do -%>
-<p><%= label_tag 'login' %><br /><%= text_field_tag 'login', @login %></p>
-<p><%= label_tag 'password' %><br/><%= password_field_tag 'password', nil %></p>
-<p><%= submit_tag 'Log in' %></p>
-<% end -%>
+<div class="blog_content">
+  <h3>Log In</h3>
+  <div class = "clear"></div>
+      
+  <% form_tag session_path do -%>
+    <div style = "float: left">
+      <h4>login</h4>
+      <div class = "clear"></div>
+      <%= text_field_tag 'login', @login %>
+    </div>
+    <div style = "float: left; padding-left: 25px">
+      <h4>password</h4>
+      <div class = "clear"></div>
+      <%= password_field_tag 'password', nil %>
+    </div>
+
+    <div class = "clear"></div>
+    <%= submit_tag 'Log in' %>
+  <% end -%>
+</div>

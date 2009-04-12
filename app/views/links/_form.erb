@@ -1,0 +1,15 @@
+<% form_for(obj) do |f| %>
+  <%= f.error_messages %>
+  <%= link_to_function 'cancel', "toggle('#{div}'#{defined?(div2) ? ", '#{div2}'" : ''})", :class => 'admin_link', :style => 'float: right' %>
+  
+  <h4>URL:</h4>
+  <p><%= f.text_field :url %></p>
+  
+  <h4>Title:</h4>
+  <p><%= f.text_field :title %></p>
+  
+  <h4>Description:</h4>
+  <p><%= f.text_area :description, :rows => 30, :cols => 80 %></p>
+  
+  <%= f.submit "Save" %>
+<% end %>
