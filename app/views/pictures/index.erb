@@ -1,151 +1,87 @@
-<style type = "text/css">
+<% num_albums_at_once = 4 %>
+<% num_image_rows_at_once = 4 %>
 
-.album_nav {
-  float:left;
-  width:370px;
-}
-
-.albums {
-  float:left;
-  width:348px;
-  margin-right:20px;
-  border:1px solid #000;
-}
-
-.album_data {
-  float:left;
-  width:100%;
-  height:36px;
-  border-bottom:1px solid #000;
-}
-
-.album_data img {
-  float: left;
-}
-
-.album_data h4 {
-  float:left;
-  width:170px;
-  margin:2px 0 0 10px;
+<script type = "text/javascript">
+  var num_albums = <%= @albums.size %>;
+  var num_albums_at_once = <%= num_albums_at_once %>;
+  var album_first = 0;
+  var album_last = <%= num_albums_at_once - 1 %>;
   
-}
-
-.album_data h5 {
-  float:right;
-  margin:4px 5px 0 0;
-  font-weight:normal;
-  text-align:right;
-}
-
-.pictures {
-  float:left;
-  width:610px;
-}
-
-.pictures img {
-  border:1px solid #000;
-}
-
-#no_border {
-  border:none;
-}
-
-.arrows {
-  float:left;
-  width:100%;
-  border-bottom:1px solid #000;
-}
-
-.thumb_arrows {
-  width:348px;
-  float:left;
-  border:1px solid #000;
-  margin-bottom:10px;
-}
-
-.thumb_wrapper {
-  float:left;
-  margin-top:33px;
-}
-
-.arrows img, .thumb_arrows img {
-  float:left;
-  margin-left: 165px;
-}
-
-.thumbs {
-  float:left;
-  margin-bottom:10px;
-}
-
-.thumbs img {
-  float:left;
-  margin-right:10px;
-}
-
-</style>
+  var num_image_rows = 6;
+  var num_image_rows_at_once = <%= num_image_rows_at_once %>;
+  var image_row_first = 0;
+  var image_row_last = <%= num_image_rows_at_once - 1 %>;
+  
+  $(document).ready(function() {
+    $('#back_album').click(function() {
+      $(this).effect("highlight", { color: 'orange' }, 300);
+      
+      if (num_albums <= num_albums_at_once || album_first == 0) {
+        return;
+      }
+      $('#album_' + album_last).slideToggle('slow');
+      album_last--; album_first--;
+      $('#album_' + album_first).slideToggle('slow');
+    });
+    
+    $('#forward_album').click(function() {
+      $(this).effect("highlight", { color: 'orange' }, 300);
+      if (num_albums <= num_albums_at_once || album_last == num_albums - 1) {
+        return;
+      }
+      $('#album_' + album_first).slideToggle('slow');
+      album_last++; album_first++;
+      $('#album_' + album_last).slideToggle('slow');
+    });
+    
+    $('#back_images').click(function() {
+      $(this).effect("highlight", { color: 'orange' }, 300);
+      
+      if (num_image_rows <= num_image_rows_at_once || image_row_first == 0) {
+        return;
+      }
+      $('#thumbs_row_' + image_row_last).slideToggle('slow');
+      image_row_last--; image_row_first--;
+      $('#thumbs_row_' + image_row_first).slideToggle('slow');
+    });
+    
+    $('#forward_images').click(function() {
+      $(this).effect("highlight", { color: 'orange' }, 300);
+      if (num_image_rows <= num_image_rows_at_once || image_row_last == num_image_rows - 1) {
+        return;
+      }
+      $('#thumbs_row_' + image_row_first).slideToggle('slow');
+      image_row_last++; image_row_first++;
+      $('#thumbs_row_' + image_row_last).slideToggle('slow');
+    });
+  });
+</script>
 
 <div class="album_nav"> 
   <div class="albums">
-    <div class="arrows">
+    <div class="arrows" id = "back_album">
       <img src="/images/arrow_top.jpg" alt="top" />
     </div>
-    <div class="album_data">
-      <a href="#"><img src="/images/album_cover.jpg" alt="cover" /></a>
-      <h4>Toby Takes a Nap blah blah blah blah</h4>      
-      <h5>10/04/09<br />5 images</h5>      
-    </div>
-    <div class="album_data">
-      <a href="#"><img src="/images/album_cover.jpg" alt="cover" /></a>
-      <h4>Ana and Ian in NYC</h4>
-      <h5>10/04/09<br />100 images</h5>
-    </div>
-    <div class="album_data">
-      <a href="#"><img src="/images/album_cover.jpg" alt="cover" /></a>
-      <h4>Day at the ROM</h4>
-      <h5>05/05/09 <br />35 images</h5>
-    </div>
-    <div class="album_data">
-      <a href="#"><img src="/images/album_cover.jpg" alt="cover" /></a>
-      <h4>Being Cute with Ana</h4>
-      <h5>06/30/09 <br />45 images</h5>
-    </div>
-    <div class="arrows" id="no_border">
+    
+    <% @albums.each_with_index do |album, i| %>
+      <div class="album_data" id = "album_<%= i %>" <%= i >= num_albums_at_once ? 'style = "display: none"' : '' %>>
+        <a href="#"><img src="/images/album_cover.jpg" alt="cover" /></a>
+        <h4><%= album.name %></h4>
+        <h5><%= album.date %><br /><%= album.size %> image<%= album.size == 1 ? '' : 's' %></h5>      
+      </div>    
+    <% end %>
+    
+    <div class="arrows no_border" id = "forward_album">
       <img src="/images/arrow_bottom.jpg" alt="bottom" />
     </div>
   </div>
 
   <div class="thumb_wrapper">
-    <div class="thumb_arrows"><img src="/images/arrow_top.jpg" alt="top" /></div>
-    <div class="thumbs">
-      <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-      <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-      <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-      <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-      <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
+    <div class="thumb_arrows" id = "back_images"><img src="/images/arrow_top.jpg" alt="top" /></div>
+    <div id = "thumb_area">
+      <%= render :partial => 'album', :object => @albums.first %>
     </div>
-    <div class="thumbs">
-      <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-      <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-      <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-      <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-      <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-    </div>
-    <div class="thumbs">
-      <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-      <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-      <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-      <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-      <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-    </div>
-    <div class="thumbs">
-      <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-      <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-      <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-      <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-      <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-    </div>
-    <div class="thumb_arrows"><img src="/images/arrow_bottom.jpg" alt="bottom" /></div>
+    <div class="thumb_arrows" id = "forward_images"><img src="/images/arrow_bottom.jpg" alt="bottom" /></div>
   </div>
 </div>
 

@@ -7,6 +7,9 @@ ActionController::Routing::Routes.draw do |map|
 
   # Pictures
   map.pictures '/pictures', :controller => 'pictures'
+  map.resources :albums # For admin only
+  map.new_photo_field '/albums/new_photo_field', :controller => 'albums', :action => 'new_photo_field'
+  map.resources :photos # For admin only
 
   # Plugs
   map.plugs '/plugs', :controller => 'plugs'
@@ -25,5 +28,5 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller => 'blogs'
 
 #  map.connect ':controller/:action/:id'
-#  map.connect ':controller/:action/:id.:format'
+# map.connect ':controller/:action/:id.:format'
 end

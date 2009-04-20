@@ -1,6 +1,10 @@
 class CreatePhotos < ActiveRecord::Migration
   def self.up
     create_table :photos do |t|
+      t.column :album_id,     :integer
+      t.column :title,        :string
+      t.column :description,  :text
+      t.column :position,     :integer
       t.column :parent_id,    :integer
       t.column :content_type, :string
       t.column :filename,     :string    

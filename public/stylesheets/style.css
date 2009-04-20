@@ -336,6 +336,114 @@ input.search {
 	font-size: 24px;
 }
 
+
+/********************************************
+ *	photo album   						              *
+\********************************************/
+
+.album_nav {
+  float:left;
+  width:370px;
+}
+
+.albums {
+  float:left;
+  width:348px;
+  margin-right:20px;
+  border:1px solid #000;
+}
+
+.album_data {
+  float:left;
+  width:100%;
+  height:36px;
+  border-bottom:1px solid #000;
+}
+
+.album_data img {
+  float: left;
+}
+
+.album_data h4 {
+  float:left;
+  width:170px;
+  margin:2px 0 0 10px;
+  
+}
+
+.album_data h5 {
+  float:right;
+  margin:4px 5px 0 0;
+  font-weight:normal;
+  text-align:right;
+}
+
+.pictures {
+  float:left;
+  width:610px;
+}
+
+.pictures img {
+  border:1px solid #000;
+}
+
+.arrows {
+  float:left;
+  width:100%;
+  border-bottom:1px solid #000;
+}
+
+.no_border {
+  border:none;
+}
+
+.thumb_arrows {
+  width:348px;
+  float:left;
+  border:1px solid #000;
+  margin-bottom:10px;
+}
+
+.thumb_wrapper {
+  float:left;
+  margin-top:33px;
+}
+
+.arrows img, .thumb_arrows img {
+  float:left;
+  margin-left: 165px;
+}
+
+.thumbs {
+  float:left;
+  margin-bottom:10px;
+}
+
+.thumbs img {
+  float:left;
+  margin-right:10px;
+}
+
+#forward_album {
+  position: absolute;
+  top: 340px;
+  margin-left: -1px;
+  border:1px solid black;
+  background-color: white;
+  width:348px;
+}
+
+#forward_images {
+  position: absolute;
+  top: 245px;
+}
+
+.thumb_wrapper {
+  position: absolute;
+  width: 400px;
+  top: 351px;
+}
+
 /********************************************
  *	admin only features  			              *
 \********************************************/

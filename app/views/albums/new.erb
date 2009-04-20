@@ -1,0 +1,47 @@
+<style type = "text/css">
+  .new_photo label {
+    width: 100px;
+    text-align: right;
+    font-weight: bold;
+    float: left;
+    padding-right: 9px;
+    padding-top: 12px;
+  }
+  
+  .new_photo input, .new_photo textarea {
+    float: left;
+  }
+  
+  .new_photo {
+    border: 1px solid #888888;
+    margin-left: 35px;
+    margin-bottom: 5px;
+  }
+  
+  #new_photos {
+    margin-left: 35px;
+    text-align: right;
+    font-weight: bold;
+  }
+</style>
+
+<script type = "text/javascript">
+  var num_photos = 1;
+  function add_photo_field() {
+    num_photos++;
+    <%= remote_function(:url => { :action => 'new_photo_field' }, :with => "'num=' + num_photos", :update => :new_photos, :position => :before) %>
+  }
+</script>
+
+<div class="blog_content">
+  <% form_for(@album, :html => { :multipart => true }) do |f| %>
+    <h4>Photo Album Name:</h4>
+    <%= f.text_field(:name, :size => 61) %>
+    <div class = "clear"></div>
+    <%= render :partial => 'photo_fields', :locals => { :num => 1 } %>
+    <div id = "new_photos">
+      <%= f.submit "Create Album" %>
+      <%= link_to_function('+ Add Another Photo', "add_photo_field()") %>
+    </div>
+  <% end %>
+</div>

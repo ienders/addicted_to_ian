@@ -1,7 +1,6 @@
 # This controller handles the login/logout function of the site.  
 class SessionsController < ApplicationController
-  def new
-  end
+  def new; end
 
   def create
     logout_keeping_session!
