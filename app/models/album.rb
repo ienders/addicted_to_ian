@@ -17,6 +17,10 @@ class Album < ActiveRecord::Base
     created_at.strftime('%m/%d/%y')
   end
   
+  def cover_photo_url
+    photos.first ? photos.first.public_filename(:gallery_hero) : ''
+  end
+  
   protected
   def save_attachments
     logger.debug "Saving attachments"

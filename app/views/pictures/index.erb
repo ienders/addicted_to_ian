@@ -65,7 +65,7 @@
     
     <% @albums.each_with_index do |album, i| %>
       <div class="album_data" id = "album_<%= i %>" <%= i >= num_albums_at_once ? 'style = "display: none"' : '' %>>
-        <a href="#"><img src="/images/album_cover.jpg" alt="cover" /></a>
+        <a href="#"><%= image_tag(album.cover_photo_url) %></a>
         <h4><%= album.name %></h4>
         <h5><%= album.date %><br /><%= album.size %> image<%= album.size == 1 ? '' : 's' %></h5>      
       </div>    
