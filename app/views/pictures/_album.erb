@@ -1,42 +1,10 @@
-<div class = "thumbs" id ="thumbs_row_0">
-  <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-  <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-  <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-  <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-  <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-</div>
-<div class = "thumbs" id ="thumbs_row_1">
-  <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-  <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-  <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-  <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-  <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-</div>
-<div class = "thumbs" id ="thumbs_row_2">
-  <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-  <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-  <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-  <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-  <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-</div>
-<div class = "thumbs" id ="thumbs_row_3">
-  <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-  <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-  <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-  <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-  <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-</div>
-<div class = "thumbs" id ="thumbs_row_4" style = "display: none">
-  <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-  <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-  <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-  <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-  <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-</div>
-<div class = "thumbs" id ="thumbs_row_5" style = "display: none">
-  <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-  <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-  <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-  <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-  <a href="#"><img src="/images/thumbnail.jpg" alt="thumb" /></a>
-</div>
+<% partitioned_gallery = [] %>
+<% (0..album.size - 1).step(5) {|i| partitioned_gallery.push(album.photos[i..i + 4]) } %>
+
+<% partitioned_gallery.each_with_index do |row, i| %>
+  <div class = "thumbs" id ="thumbs_row_<%= i %>">
+    <% row.each do |photo| %>
+      <a href="#"><%= image_tag(photo.thumb_url) %></a>
+    <% end %>
+  </div>
+<% end %>

@@ -14,6 +14,10 @@ class Photo < ActiveRecord::Base
       :gallery_hero => 'crop: 100x36'
     }
   )
+  
+  def thumb_url
+    public_filename(:thumb)
+  end
 
   validates_as_attachment
   
