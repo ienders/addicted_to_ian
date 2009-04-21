@@ -54,6 +54,13 @@
       image_row_last++; image_row_first++;
       $('#thumbs_row_' + image_row_last).slideToggle('slow');
     });
+    
+    
+    $('.gallery_image').live('click', function() {;
+      $('.gallery_image').css('opacity', 1).css('border', '0px');
+      $(this).css('opacity', 0.5).css('border', '1px solid black');
+      $('#picture').find('img').attr('src', $(this).attr('rel'));
+    });
   });
 </script>
 
@@ -68,7 +75,7 @@
         <a href="#"><%= image_tag(album.cover_photo_url) %></a>
         <h4><%= album.name %></h4>
         <h5><%= album.date %><br /><%= album.size %> image<%= album.size == 1 ? '' : 's' %></h5>      
-      </div>    
+      </div>
     <% end %>
     
     <div class="arrows no_border" id = "forward_album">
@@ -77,14 +84,20 @@
   </div>
 
   <div class="thumb_wrapper">
-    <div class="thumb_arrows" id = "back_images"><img src="/images/arrow_top.jpg" alt="top" /></div>
+    <div class="thumb_arrows" id = "back_images">
+      <img src="/images/arrow_top.jpg" alt="top" />
+    </div>
     <div id = "thumb_area">
       <%= render :partial => 'album', :object => @albums.first %>
     </div>
-    <div class="thumb_arrows" id = "forward_images"><img src="/images/arrow_bottom.jpg" alt="bottom" /></div>
+    <div class="thumb_arrows" id = "forward_images">
+      <img src="/images/arrow_bottom.jpg" alt="bottom" />
+    </div>
   </div>
 </div>
 
-<div class="pictures">
-  <img src="/images/toby.jpg" alt="toby" />
+<div class="pictures" id = "picture">
+  <% if @albums.first.photos.first %>
+    <%= image_tag(@albums.first.photos.first.public_filename) %>
+  <% end %>
 </div>

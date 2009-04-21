@@ -381,10 +381,14 @@ input.search {
 .pictures {
   float:left;
   width:610px;
+	height: 456px;
+	vertical-align: middle;
+	background-color: #DDDDDD;
 }
 
 .pictures img {
   border:1px solid #000;
+  margin: auto;
 }
 
 .arrows {
