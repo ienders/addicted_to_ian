@@ -19,9 +19,9 @@
       if (num_albums <= num_albums_at_once || album_first == 0) {
         return;
       }
-      $('#album_' + album_last).slideToggle('slow');
+      $('#album_' + album_last).slideToggle('fast');
       album_last--; album_first--;
-      $('#album_' + album_first).slideToggle('slow');
+      $('#album_' + album_first).slideToggle('fast');
     });
     
     $('#forward_album').click(function() {
@@ -29,9 +29,9 @@
       if (num_albums <= num_albums_at_once || album_last == num_albums - 1) {
         return;
       }
-      $('#album_' + album_first).slideToggle('slow');
+      $('#album_' + album_first).slideToggle('fast');
       album_last++; album_first++;
-      $('#album_' + album_last).slideToggle('slow');
+      $('#album_' + album_last).slideToggle('fast');
     });
     
     $('#back_images').click(function() {
@@ -56,6 +56,16 @@
     });
     
     
+    $('.album_link').click(function() {
+      $('.album_link').find('img').css('opacity', 1);
+      $(this).find('img').css('opacity', 0.5)
+      <%= remote_function(
+        :url  => { :action => 'album' },
+        :with => "'id=' + $(this).attr('rel')",
+        :update => :thumb_area
+      ) %>
+    });
+    
     $('.gallery_image').live('click', function() {;
       $('.gallery_image').css('opacity', 1).css('border', '0px');
       $(this).css('opacity', 0.5).css('border', '1px solid black');
@@ -71,8 +81,8 @@
     </div>
     
     <% @albums.each_with_index do |album, i| %>
-      <div class="album_data" id = "album_<%= i %>" <%= i >= num_albums_at_once ? 'style = "display: none"' : '' %>>
-        <a href="#"><%= image_tag(album.cover_photo_url) %></a>
+      <div class="album_data" id = "album_<%= i %>" <%= i >= num_albums_at_once ? 'style = "display: none"' : '' %> >
+        <a href = "#" class = "album_link" rel = "<%= album.id %>"><%= image_tag(album.cover_photo_url) %></a>
         <h4><%= album.name %></h4>
         <h5><%= album.date %><br /><%= album.size %> image<%= album.size == 1 ? '' : 's' %></h5>      
       </div>
@@ -85,13 +95,13 @@
 
   <div class="thumb_wrapper">
     <div class="thumb_arrows" id = "back_images">
-      <img src="/images/arrow_top.jpg" alt="top" />
+      <img src="/images/arrow_top.png" alt="top" />
     </div>
     <div id = "thumb_area">
       <%= render :partial => 'album', :object => @albums.first %>
     </div>
     <div class="thumb_arrows" id = "forward_images">
-      <img src="/images/arrow_bottom.jpg" alt="bottom" />
+      <img src="/images/arrow_bottom.png" alt="bottom" />
     </div>
   </div>
 </div>
