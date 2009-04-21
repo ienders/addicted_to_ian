@@ -389,17 +389,19 @@ input.search {
 	vertical-align: middle;
 	background-color: #DDDDDD;
 	border:1px solid #000;
+	text-align: center;
 }
 
 .pictures img {
   border:1px solid #000;
-  margin: auto;
 }
 
 .arrows {
   float:left;
   width:100%;
   border-bottom:1px solid #000;
+  height: 15px;
+	cursor: pointer;
 }
 
 .no_border {
@@ -411,16 +413,20 @@ input.search {
   float:left;
   border:1px solid #000;
   margin-bottom:10px;
+  height: 15px;
 }
 
 .thumb_wrapper {
-  float:left;
   margin-top:33px;
+  position: absolute;
+  width: 400px;
+  top: 345px;
 }
 
 .arrows img, .thumb_arrows img {
   float:left;
   margin-left: 165px;
+  margin-top: 3px;
 }
 
 .thumbs {
@@ -435,7 +441,7 @@ input.search {
 
 #forward_album {
   position: absolute;
-  top: 339px;
+  top: 346px;
   margin-left: -1px;
   border:1px solid black;
   background-color: white;
@@ -445,12 +451,6 @@ input.search {
 #forward_images {
   position: absolute;
   top: 245px;
-}
-
-.thumb_wrapper {
-  position: absolute;
-  width: 400px;
-  top: 351px;
 }
 
 /********************************************

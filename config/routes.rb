@@ -7,6 +7,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # Pictures
   map.pictures '/pictures', :controller => 'pictures'
+  map.pictures_album '/pictures/album/:id', :controller => 'pictures', :action => 'album'
   map.resources :albums # For admin only
   map.new_photo_field '/albums/new_photo_field', :controller => 'albums', :action => 'new_photo_field'
   map.resources :photos # For admin only
