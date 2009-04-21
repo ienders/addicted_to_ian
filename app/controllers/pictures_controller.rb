@@ -5,7 +5,7 @@ class PicturesController < ApplicationController
   end
   
   def album
-    render :partial => 'album', :object => Album.find(params[:id]), :locals => { :num_image_rows => params[:num_image_rows] }
+    render :partial => 'album', :object => Album.find(params[:id]), :locals => { :num_image_rows => params[:num_image_rows].to_i }
   end
 
 end
