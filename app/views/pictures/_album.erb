@@ -2,7 +2,7 @@
 <% (0..album.size - 1).step(5) {|i| partitioned_gallery.push(album.photos[i..i + 4]) } %>
 
 <% partitioned_gallery.each_with_index do |row, i| %>
-  <div class = "thumbs" id ="thumbs_row_<%= i %>">
+  <div class = "thumbs" id ="thumbs_row_<%= i %>" <%= i >= num_image_rows ? 'style = "display: none"' : '' %>>
     <% row.each do |photo| %>
       <%= image_tag(photo.thumb_url, :rel => photo.public_filename, :class => 'gallery_image') %>
     <% end %>
@@ -11,6 +11,7 @@
 
 <script type = "text/javascript">
   $(document).ready(function() {
+    $('#forward_images').<%= partitioned_gallery.size <= num_image_rows ? 'fadeOut' : 'fadeIn' %>("slow");
     $('.gallery_image:first').click();
   });
 </script>
