@@ -24,7 +24,7 @@ th abbr {
 }
 
 .otherMonth, .day, .specialDay {
-  padding: 0.7em 1em;
+/*  padding: 0.7em 1em;*/
   border-right: 1px solid white;
 }
 
