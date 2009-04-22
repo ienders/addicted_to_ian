@@ -14,21 +14,40 @@
   
   $(document).ready(function() {
     $('#back_album').click(function() {
-      $(this).effect("highlight", { color: 'orange' }, 300);
+      if (album_first == 1) {
+        $('#back_album').css('background-color', '#DDDDDD');
+        $('#back_album').find('img').fadeOut();
+      }
       
       if (num_albums <= num_albums_at_once || album_first == 0) {
         return;
       }
+      
+      $(this).effect("highlight", { color: 'orange' }, 300);
+      
+      $('#forward_album').css('background-color', 'white');
+      $('#forward_album').find('img').fadeIn();
+      
       $('#album_' + album_last).slideToggle('fast');
       album_last--; album_first--;
       $('#album_' + album_first).slideToggle('fast');
     });
     
     $('#forward_album').click(function() {
-      $(this).effect("highlight", { color: 'orange' }, 300);
+      if (album_last == num_albums -2) {
+        $('#forward_album').css('background-color', '#DDDDDD');
+        $('#forward_album').find('img').fadeOut();
+      }
+      
       if (num_albums <= num_albums_at_once || album_last == num_albums - 1) {
         return;
       }
+      
+      $(this).effect("highlight", { color: 'orange' }, 300);
+      
+      $('#back_album').css('background-color', 'white');
+      $('#back_album').find('img').fadeIn();
+      
       $('#album_' + album_first).slideToggle('fast');
       album_last++; album_first++;
       $('#album_' + album_last).slideToggle('fast');
@@ -40,6 +59,7 @@
       if (num_image_rows <= num_image_rows_at_once || image_row_first == 0) {
         return;
       }
+      
       $('#thumbs_row_' + image_row_last).slideToggle('slow');
       image_row_last--; image_row_first--;
       $('#thumbs_row_' + image_row_first).slideToggle('slow');
@@ -67,17 +87,26 @@
     });
     
     $('.gallery_image').live('click', function() {
-      $('.gallery_image').css('opacity', 1).css('border', '0px');
-      $(this).css('opacity', 0.5).css('border', '1px solid black');
+      $('.gallery_image').css('border', '0px').css('background-color', '#CCCCCC');
+      $('.gallery_image').find('img').css('opacity', 1)
+      $(this).css('border', '1px solid black').css('background-color', 'white');
+      $(this).find('img').css('opacity', 0.5)
       $('#picture').find('img').attr('src', $(this).attr('rel'));
     });
+    
+    $('#back_album').css('background-color', '#DDDDDD');
+    
+    if (num_albums <= num_albums_at_once) {
+      $('#forward_album').css('background-color', '#DDDDDD');
+      $('#forward_album').find('img').fadeOut();
+    }
   });
 </script>
 
 <div class="album_nav"> 
   <div class="albums">
     <div class="arrows" id = "back_album">
-      <img src="/images/arrow_top.png" alt="top" />
+      <img src="/images/arrow_top.png" alt="top" style = "display: none" />
     </div>
     
     <% @albums.each_with_index do |album, i| %>
@@ -94,13 +123,13 @@
   </div>
 
   <div class="thumb_wrapper">
-    <div class="thumb_arrows" id = "back_images">
+    <div class="thumb_arrows" id = "back_images" style = "display: none">
       <img src="/images/arrow_top.png" alt="top" />
     </div>
     <div id = "thumb_area">
       <%= render :partial => 'album', :object => @albums.first, :locals => { :num_image_rows => num_image_rows_at_once } %>
     </div>
-    <div class="thumb_arrows" id = "forward_images">
+    <div class="thumb_arrows" id = "forward_images" style = "display: none">
       <img src="/images/arrow_bottom.png" alt="bottom" />
     </div>
   </div>

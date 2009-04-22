@@ -434,11 +434,6 @@ input.search {
   margin-bottom:10px;
 }
 
-.thumbs img {
-  float:left;
-  margin-right:10px;
-}
-
 #forward_album {
   position: absolute;
   top: 346px;
@@ -451,6 +446,21 @@ input.search {
 #forward_images {
   position: absolute;
   top: 245px;
+}
+
+#thumb_area {
+	position: absolute;
+	top: 27px;
+}
+
+.gallery_image {
+	width: 62px;
+	height: 46px;
+	text-align: center;
+	float: left;
+  margin-right:10px;
+  margin-bottom:10px;
+	background-color: #CCCCCC;
 }
 
 /********************************************

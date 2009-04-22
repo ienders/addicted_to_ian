@@ -4,14 +4,25 @@
 <% partitioned_gallery.each_with_index do |row, i| %>
   <div class = "thumbs" id ="thumbs_row_<%= i %>" <%= i >= num_image_rows ? 'style = "display: none"' : '' %>>
     <% row.each do |photo| %>
-      <%= image_tag(photo.thumb_url, :rel => photo.public_filename, :class => 'gallery_image') %>
+      <div class = "gallery_image" rel = "<%= photo.public_filename %>">
+        <%= image_tag(photo.thumb_url, :width => photo.thumb_width, :height => photo.thumb_height) %>
+      </div>
     <% end %>
   </div>
 <% end %>
 
 <script type = "text/javascript">
   $(document).ready(function() {
+    // Hide top and bottom nav arrows if we don't need them.
     $('#forward_images').<%= partitioned_gallery.size <= num_image_rows ? 'fadeOut' : 'fadeIn' %>("slow");
+    $('#back_images').<%= partitioned_gallery.size <= num_image_rows ? 'fadeOut' : 'fadeIn' %>("slow");
+    
+    // Center the thumbnails vertically in their container.
+    $('.gallery_image').each(function() {
+      $(this).find('img').css('margin-top', ($(this).height() - $(this).find('img').attr('height')) / 2);
+    });
+
+    // Select the first image in the gallery.
     $('.gallery_image:first').click();
   });
 </script>
