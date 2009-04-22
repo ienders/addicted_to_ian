@@ -19,6 +19,14 @@ class Photo < ActiveRecord::Base
     public_filename(:thumb)
   end
 
+  def thumb_width
+    Photo.first(:conditions => { :thumbnail => 'thumb', :parent_id => id }).width
+  end
+  
+  def thumb_height
+    Photo.first(:conditions => { :thumbnail => 'thumb', :parent_id => id }).height
+  end
+
   validates_as_attachment
   
   protected   
