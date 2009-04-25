@@ -19,10 +19,14 @@
     
     // Center the thumbnails vertically in their container.
     $('.gallery_image').each(function() {
-      $(this).find('img').css('margin-top', ($(this).height() - $(this).find('img').attr('height')) / 2);
+      $(this).find('img').css('margin-top', (parseInt($(this).css('height')) - $(this).find('img').attr('height')) / 2);
     });
 
     // Select the first image in the gallery.
     $('.gallery_image:first').click();
+    
+    // Reset our position in the gallery to what is visible on first load.
+    image_row_first = 0;
+    image_row_last = <%= num_image_rows - 1 %>;
   });
 </script>
