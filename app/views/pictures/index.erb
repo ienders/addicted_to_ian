@@ -78,7 +78,7 @@
     
     $('.album_link').click(function() {
       $('.album_link').find('img').css('opacity', 1);
-      $(this).find('img').css('opacity', 0.5)
+      $(this).find('img').css('opacity', 0.5);
       <%= remote_function(
         :url  => { :action => 'album' },
         :with => "'num_image_rows=#{num_image_rows_at_once}&id=' + $(this).attr('rel')",
@@ -88,10 +88,14 @@
     
     $('.gallery_image').live('click', function() {
       $('.gallery_image').css('border', '0px').css('background-color', '#CCCCCC');
-      $('.gallery_image').find('img').css('opacity', 1)
+      $('.gallery_image').find('img').css('opacity', 1);
       $(this).css('border', '1px solid black').css('background-color', 'white');
-      $(this).find('img').css('opacity', 0.5)
-      $('#picture').find('img').attr('src', $(this).attr('rel'));
+      $(this).find('img').css('opacity', 0.5);
+      <%= remote_function(
+        :url    => { :action => 'photo' },
+        :update => :picture,
+        :with   => "'id=' + $(this).attr('rel')"
+      ) %>
     });
     
     $('#back_album').css('background-color', '#DDDDDD');

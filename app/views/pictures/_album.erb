@@ -4,7 +4,7 @@
 <% partitioned_gallery.each_with_index do |row, i| %>
   <div class = "thumbs" id ="thumbs_row_<%= i %>" <%= i >= num_image_rows ? 'style = "display: none"' : '' %>>
     <% row.each do |photo| %>
-      <div class = "gallery_image" rel = "<%= photo.public_filename %>">
+      <div class = "gallery_image" rel = "<%= photo.id %>">
         <%= image_tag(photo.thumb_url, :width => photo.thumb_width, :height => photo.thumb_height) %>
       </div>
     <% end %>
