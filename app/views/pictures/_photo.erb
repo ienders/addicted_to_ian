@@ -1,0 +1,48 @@
+<%= image_tag(photo.public_filename, :width => photo.width, :height => photo.height, :style => 'display: none') %>
+
+<div id = "image_data" style = "display: none">
+  <% if photo.title %>
+    <h3><%= photo.title %></h3>
+  <% end %>
+  <% if photo.description %>
+    <h4><%= photo.description %></h4>
+  <% end %>
+  
+  <div class = "file_info">
+    file: <strong><%= photo.exif_tag('FileName') %> <% if photo.exif_tag('FileSize') %>(<%= photo.exif_tag('FileSize') %>)<% end %></strong>
+  </div>
+  
+  <div class = "date_info">
+    <% if photo.exif_tag('CreateDate') %>taken: <strong><%= photo.exif_tag('CreateDate') %></strong><br /><% end %>
+  </div>
+  
+  <div class = "exif">  
+    <ul>
+      <% if photo.exif_tag('Model') %><li><strong>model: <%= photo.exif_tag('Model') %></strong></li><% end %>
+    </ul>
+    <ul>  
+      <% if photo.exif_tag('Aperture') %><li>aperture: <strong><%= photo.exif_tag('Aperture') %></strong></li><% end %>
+      <% if photo.exif_tag('FocalLength') %><li>focal length: <strong><%= photo.exif_tag('FocalLength') %></strong></li><% end %>
+      <% if photo.exif_tag('ISO') %><li>iso: <strong><%= photo.exif_tag('ISO') %></strong></li><% end %>
+      <% if photo.exif_tag('ShutterSpeed') %><li>shutter: <strong><%= photo.exif_tag('ShutterSpeed') %></strong></li><% end %>
+      <% if photo.exif_tag('Flash') %><li>flash: <strong><%= photo.exif_tag('Flash') %></strong></li><% end %>
+      <% if photo.exif_tag('MeteringMode') %><li>metering: <strong><%= photo.exif_tag('MeteringMode') %></strong></li><% end %>
+    </ul>
+  </div>
+</div>
+
+<script type = "text/javascript">
+  $(function() {
+    $('#picture').find('img').css('margin-top', (parseInt($('#picture').css('height')) - $('#picture').find('img').attr('height')) / 2);
+    var minX = parseInt($('.pictures').offset().left) && parseInt(currentX);
+    var maxX = parseInt($('.pictures').offset().left) + parseInt($('.pictures').css('width'));
+    var minY = parseInt($('.pictures').offset().top);
+    var maxY = parseInt($('.pictures').offset().top) + parseInt($('.pictures').css('height'));
+    var x = parseInt(currentX);
+    var y = parseInt(currentY);
+    if (x >= minX && x <= maxX && y >= minY && y <= maxY) {
+      console.log('inside');
+      $('#image_data').show();
+    }
+  });
+</script>

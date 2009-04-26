@@ -352,7 +352,7 @@ input.search {
   border:1px solid #000;
 }
 
-.pictures img.centered_image {
+#picture img.centered_image {
   display:block;
   text-align:center;
 }
@@ -390,10 +390,12 @@ input.search {
 	background-color: #DDDDDD;
 	border:1px solid #000;
 	text-align: center;
+	position: relative;
 }
 
-.pictures img {
-  border:1px solid #000;
+#picture {
+	height: 456px;
+	width: 610px;
 }
 
 .arrows {
@@ -460,6 +462,72 @@ input.search {
   margin-right:10px;
   margin-bottom: 7px;
 	background-color: #CCCCCC;
+}
+
+#image_data {
+	position: absolute;
+	height: 91px;
+	width: 608px;
+	top: 363px;
+	border: 1px solid black;
+	background-color: #000000;
+	opacity: 0.9;
+}
+
+#image_data h3 {
+	float: left;
+	font-size: 14px;
+	font-weight: bold;
+	width: 450px;
+	text-align: left;
+	padding-top: 5px;
+	padding-left: 5px;
+}
+
+#image_data h4 {
+	padding-left: 5px;
+	padding-top: 5px;
+	text-align: left;
+	float: left;
+	font-size: 11px;
+	font-weight: normal;
+	width: 450px;
+}
+
+#image_data .exif {
+	font-size: 8px;
+	text-align: right;
+	padding-right: 5px;
+	padding-top: 5px;
+}
+
+#image_data .file_info {
+	font-size: 8px;
+	text-align: left;
+	position: absolute;
+	padding-left: 5px;
+	top: 76px;
+}
+
+#image_data .date_info {
+	font-size: 8px;
+	text-align: left;
+	position: absolute;
+	padding-left: 5px;
+	top: 76px;
+	left: 200px;
+}
+
+#image_loading {
+	position: absolute;
+	top: 212px;
+	left: 289px;
+}
+
+.exif ul {
+	text-align: right;
+	list-style-type: none;
+	margin-bottom: 5px;
 }
 
 /********************************************

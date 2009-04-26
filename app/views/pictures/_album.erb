@@ -12,7 +12,7 @@
 <% end %>
 
 <script type = "text/javascript">
-  $(document).ready(function() {
+  $(function() {
     // Hide top and bottom nav arrows if we don't need them.
     $('#forward_images').<%= partitioned_gallery.size <= num_image_rows ? 'fadeOut' : 'fadeIn' %>("slow");
     $('#back_images').<%= partitioned_gallery.size <= num_image_rows ? 'fadeOut' : 'fadeIn' %>("slow");

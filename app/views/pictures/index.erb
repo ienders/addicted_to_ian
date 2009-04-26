@@ -12,7 +12,10 @@
   var image_row_first = 0;
   var image_row_last = <%= num_image_rows_at_once - 1 %>;
   
-  $(document).ready(function() {
+  var currentX = 0;
+  var currentY = 0;
+  
+  $(function() {
     $('#back_album').click(function() {
       if (album_first == 1) {
         $('#back_album').css('background-color', '#DDDDDD');
@@ -87,16 +90,36 @@
     });
     
     $('.gallery_image').live('click', function() {
+      var img = $(this);
       $('.gallery_image').css('border', '0px').css('background-color', '#CCCCCC');
       $('.gallery_image').find('img').css('opacity', 1);
       $(this).css('border', '1px solid black').css('background-color', 'white');
       $(this).find('img').css('opacity', 0.5);
-      <%= remote_function(
-        :url    => { :action => 'photo' },
-        :update => :picture,
-        :with   => "'id=' + $(this).attr('rel')"
-      ) %>
+      $('#image_loading').fadeIn(3000);
+      $('#picture').find('img').fadeOut('fast', function() {
+        <%= remote_function(
+          :url    => { :action => 'photo' },
+          :update => :picture,
+          :with   => "'id=' + img.attr('rel')",
+          :success => "$('#image_loading').hide(); $('#picture').find('img').fadeIn('fast')"
+        ) %>
+      });
     });
+    
+    
+    $('#picture').hover(
+      function () {
+        $('#image_data').fadeIn();
+      }, 
+      function () {
+        $('#image_data').fadeOut();
+      }
+    );
+    
+    $().mousemove(function(e) {
+      currentX = e.pageX;
+      currentY = e.pageY;
+    }); 
     
     $('#back_album').css('background-color', '#DDDDDD');
     
@@ -139,8 +162,11 @@
   </div>
 </div>
 
-<div class="pictures" id = "picture">
-  <% if @albums.first.photos.first %>
-    <%= image_tag(@albums.first.photos.first.public_filename) %>
-  <% end %>
+<div class = "pictures">
+  <div id = "image_loading" style = "display: none"><%= image_tag('gallery-loading.gif') %></div>
+  <div id = "picture">
+    <% if @albums.first.photos.first %>
+      <%= image_tag(@albums.first.photos.first.public_filename) %>
+    <% end %>
+  </div>
 </div>
