@@ -34,14 +34,13 @@
 <script type = "text/javascript">
   $(function() {
     $('#picture').find('img').css('margin-top', (parseInt($('#picture').css('height')) - $('#picture').find('img').attr('height')) / 2);
-    var minX = parseInt($('.pictures').offset().left) && parseInt(currentX);
+    var minX = parseInt($('.pictures').offset().left);
     var maxX = parseInt($('.pictures').offset().left) + parseInt($('.pictures').css('width'));
     var minY = parseInt($('.pictures').offset().top);
     var maxY = parseInt($('.pictures').offset().top) + parseInt($('.pictures').css('height'));
     var x = parseInt(currentX);
-    var y = parseInt(currentY);
+    var y = parseInt(currentY);    
     if (x >= minX && x <= maxX && y >= minY && y <= maxY) {
-      console.log('inside');
       $('#image_data').show();
     }
   });
