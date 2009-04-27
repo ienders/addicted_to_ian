@@ -560,3 +560,100 @@ input.search {
 	margin:10px 0;
 	padding:2px;
 }
+
+
+.admin_links {
+	font-size: 9px;
+}
+
+/****************/
+/* Admin albums */
+/****************/
+
+.new_album_link {
+	font-weight: bold;
+	font-size: 12px;
+	text-align: center;
+	margin-top: 25px;
+}
+
+.new_photo label, .edit_photos label {
+  width: 100px;
+  text-align: right;
+  font-weight: bold;
+  float: left;
+  padding-right: 9px;
+  padding-top: 12px;
+}
+
+.new_photo input, .new_photo textarea {
+  float: left;
+}
+
+.new_photo {
+  border: 1px solid #888888;
+  margin-left: 35px;
+  margin-bottom: 5px;
+}
+
+#new_photos {
+  margin-left: 35px;
+  text-align: right;
+  font-weight: bold;
+}
+
+.edit_photos {
+	border: 1px solid #888888;
+	margin-left: 35px;
+	margin-bottom: 5px;
+	padding: 10px;
+}
+
+.edit_photos .photo_details {
+	float: left;
+}
+
+.edit_photos .photo_details {
+	width: 500px;
+}
+
+.edit_photo_thumb {
+	width: 62px;
+	height: 46px;
+	text-align: center;
+	background-color: #CCCCCC;
+	border: 1px solid #888888;
+	float: left;
+}
+
+.edit_photo_left {
+	width: 65px;
+	float: left;
+}
+
+.edit_photo_left .admin_links {
+	float: left;
+	text-align: center;
+	width: 65px;
+	font-weight: bold;
+}
+
+#update_failure {
+	text-align: center;
+	font-weight: bold;
+	color: red;
+	border: 1px solid red;
+	background-color: #FFCCFF;
+	margin-left: 35px;
+	padding: 5px;
+}
+
+#update_success {
+	text-align: center;
+	font-weight: bold;
+	color: green;
+	border: 1px solid green;
+	background-color: #CCFFCC;
+	margin-left: 35px;
+	padding: 5px;
+}

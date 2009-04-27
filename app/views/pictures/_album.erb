@@ -13,9 +13,17 @@
 
 <script type = "text/javascript">
   $(function() {
+    num_image_rows = <%= partitioned_gallery.size %>;
+    
     // Hide top and bottom nav arrows if we don't need them.
     $('#forward_images').<%= partitioned_gallery.size <= num_image_rows ? 'fadeOut' : 'fadeIn' %>("slow");
     $('#back_images').<%= partitioned_gallery.size <= num_image_rows ? 'fadeOut' : 'fadeIn' %>("slow");
+    
+    // Reset top/bottom arrows to the proper state for greyed out / not greyed
+    $('#back_images').css('background-color', '#DDDDDD');
+    $('#back_images').find('img').fadeOut();
+    $('#forward_images').css('background-color', 'white');
+    $('#forward_images').find('img').fadeIn();
     
     // Center the thumbnails vertically in their container.
     $('.gallery_image').each(function() {

@@ -18,16 +18,30 @@ class AlbumsController < ApplicationController
     @album = Album.new(params[:album])
     if @album.save
       flash[:notice] = 'Album was successfully created.'
-      redirect_to(edit_album_url(@album))
+      redirect_to(:controller => 'pictures', :action => 'index')
     else
       render :action => "new"
     end
   end
 
   def update
+    # Name is updated via AJAX.  The rest is updated via regular post
+    if params[:album][:name]
+      render :update do |page|
+        if @album.update_attributes(params[:album])
+          page.show :update_success
+          page.hide :update_failure
+        else
+          page.show :update_failure
+          page.hide :update_success
+        end
+      end
+      return
+    end
+    
     if @album.update_attributes(params[:album])
       flash[:notice] = 'Album was successfully updated.'
-      redirect_to(albums_url)
+      redirect_to(edit_album_url(@album))
     else
       render :action => "index"
     end
@@ -35,7 +49,7 @@ class AlbumsController < ApplicationController
 
   def destroy
     @album.destroy
-    redirect_to(albums_url)
+    redirect_to(:controller => 'pictures', :action => 'index')
   end
   
   protected

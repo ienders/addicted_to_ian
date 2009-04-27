@@ -7,7 +7,7 @@
   var album_first = 0;
   var album_last = <%= num_albums_at_once - 1 %>;
   
-  var num_image_rows = 6;
+  var num_image_rows = 0;
   var num_image_rows_at_once = <%= num_image_rows_at_once %>;
   var image_row_first = 0;
   var image_row_last = <%= num_image_rows_at_once - 1 %>;
@@ -57,11 +57,19 @@
     });
     
     $('#back_images').click(function() {
-      $(this).effect("highlight", { color: 'orange' }, 300);
+      if (image_row_first == 1) {
+        $('#back_images').css('background-color', '#DDDDDD');
+        $('#back_images').find('img').fadeOut();
+      }
       
       if (num_image_rows <= num_image_rows_at_once || image_row_first == 0) {
         return;
       }
+      
+      $('#forward_images').css('background-color', 'white');
+      $('#forward_images').find('img').fadeIn();
+
+      $(this).effect("highlight", { color: 'orange' }, 300);
       
       $('#thumbs_row_' + image_row_last).slideToggle('fast');
       image_row_last--; image_row_first--;
@@ -69,10 +77,21 @@
     });
     
     $('#forward_images').click(function() {
-      $(this).effect("highlight", { color: 'orange' }, 300);
+      if (image_row_last == num_image_rows -2) {
+        $('#forward_images').css('background-color', '#DDDDDD');
+        $('#forward_images').find('img').fadeOut();
+      }
+      
       if (num_image_rows <= num_image_rows_at_once || image_row_last == num_image_rows - 1) {
         return;
       }
+
+      $(this).effect("highlight", { color: 'orange' }, 300);
+      
+      
+      $('#back_images').css('background-color', 'white');
+      $('#back_images').find('img').fadeIn();
+      
       $('#thumbs_row_' + image_row_first).slideToggle('fast');
       image_row_last++; image_row_first++;
       $('#thumbs_row_' + image_row_last).slideToggle('fast');
@@ -139,8 +158,16 @@
     <% @albums.each_with_index do |album, i| %>
       <div class="album_data" id = "album_<%= i %>" <%= i >= num_albums_at_once ? 'style = "display: none"' : '' %> >
         <a href = "#" class = "album_link" rel = "<%= album.id %>"><%= image_tag(album.cover_photo_url) %></a>
-        <h4><%= album.name %></h4>
-        <h5><%= album.date %><br /><%= album.size %> image<%= album.size == 1 ? '' : 's' %></h5>      
+        <h4>
+          <%= album.name %>
+          <% if_authorized? do %>
+            <div class = "admin_links">
+              <%= link_to 'edit',   edit_album_path(album) %> &nbsp;&nbsp;
+              <%= link_to 'delete', album_path(album), :method => :delete, :confirm => 'Are you sure?' %>
+            </div>
+          <% end %>
+        </h4>
+        <h5><%= album.date %><br /><%= album.size %> image<%= album.size == 1 ? '' : 's' %></h5>
       </div>
     <% end %>
     
@@ -170,3 +197,10 @@
     <% end %>
   </div>
 </div>
+
+<% if_authorized? do %>
+  <div class = "clear"></div>
+  <div class = "new_album_link">
+    <%= link_to('Create New Album', new_album_path) %>
+  </div>
+<% end %>

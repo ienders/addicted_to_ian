@@ -15,6 +15,10 @@ class Photo < ActiveRecord::Base
     }
   )
   
+  def is_cover_photo?
+    album.cover == self
+  end
+  
   def thumb_url
     public_filename(:thumb)
   end
@@ -31,6 +35,7 @@ class Photo < ActiveRecord::Base
   
   protected   
   def resize_image(img, size)
+    return if (size == "608>x456") && id
     original_exif = MiniExiftool.new(img.filename)
     if (size.is_a?(String) && size =~ /^crop: (\d*)x(\d*)/i) || (size.is_a?(Array) && size.first.is_a?(String) && size.first =~ /^crop: (\d*)x(\d*)/i)
       img.crop_resized!($1.to_i, $2.to_i)  
@@ -38,7 +43,6 @@ class Photo < ActiveRecord::Base
     else  
       super
     end
-      
       
     if size == "608>x456"
       # Copy original exif data into resized image.
