@@ -537,11 +537,12 @@ input.search {
 .thumb_holder {
   float:left;
   width:235px;
-  margin:0 10px 10px 0;
+  height:142px;
+  margin:-1px 0 0 -1px;
 }
 
 .thumb_holder img {
-  border:1px solid #888;
+  border:1px solid #000;
 }
 
 /********************************************
