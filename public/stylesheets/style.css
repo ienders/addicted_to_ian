@@ -534,6 +534,11 @@ input.search {
  *	plugs   								                *
 \********************************************/
 
+#thumb_wrapper {
+  float:left;
+  margin-left:40px;
+}
+
 .thumb_holder {
   float:left;
   width:235px;
@@ -542,6 +547,7 @@ input.search {
 }
 
 .thumb_holder img {
+  float:left;
   border:1px solid #000;
 }
 
