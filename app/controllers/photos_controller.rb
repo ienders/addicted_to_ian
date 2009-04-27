@@ -17,17 +17,21 @@ class PhotosController < ApplicationController
   end
 
   def update
-    if @photo.update_attributes(params[:photo])
-      flash[:notice] = 'Photo was successfully updated.'
-      redirect_to(photos_url)
-    else
-      render :action => "index"
+    render :update do |page|
+      if @photo.update_attributes(params[:photo])
+        page.show :update_success
+        page.hide :update_failure
+      else
+        page.show :update_failure
+        page.hide :update_success
+      end
     end
   end
 
   def destroy
+    @album = @photo.album
     @photo.destroy
-    redirect_to(photos_url)
+    redirect_to(edit_album_path(@album))
   end
   
   protected
