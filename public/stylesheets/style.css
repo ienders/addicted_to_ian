@@ -212,7 +212,7 @@ p.light {
 }
 
 /********************************************
- *	footer									*
+ *	footer									                *
 \********************************************/
 
 #footer {
@@ -528,6 +528,20 @@ input.search {
 	text-align: right;
 	list-style-type: none;
 	margin-bottom: 5px;
+}
+
+/********************************************
+ *	plugs   								                *
+\********************************************/
+
+.thumb_holder {
+  float:left;
+  width:235px;
+  margin:0 10px 10px 0;
+}
+
+.thumb_holder img {
+  border:1px solid #888;
 }
 
 /********************************************
