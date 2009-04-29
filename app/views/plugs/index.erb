@@ -1,6 +1,7 @@
 <% plugs = [ 'liz', 'mally', 'kates', 'kimara', 'lucky', 'indagare', 'amazon', 'ibm', 'kanetix', 'weatheroffice', 'jonsonia' ] %>
 
 <script type = "text/javascript">
+
   var num_plugs = <%= plugs.size %>
   
   $(function() {
@@ -28,42 +29,45 @@
         $(this).css('position', 'absolute').css('top', (top + height * row) + 'px').css('left', left + (col * width) + 'px');
       });
 
-      (function hidePlugBackwards(e) {
-        if (e.css('display') != 'none') {
-          var j = parseInt(e.attr('rel'));
-          e.hide('slow', function() {
-            if (j > 0) {
-              hidePlugBackwards($('#plug_' + (j - 1)));
-            }
-          });
-        }
-      })($('#plug_' + (num_plugs - 1)));
+      var arr = new Array();
+      for (var i = 0; i < num_plugs; i++) {
+        arr.push(i);
+      }
+      arr.sort(function() { return (Math.round(Math.random()) - 0.5) })
+      var index = 0;
       
-      (function hidePlugForwards(e) {
-        if (e.css('display') != 'none') {
-          var k = parseInt(e.attr('rel'));
-          e.hide('slow', function() {
-            if (k < num_plugs - 2) {
-              hidePlugForwards($('#plug_' + (k + 1)));
-            }
-          });
-        }
-      })($('#plug_0'));
-      
+      (function randomHide(e) {
+        var j = parseInt(e.attr('rel'));
+        e.hide('fast', function() {
+          index++;
+          if (index < num_plugs) {
+            randomHide($('#plug_' + arr[index]));
+          }
+        });
+      })($('#plug_' + arr[index]));
       
 
-       // (function hidePlug(e) {
-       //   var j = parseInt(e.attr('rel'));
-       //   if (j != i) {
-       //     e.hide('puff', {}, 200, function() {
-       //       if (j > 0) {
-       //         hidePlug($('#plug_' + (j - 1)));
-       //       }
-       //     });
-       //   } else {
-       //     hidePlug($('#plug_' + (j - 1)))
-       //   }
-       // })($('#plug_' + (num_plugs - 1)));
+      // (function hidePlugBackwards(e) {
+      //   if (e.css('display') != 'none') {
+      //     var j = parseInt(e.attr('rel'));
+      //     e.hide('slow', function() {
+      //       if (j > 0) {
+      //         hidePlugBackwards($('#plug_' + (j - 1)));
+      //       }
+      //     });
+      //   }
+      // })($('#plug_' + (num_plugs - 1)));
+      // 
+      // (function hidePlugForwards(e) {
+      //   if (e.css('display') != 'none') {
+      //     var k = parseInt(e.attr('rel'));
+      //     e.hide('slow', function() {
+      //       if (k < num_plugs - 2) {
+      //         hidePlugForwards($('#plug_' + (k + 1)));
+      //       }
+      //     });
+      //   }
+      // })($('#plug_0'));
 
       e.preventDefault();
     })
