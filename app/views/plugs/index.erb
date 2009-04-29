@@ -19,13 +19,12 @@
         var col = i % per_row;
         var row = (i - (i % per_row)) / per_row;
         
-        var left = parseInt($(this).offset().left);
-        var top = parseInt($(this).offset().top);
+        var left = parseInt($(this).offset().left) + 1;
+        var top = parseInt($(this).offset().top) + 1;
         
-        var height = parseInt($(this).css('height'));
-        var width = parseInt($(this).css('width'));
+        var height = parseInt($(this).css('height')) - 1;
+        var width = parseInt($(this).css('width')) - 1;
         
-        console.log('left = ' + left + ', top = ' + top);
         $(this).css('position', 'absolute').css('top', (top + height * row) + 'px').css('left', left + (col * width) + 'px');
       });
 
