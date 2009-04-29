@@ -1,45 +1,85 @@
-<div id="thumb_wrapper">
-  <div class="thumb_holder">
-    <a href="#"><img src="/images/thumb_liz.jpg" alt="liz claiborne"></a>
-  </div>
+<% plugs = [ 'liz', 'mally', 'kates', 'kimara', 'lucky', 'indagare', 'amazon', 'ibm', 'kanetix', 'weatheroffice', 'jonsonia' ] %>
 
-  <div class="thumb_holder">
-    <a href="#"><img src="/images/thumb_mally.jpg" alt="liz claiborne"></a>
-  </div>
-
-  <div class="thumb_holder">
-    <a href="#"><img src="/images/thumb_kates.jpg" alt="liz claiborne"></a>
-  </div>
-
-  <div class="thumb_holder">
-    <a href="#"><img src="/images/thumb_kimara.jpg" alt="liz claiborne"></a>
-  </div>
-
-  <div class="thumb_holder">
-    <a href="#"><img src="/images/thumb_lucky.jpg" alt="liz claiborne"></a>
-  </div>
-
-  <div class="thumb_holder">
-    <a href="#"><img src="/images/thumb_indagare.jpg" alt="liz claiborne"></a>
-  </div>
-
-  <div class="thumb_holder">
-    <a href="#"><img src="/images/thumb_amazon.jpg" alt="liz claiborne"></a>
-  </div>
-
-  <div class="thumb_holder">
-    <a href="#"><img src="/images/thumb_ibm.jpg" alt="liz claiborne"></a>
-  </div>
-
-  <div class="thumb_holder">
-    <a href="#"><img src="/images/thumb_kanetix.jpg" alt="liz claiborne"></a>
-  </div>
-
-  <div class="thumb_holder">
-    <a href="#"><img src="/images/thumb_weatheroffice.jpg" alt="liz claiborne"></a>
-  </div>
+<script type = "text/javascript">
+  var num_plugs = <%= plugs.size %>
   
-  <div class="thumb_holder">
-    <a href="#"><img src="/images/thumb_jonsonia.jpg" alt="liz claiborne"></a>
-  </div>
+  $(function() {
+    $('.thumb_holder').click(function(e) {
+      var i = parseInt($(this).attr('rel'));
+
+      
+      var minX = parseInt($('.pictures').offset().left);
+      var maxX = parseInt($('.pictures').offset().left) + parseInt($('.pictures').css('width'));
+      var minY = parseInt($('.pictures').offset().top);
+      
+      $('.thumb_holder').each(function() {
+        var per_row = 4;
+        var i = parseInt($(this).attr('rel'));
+        
+        var col = i % per_row;
+        var row = (i - (i % per_row)) / per_row;
+        
+        var left = parseInt($(this).offset().left);
+        var top = parseInt($(this).offset().top);
+        
+        var height = parseInt($(this).css('height'));
+        var width = parseInt($(this).css('width'));
+        
+        console.log('left = ' + left + ', top = ' + top);
+        $(this).css('position', 'absolute').css('top', (top + height * row) + 'px').css('left', left + (col * width) + 'px');
+      });
+
+      (function hidePlugBackwards(e) {
+        if (e.css('display') != 'none') {
+          var j = parseInt(e.attr('rel'));
+          e.hide('slow', function() {
+            if (j > 0) {
+              hidePlugBackwards($('#plug_' + (j - 1)));
+            }
+          });
+        }
+      })($('#plug_' + (num_plugs - 1)));
+      
+      (function hidePlugForwards(e) {
+        if (e.css('display') != 'none') {
+          var k = parseInt(e.attr('rel'));
+          e.hide('slow', function() {
+            if (k < num_plugs - 2) {
+              hidePlugForwards($('#plug_' + (k + 1)));
+            }
+          });
+        }
+      })($('#plug_0'));
+      
+      
+
+       // (function hidePlug(e) {
+       //   var j = parseInt(e.attr('rel'));
+       //   if (j != i) {
+       //     e.hide('puff', {}, 200, function() {
+       //       if (j > 0) {
+       //         hidePlug($('#plug_' + (j - 1)));
+       //       }
+       //     });
+       //   } else {
+       //     hidePlug($('#plug_' + (j - 1)))
+       //   }
+       // })($('#plug_' + (num_plugs - 1)));
+
+      e.preventDefault();
+    })
+  });
+  
+  function hideNext() {
+    
+  }
+  
+</script>
+
+<div id="thumb_wrapper">
+  <% plugs.each_with_index do |plug, i| %>
+    <div class="thumb_holder" id = "plug_<%= i %>" rel = "<%= i %>">
+      <%= link_to(image_tag("thumb_#{plug}.jpg"), '#') %>
+    </div>
+  <% end %>
 </div>
