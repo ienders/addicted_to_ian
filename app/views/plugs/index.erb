@@ -53,7 +53,7 @@
   function doneHiding(obj) {
     obj.find('img').attr('src', '/images/thumb_large_ibm.jpg');
     obj.animate({ left: 17, top: 27}, 2000, function() {
-      obj.find('img').animate({ height: 300, width: 500 }, 'fast', function() {
+      obj.find('img').animate({ height: 300, width: 500 }, 'medium', function() {
         $('.plug').fadeIn('slow', function() {
           sifr_plugs();
           $('.plug_text').fadeIn('slow', function() {
