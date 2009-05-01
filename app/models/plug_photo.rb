@@ -3,8 +3,8 @@ class PlugPhoto < ActiveRecord::Base
     :content_type => :image, 
     :storage      => :file_system, 
     :max_size     => 10000.kilobytes,
-    :resize_to    => '608>x456',
-    :thumbnails   => { :thumb => '' }
+    :resize_to    => '500x300',
+    :thumbnails   => { :thumb => '233x140' }
   )
   
   validates_as_attachment

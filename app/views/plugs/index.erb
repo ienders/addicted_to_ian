@@ -7,8 +7,6 @@
   $(function() {
     $('.thumb_holder').click(function(e) {
       var i = parseInt($(this).attr('rel'));
-
-      
       var minX = parseInt($('.pictures').offset().left);
       var maxX = parseInt($('.pictures').offset().left) + parseInt($('.pictures').css('width'));
       var minY = parseInt($('.pictures').offset().top);
@@ -20,7 +18,7 @@
         var col = i % per_row;
         var row = (i - (i % per_row)) / per_row;
         
-        var left = parseInt($(this).offset().left) + 1;
+        var left = parseInt($(this).offset().left) + 2;
         var top = parseInt($(this).offset().top) + 1;
         
         var height = parseInt($(this).css('height')) - 1;
@@ -30,44 +28,23 @@
       });
 
       var arr = new Array();
-      for (var i = 0; i < num_plugs; i++) {
-        arr.push(i);
+      for (var k = 0; k < num_plugs; k++) {
+        if (i != k) {
+          arr.push(k);  
+        }
       }
       arr.sort(function() { return (Math.round(Math.random()) - 0.5) })
       var index = 0;
       
       (function randomHide(e) {
         var j = parseInt(e.attr('rel'));
-        e.hide('fast', function() {
+        e.fadeOut(100, function() {
           index++;
           if (index < num_plugs) {
             randomHide($('#plug_' + arr[index]));
           }
         });
       })($('#plug_' + arr[index]));
-      
-
-      // (function hidePlugBackwards(e) {
-      //   if (e.css('display') != 'none') {
-      //     var j = parseInt(e.attr('rel'));
-      //     e.hide('slow', function() {
-      //       if (j > 0) {
-      //         hidePlugBackwards($('#plug_' + (j - 1)));
-      //       }
-      //     });
-      //   }
-      // })($('#plug_' + (num_plugs - 1)));
-      // 
-      // (function hidePlugForwards(e) {
-      //   if (e.css('display') != 'none') {
-      //     var k = parseInt(e.attr('rel'));
-      //     e.hide('slow', function() {
-      //       if (k < num_plugs - 2) {
-      //         hidePlugForwards($('#plug_' + (k + 1)));
-      //       }
-      //     });
-      //   }
-      // })($('#plug_0'));
 
       e.preventDefault();
     })
@@ -79,10 +56,78 @@
   
 </script>
 
-<div id="thumb_wrapper">
-  <% plugs.each_with_index do |plug, i| %>
-    <div class="thumb_holder" id = "plug_<%= i %>" rel = "<%= i %>">
-      <%= link_to(image_tag("thumb_#{plug}.jpg"), '#') %>
+<style type = "text/css">
+  .plug {
+    border: 1px solid black;
+    height: 450px;
+    position: relative;
+  }
+  
+  .plug_hero {
+    width: 500px;
+    height: 300px;
+    border: 1px solid black;
+    position: absolute;
+    top: 25px;
+    left: 15px;
+  }
+  
+  .plug_link_holder {
+    position: absolute;
+    width: 500px;
+    text-align: center;
+    top: 375px;
+    left: 15px;
+    
+    font-size: 20px;
+  }
+  
+  .plug_description_holder {
+    position: absolute;
+    top: 15px;
+    left: 530px;
+    width: 435px;
+  }
+  
+  .close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+  }
+  
+</style>
+
+<div class = "plugs_content">
+  <!-- <div id="thumb_wrapper">
+    <% plugs.each_with_index do |plug, i| %>
+      <div class="thumb_holder" id = "plug_<%= i %>" rel = "<%= i %>">
+        <%= link_to(image_tag("thumb_#{plug}.jpg"), '#') %>
+      </div>
+    <% end %>
+  </div> -->
+  
+  <div class = "plug">
+    <%= image_tag("button_close.gif", :class => 'close') %>
+    <%= image_tag("thumb_ibm.jpg", :class => 'plug_hero') %>
+    <div class = "plug_link_holder">
+      [ <%= link_to('www.ibm.de', 'www.ibm.de') %> ]
     </div>
-  <% end %>
+    <div class = "plug_description_holder">
+      <h3>IBM Deutchland</h3>
+      <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam adipiscing nisl vel mauris. Vivamus fringilla lectus ac purus. Nunc ut orci ut lacus vulputate egestas. Vivamus accumsan, tortor eu porta accumsan, felis mi luctus urna, non faucibus mauris nunc vitae leo. Quisque vulputate tempus leo. In elementum. Vivamus est. In metus diam, vulputate vulputate, faucibus a, lacinia quis, lorem. Duis aliquet, ipsum vel pulvinar imperdiet, orci orci fermentum ipsum, sit amet scelerisque turpis enim in orci. Curabitur arcu sapien, interdum auctor, ultricies sit amet, placerat nec, velit.
+</p>
+<p>
+      In hac habitasse platea dictumst. Proin aliquet. Mauris lacinia purus non ante. Mauris ultrices tortor nec metus. Integer mattis imperdiet enim. Proin odio nisi, gravida at, lobortis id, ornare non, felis. Vestibulum egestas.</p>
+      <h4>Technologies</h4>
+      <ul>
+        <li><A href = "#">php</a></li>
+        <li>mysql</li>
+        <li><a href = "#">javascript</a></li>
+      </ul>
+    </div>
+  </div>
 </div>

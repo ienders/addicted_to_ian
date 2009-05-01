@@ -534,6 +534,11 @@ input.search {
  *	plugs   								                *
 \********************************************/
 
+.plugs_content {
+	height: 450px;
+	width: 100%;
+}
+
 #thumb_wrapper {
   float:left;
   margin-left:40px;
@@ -549,6 +554,47 @@ input.search {
 .thumb_holder img {
   float:left;
   border:1px solid #000;
+}
+
+.plugs_content h3 {
+  float: left;
+  color: #464646;
+  font-size: 30px;
+  font-weight: normal;
+}
+
+.plugs_content h4 {
+	float: left;
+	margin-top: 5px;
+	font-size: 18px;
+}
+
+.plugs_content p {
+	float:left;
+	color:#464646;
+	font-size: 12px;
+	margin-top: 10px;
+	margin-bottom: 5px;
+	line-height: 14pt;
+	font-weight: 550;
+	width: 100%;
+}
+
+.plugs_content p a {
+	color: #F26E25;
+}
+
+.plugs_content ul {
+	float: left;
+	width: 100%;
+	list-style-type: none;
+}
+
+.plugs_content li {
+	float: left;
+	margin-right: 10px;
+	font-weight: bold;
+	font-size: 14px;
 }
 
 /********************************************
