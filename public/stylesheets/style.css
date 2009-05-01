@@ -550,8 +550,8 @@ input.search {
 
 .thumb_holder {
   float:left;
-  width:235px;
-  height:142px;
+  width:245px;
+  height:148px;
   margin:-1px 0 0 -1px;
 	z-index: 10;
 }
@@ -559,8 +559,8 @@ input.search {
 .thumb_holder img {
   float:left;
   border:1px solid #000;
-  width: 233px;
-  height: 140px;
+  width: 243px;
+  height: 146px;
 }
 
 .plugs_content h3 {

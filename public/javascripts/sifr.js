@@ -3,26 +3,26 @@ function sifr_plugs() {
 		fontSize: '30px',
 		color: '#464646'
 	});
-	$('.plugs_content h4').sifr({
-		fontSize: '18px',
-		color: '#464646',
-		link: '#F26E25',
-		hover: '#000000'
-	});
-	$('.plugs_content li').sifr({
-		font: 'tuffy_bold',
-		fontSize: '14px',
-		color: '#464646',
-		link: '#F26E25',
-		hover: '#000000'
-	});
-	$('.plug_link_holder').sifr({
-		font: 'tuffy_bold',
-		fontSize: '20px',
-		color: '#464646',
-		link: '#F26E25',
-		hover: '#000000'
-	});
+	// $('.plugs_content h4').sifr({
+	// 	fontSize: '18px',
+	// 	color: '#464646',
+	// 	link: '#F26E25',
+	// 	hover: '#000000'
+	// });
+// 	$('.plugs_content li').sifr({
+// 		font: 'tuffy_bold',
+// 		fontSize: '14px',
+// 		color: '#464646',
+// 		link: '#F26E25',
+// 		hover: '#000000'
+// 	});
+// 	$('.plug_link_holder').sifr({
+// 		font: 'tuffy_bold',
+// 		fontSize: '20px',
+// 		color: '#464646',
+// 		link: '#F26E25',
+// 		hover: '#000000'
+// 	});
 }
 
 function sifrize() {
