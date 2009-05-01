@@ -1,3 +1,30 @@
+function sifr_plugs() {
+	$('.plugs_content h3').sifr({
+		fontSize: '30px',
+		color: '#464646'
+	});
+	$('.plugs_content h4').sifr({
+		fontSize: '18px',
+		color: '#464646',
+		link: '#F26E25',
+		hover: '#000000'
+	});
+	$('.plugs_content li').sifr({
+		font: 'tuffy_bold',
+		fontSize: '14px',
+		color: '#464646',
+		link: '#F26E25',
+		hover: '#000000'
+	});
+	$('.plug_link_holder').sifr({
+		font: 'tuffy_bold',
+		fontSize: '20px',
+		color: '#464646',
+		link: '#F26E25',
+		hover: '#000000'
+	});
+}
+
 function sifrize() {
 	$.sifr({ path: '/swf/', font: 'tuffy', color: '#000000', save: true });
 	$('.blog_content h3').sifr({
@@ -45,31 +72,7 @@ function sifrize() {
 		link: '#F26E25',
 		hover: '#000000'
 	});
-	$('.plugs_content h3').sifr({
-		fontSize: '30px',
-		color: '#464646'
-	});
-	$('.plugs_content h4').sifr({
-		fontSize: '18px',
-		color: '#464646',
-		link: '#F26E25',
-		hover: '#000000'
-	});
-	$('.plugs_content li').sifr({
-		font: 'tuffy_bold',
-		fontSize: '14px',
-		color: '#464646',
-		link: '#F26E25',
-		hover: '#000000'
-	});
-	$('.plug_link_holder').sifr({
-		font: 'tuffy_bold',
-		fontSize: '20px',
-		color: '#464646',
-		link: '#F26E25',
-		hover: '#000000'
-	});
-
+	sifr_plugs();
 }
 
 $(document).ready(function() {

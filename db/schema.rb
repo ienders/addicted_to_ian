@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090429025514) do
+ActiveRecord::Schema.define(:version => 20090501023904) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(:version => 20090429025514) do
     t.integer "plug_photo_id"
     t.string  "title"
     t.text    "description"
+    t.string  "url"
   end
 
   create_table "taggings", :force => true do |t|

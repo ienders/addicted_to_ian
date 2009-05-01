@@ -6,10 +6,8 @@
   
   $(function() {
     $('.thumb_holder').click(function(e) {
+      var holder = $(this);
       var i = parseInt($(this).attr('rel'));
-      var minX = parseInt($('.pictures').offset().left);
-      var maxX = parseInt($('.pictures').offset().left) + parseInt($('.pictures').css('width'));
-      var minY = parseInt($('.pictures').offset().top);
       
       $('.thumb_holder').each(function() {
         var per_row = 4;
@@ -18,8 +16,8 @@
         var col = i % per_row;
         var row = (i - (i % per_row)) / per_row;
         
-        var left = parseInt($(this).offset().left) + 2;
-        var top = parseInt($(this).offset().top) + 1;
+        var left = 0; //parseInt($(this).offset().left) + 2;
+        var top = 0; //parseInt($(this).offset().top) + 1;
         
         var height = parseInt($(this).css('height')) - 1;
         var width = parseInt($(this).css('width')) - 1;
@@ -35,13 +33,15 @@
       }
       arr.sort(function() { return (Math.round(Math.random()) - 0.5) })
       var index = 0;
-      
+
       (function randomHide(e) {
         var j = parseInt(e.attr('rel'));
         e.fadeOut(100, function() {
           index++;
-          if (index < num_plugs) {
+          if (index < arr.length) {
             randomHide($('#plug_' + arr[index]));
+          } else {
+            doneHiding(holder);
           }
         });
       })($('#plug_' + arr[index]));
@@ -50,72 +50,37 @@
     })
   });
   
-  function hideNext() {
-    
+  function doneHiding(obj) {
+    obj.find('img').attr('src', '/images/thumb_large_ibm.jpg');
+    obj.animate({ left: 17, top: 27}, 2000, function() {
+      obj.find('img').animate({ height: 300, width: 500 }, 2000, function() {
+        $('.plug').fadeIn('slow', function() {
+          $('.plug_description_holder').fadeIn('slow');
+          $('.plug_link_holder').fadeIn('slow');
+          $('.close').fadeIn('slow');
+          sifr_plugs();
+        });
+      });
+    });
   }
-  
 </script>
 
-<style type = "text/css">
-  .plug {
-    border: 1px solid black;
-    height: 450px;
-    position: relative;
-  }
-  
-  .plug_hero {
-    width: 500px;
-    height: 300px;
-    border: 1px solid black;
-    position: absolute;
-    top: 25px;
-    left: 15px;
-  }
-  
-  .plug_link_holder {
-    position: absolute;
-    width: 500px;
-    text-align: center;
-    top: 375px;
-    left: 15px;
-    
-    font-size: 20px;
-  }
-  
-  .plug_description_holder {
-    position: absolute;
-    top: 15px;
-    left: 530px;
-    width: 435px;
-  }
-  
-  .close {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-  }
-  
-</style>
-
 <div class = "plugs_content">
-  <!-- <div id="thumb_wrapper">
+   <div class = "plug_thumb_wrapper">
     <% plugs.each_with_index do |plug, i| %>
       <div class="thumb_holder" id = "plug_<%= i %>" rel = "<%= i %>">
         <%= link_to(image_tag("thumb_#{plug}.jpg"), '#') %>
       </div>
     <% end %>
-  </div> -->
+  </div>
   
-  <div class = "plug">
-    <%= image_tag("button_close.gif", :class => 'close') %>
-    <%= image_tag("thumb_ibm.jpg", :class => 'plug_hero') %>
-    <div class = "plug_link_holder">
+  <div class = "plug" style = "display: none">
+    <%= image_tag("button_close.gif", :class => 'close', :style => 'display: none') %>
+    <%= image_tag("thumb_large_ibm.jpg", :class => 'plug_hero') %>
+    <div class = "plug_link_holder" style = "display: none">
       [ <%= link_to('www.ibm.de', 'www.ibm.de') %> ]
     </div>
-    <div class = "plug_description_holder">
+    <div class = "plug_description_holder" style = "display: none">
       <h3>IBM Deutchland</h3>
       <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam adipiscing nisl vel mauris. Vivamus fringilla lectus ac purus. Nunc ut orci ut lacus vulputate egestas. Vivamus accumsan, tortor eu porta accumsan, felis mi luctus urna, non faucibus mauris nunc vitae leo. Quisque vulputate tempus leo. In elementum. Vivamus est. In metus diam, vulputate vulputate, faucibus a, lacinia quis, lorem. Duis aliquet, ipsum vel pulvinar imperdiet, orci orci fermentum ipsum, sit amet scelerisque turpis enim in orci. Curabitur arcu sapien, interdum auctor, ultricies sit amet, placerat nec, velit.

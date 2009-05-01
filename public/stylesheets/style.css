@@ -535,13 +535,17 @@ input.search {
 \********************************************/
 
 .plugs_content {
+	position: relative;
 	height: 450px;
 	width: 100%;
 }
 
-#thumb_wrapper {
-  float:left;
-  margin-left:40px;
+.plug_thumb_wrapper {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+  height: 450px;
+  position: relative;
 }
 
 .thumb_holder {
@@ -549,11 +553,14 @@ input.search {
   width:235px;
   height:142px;
   margin:-1px 0 0 -1px;
+	z-index: 10;
 }
 
 .thumb_holder img {
   float:left;
   border:1px solid #000;
+  width: 233px;
+  height: 140px;
 }
 
 .plugs_content h3 {
@@ -577,6 +584,7 @@ input.search {
 	margin-bottom: 5px;
 	line-height: 14pt;
 	font-weight: 550;
+	z-index: 1;
 	width: 100%;
 }
 
@@ -595,6 +603,50 @@ input.search {
 	margin-right: 10px;
 	font-weight: bold;
 	font-size: 14px;
+}
+
+.plug {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+  border: 1px solid black;
+  height: 450px;
+	width: 100%;
+}
+
+.plug_hero {
+  width: 500px;
+  height: 300px;
+  border: 1px solid black;
+  position: absolute;
+  top: 25px;
+  left: 15px;
+}
+
+.plug_link_holder {
+  position: absolute;
+  width: 500px;
+  text-align: center;
+  top: 375px;
+  left: 15px;
+  
+  font-size: 20px;
+}
+
+.plug_description_holder {
+  position: absolute;
+  top: 15px;
+  left: 530px;
+  width: 435px;
+}
+
+.close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
 }
 
 /********************************************
