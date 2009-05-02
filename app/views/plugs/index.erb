@@ -53,9 +53,16 @@
       });
     };
     this.closePlugAndRevertThumb = function() {
-      // $(this).parents('.plug').fadeOut('slow', function() {
-      //   thumbs.current_thumb.
-      // });
+      self = this
+      $('.plug').fadeOut('slow', function() {
+        var thumb = self.get(parseInt(self.current_thumb.attr('rel')));
+        self.current_thumb.find('img').animate({ height: thumb.img_height, width: thumb.img_width }, 'medium', function() {
+          self.current_thumb.animate({ left: thumb.thumb_left, top: thumb.thumb_top }, 2000, function() {
+            $('.thumb_holder').fadeIn('fast');
+            self.visible = true;
+          });
+        });
+      });
     };
   }
   
@@ -64,6 +71,8 @@
     this.num = parseInt(obj.attr('rel'));
     this.col = this.num % thumbs.per_row;
     this.row = (this.num - (this.num % thumbs.per_row)) / thumbs.per_row;
+    this.img_height = parseInt(obj.find('img').css('height'));
+    this.img_width  = parseInt(obj.find('img').css('width'));
     this.thumb_top  = (parseInt(obj.css('height')) - 1) * this.row;
     this.thumb_left = (parseInt(obj.css('width')) - 1) * this.col;
     
@@ -112,7 +121,7 @@
     );
     
     $('.close').click(function(e) {
-      
+      thumbs.closePlugAndRevertThumb();
       e.preventDefault();
     });
     

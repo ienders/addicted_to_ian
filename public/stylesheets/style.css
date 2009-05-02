@@ -669,6 +669,7 @@ input.search {
   width: 24px;
   height: 24px;
   cursor: pointer;
+	z-index: 100;
 }
 
 /********************************************
