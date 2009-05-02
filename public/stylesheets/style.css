@@ -372,6 +372,7 @@ input.search {
   float:left;
   width:170px;
   margin:2px 0 0 10px;
+  font-weight:normal;
   
 }
 
@@ -574,6 +575,7 @@ input.search {
 	float: left;
 	margin-top: 5px;
 	font-size: 18px;
+	font-weight:normal;
 }
 
 .plugs_content p {
@@ -596,6 +598,7 @@ input.search {
 	float: left;
 	width: 100%;
 	list-style-type: none;
+	margin-top:10px;
 }
 
 .plugs_content li {
@@ -603,6 +606,7 @@ input.search {
 	margin-right: 10px;
 	font-weight: bold;
 	font-size: 14px;
+	font-weight:normal;
 }
 
 .plug {
@@ -610,7 +614,7 @@ input.search {
 	top: 0px;
 	left: 0px;
   border: 1px solid black;
-  height: 450px;
+  height: 440px;
 	width: 100%;
 }
 
@@ -643,8 +647,7 @@ input.search {
 .plug_title_overlay {
   position: absolute;
   margin-left: 20px;
-  padding-left: 10px;
-  padding-top: 15px;
+  padding: 10px 0 5px 10px;
   width: 214px;
   height: 20px;
   background-color: #000000;
@@ -656,6 +659,9 @@ input.search {
 	display: none;
 }
 
+.plug_title_overlay span {
+  font-weight:normal;
+}
 .close {
   position: absolute;
   top: 8px;
