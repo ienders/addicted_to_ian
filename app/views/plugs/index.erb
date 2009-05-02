@@ -1,70 +1,122 @@
 <% plugs = [ 'liz', 'mally', 'kates', 'kimara', 'lucky', 'indagare', 'amazon', 'ibm', 'kanetix', 'weatheroffice', 'jonsonia' ] %>
 
 <script type = "text/javascript">
-
-  var num_plugs = <%= plugs.size %>
-  
-  $(function() {
-    $('.thumb_holder').click(function(e) {
-      var holder = $(this);
-      var i = parseInt($(this).attr('rel'));
-      
-      $('.thumb_holder').each(function() {
-        var per_row = 4;
-        var i = parseInt($(this).attr('rel'));
-        
-        var col = i % per_row;
-        var row = (i - (i % per_row)) / per_row;
-        
-        var left = 0; //parseInt($(this).offset().left) + 2;
-        var top = 0; //parseInt($(this).offset().top) + 1;
-        
-        var height = parseInt($(this).css('height')) - 1;
-        var width = parseInt($(this).css('width')) - 1;
-        
-        $(this).css('position', 'absolute').css('top', (top + height * row) + 'px').css('left', left + (col * width) + 'px');
-      });
-
-      var arr = new Array();
-      for (var k = 0; k < num_plugs; k++) {
-        if (i != k) {
-          arr.push(k);  
+  function PlugThumbs(options) {
+    options = $.extend({ per_row: 4, visible_rows: 3 }, options);
+    this.per_row = options.per_row;
+    this.visible_rows = options.visible_rows;
+    this.visible = true;
+    this.thumbs = new Array();
+    this.current_thumb = null;
+    
+    this.add = function(plug_thumb) {
+      this.thumbs[plug_thumb.num] = plug_thumb;
+    };
+    this.get = function(num) {
+      return this.thumbs[num];
+    };
+    this.fadeThumbs = function(except) {
+      this.current_thumb = except;
+      this.visible = false;
+      this.to_fade = new Array();
+      this.to_fade_index = 0;
+      for (var i = 0; i < $('.thumb_holder').size(); i++) {
+        if (parseInt(except.attr('rel')) != i) {
+          this.to_fade.push(i);
         }
       }
-      arr.sort(function() { return (Math.round(Math.random()) - 0.5) })
-      var index = 0;
-
-      (function randomHide(e) {
-        var j = parseInt(e.attr('rel'));
-        e.fadeOut(100, function() {
-          index++;
-          if (index < arr.length) {
-            randomHide($('#plug_' + arr[index]));
-          } else {
-            doneHiding(holder);
-          }
-        });
-      })($('#plug_' + arr[index]));
-
-      e.preventDefault();
-    })
-  });
-  
-  function doneHiding(obj) {
-    obj.find('img').attr('src', '/images/thumb_large_ibm.jpg');
-    obj.animate({ left: 17, top: 27}, 2000, function() {
-      obj.find('img').animate({ height: 300, width: 500 }, 'medium', function() {
-        $('.plug').fadeIn('slow', function() {
-          sifr_plugs();
-          $('.plug_text').fadeIn('slow', function() {
-            $('.plug_link_holder').fadeIn('slow', function() {
-              $('.close').fadeIn('slow');
-            });
+      this.to_fade.sort(function() { return (Math.round(Math.random()) - 0.5) });
+      this.randomFade($('#plug_' + this.to_fade[this.to_fade_index]));
+    };
+    this.randomFade = function(thumb) {
+      self = this
+      var j = parseInt(thumb.attr('rel'));
+      thumb.fadeOut(100, function() {
+        self.to_fade_index++;
+        if (self.to_fade_index < self.to_fade.length) {
+          self.randomFade($('#plug_' + self.to_fade[self.to_fade_index]));
+        } else {
+          self.slideThumbAndOpenPlug();
+        }
+      });
+    };
+    this.slideThumbAndOpenPlug = function() {
+      thumb = this.current_thumb
+      thumb.find('img').attr('src', '/images/thumb_large_ibm.jpg');
+      thumb.animate({ left: 17, top: 27}, 2000, function() {
+        thumb.find('img').animate({ height: 300, width: 500 }, 'medium', function() {
+          $('.plug').fadeIn('slow', function() {
+            sifr_plugs();
+            $('.plug_text').fadeIn('slow', function() { $('.plug_link_holder').fadeIn('slow', function() { $('.close').fadeIn('slow'); }); });
           });
         });
       });
-    });
+    };
+    this.closePlugAndRevertThumb = function() {
+      // $(this).parents('.plug').fadeOut('slow', function() {
+      //   thumbs.current_thumb.
+      // });
+    };
   }
+  
+  function PlugThumb(thumbs, obj) {
+    this.obj = obj;
+    this.num = parseInt(obj.attr('rel'));
+    this.col = this.num % thumbs.per_row;
+    this.row = (this.num - (this.num % thumbs.per_row)) / thumbs.per_row;
+    this.thumb_top  = (parseInt(obj.css('height')) - 1) * this.row;
+    this.thumb_left = (parseInt(obj.css('width')) - 1) * this.col;
+    
+    this.freeze = function() {
+      this.obj.css('position', 'absolute').css('top', this.thumb_top).css('left', this.thumb_left);
+    }
+  }
+
+  var thumbs = new PlugThumbs();
+  
+  $(function() {
+    // Initialize thumbs
+    $('.thumb_holder').each(function() {
+      var thumb = new PlugThumb(thumbs, $(this));
+      thumbs.add(thumb);
+      thumb.freeze();
+    });
+    
+    $('.thumb_holder').click(function(e) {
+      if (!thumbs.visible) {
+        return;
+      }
+      thumbs.fadeThumbs($(this))
+      e.preventDefault();
+    });
+    
+    $('.thumb_holder').hover(
+      function() {
+        if (!thumbs.visible) {
+          return;
+        }
+        $(this).find('.plug_title_overlay').slideToggle('fast', function() {
+          $(this).find('span').fadeIn('fast');
+        });
+      },
+      function() {
+        if (!thumbs.visible) {
+          $(this).find('span').hide();
+          $(this).find('.plug_title_overlay').hide();
+          return;
+        }
+        $(this).find('span').fadeOut('fast', function() {
+          $(this).parents('.plug_title_overlay').slideToggle('fast');
+        });
+      }
+    );
+    
+    $('.close').click(function(e) {
+      
+      e.preventDefault();
+    });
+    
+  });
 </script>
 
 <div class = "plugs_content">
@@ -72,6 +124,9 @@
     <% plugs.each_with_index do |plug, i| %>
       <div class="thumb_holder" id = "plug_<%= i %>" rel = "<%= i %>">
         <%= link_to(image_tag("thumb_#{plug}.jpg"), '#') %>
+        <div class = "plug_title_overlay">
+          <span style = "display: none"><%= plug.titleize %></span>
+        </div>
       </div>
     <% end %>
   </div>

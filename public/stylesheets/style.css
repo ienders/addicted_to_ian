@@ -640,6 +640,22 @@ input.search {
   width: 435px;
 }
 
+.plug_title_overlay {
+  position: absolute;
+  margin-left: 20px;
+  padding-left: 10px;
+  padding-top: 15px;
+  width: 214px;
+  height: 20px;
+  background-color: #000000;
+	opacity: 0.9;
+	color: white;
+	font-size: 14px;
+	font-weight: bold;
+	vertical-align: bottom;
+	display: none;
+}
+
 .close {
   position: absolute;
   top: 8px;
