@@ -41,11 +41,12 @@
       });
     };
     this.slideThumbAndOpenPlug = function() {
+      self = this
       thumb = this.current_thumb
-      thumb.find('img').attr('src', '/images/thumb_large_ibm.jpg');
+      thumb.find('img').attr('src', thumb.find('.large_img').html());
       thumb.animate({ left: 17, top: 27}, 2000, function() {
         thumb.find('img').animate({ height: 300, width: 500 }, 'medium', function() {
-          $('.plug').fadeIn('slow', function() {
+          $('#plug_main_' + self.current_thumb.attr('rel')).fadeIn('slow', function() {
             sifr_plugs();
             $('.plug_text').fadeIn('slow', function() { $('.plug_link_holder').fadeIn('slow', function() { $('.close').fadeIn('slow'); }); });
           });
@@ -54,10 +55,13 @@
     };
     this.closePlugAndRevertThumb = function() {
       self = this
-      $('.plug').fadeOut('slow', function() {
+      $('#plug_main_' + self.current_thumb.attr('rel')).fadeOut('slow', function() {
         var thumb = self.get(parseInt(self.current_thumb.attr('rel')));
         self.current_thumb.find('img').animate({ height: thumb.img_height, width: thumb.img_width }, 'medium', function() {
-          self.current_thumb.animate({ left: thumb.thumb_left, top: thumb.thumb_top }, 2000, function() {
+          self.current_thumb.animate({ left: thumb.thumb_left, top: thumb.thumb_top }, 'medium', function() {
+            $('.plug_text').hide();
+            $('.plug_link_holder').hide();
+            $('.close').hide();
             $('.thumb_holder').fadeIn('fast');
             self.visible = true;
           });
@@ -130,37 +134,40 @@
 
 <div class = "plugs_content">
    <div class = "plug_thumb_wrapper">
-    <% plugs.each_with_index do |plug, i| %>
+    <% @plugs.each_with_index do |plug, i| %>
       <div class="thumb_holder" id = "plug_<%= i %>" rel = "<%= i %>">
-        <%= link_to(image_tag("thumb_#{plug}.jpg"), '#') %>
+        <%= link_to(image_tag(plug.plug_photo.public_filename(:thumb)), '#') %>
+        <div class = "large_img" style = "display: none"><%= plug.plug_photo.public_filename %></div>
         <div class = "plug_title_overlay">
-          <span style = "display: none"><%= plug.titleize %></span>
+          <span style = "display: none"><%= plug.title %></span>
         </div>
       </div>
     <% end %>
   </div>
   
-  <div class = "plug" style = "display: none">
-    <%= image_tag("button_close.gif", :class => 'close', :style => 'display: none') %>
-    <%= image_tag("thumb_large_ibm.jpg", :class => 'plug_hero') %>
-    <div class = "plug_link_holder" style = "display: none">
-      [ <%= link_to('www.ibm.de', 'www.ibm.de') %> ]
-    </div>
-    <div class = "plug_description_holder">
-      <h3>IBM Deutchland</h3>
-      <div class = "plug_text" style = "display: none">
-        <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam adipiscing nisl vel mauris. Vivamus fringilla lectus ac purus. Nunc ut orci ut lacus vulputate egestas. Vivamus accumsan, tortor eu porta accumsan, felis mi luctus urna, non faucibus mauris nunc vitae leo. Quisque vulputate tempus leo. In elementum. Vivamus est. In metus diam, vulputate vulputate, faucibus a, lacinia quis, lorem. Duis aliquet, ipsum vel pulvinar imperdiet, orci orci fermentum ipsum, sit amet scelerisque turpis enim in orci. Curabitur arcu sapien, interdum auctor, ultricies sit amet, placerat nec, velit.
-  </p>
-  <p>
-        In hac habitasse platea dictumst. Proin aliquet. Mauris lacinia purus non ante. Mauris ultrices tortor nec metus. Integer mattis imperdiet enim. Proin odio nisi, gravida at, lobortis id, ornare non, felis. Vestibulum egestas.</p>
-        <h4>Technologies</h4>
-        <ul>
-          <li><A href = "#">php</a></li>
-          <li>mysql</li>
-          <li><a href = "#">javascript</a></li>
-        </ul>
+  <% @plugs.each_with_index do |plug, i| %>
+    <div class = "plug" id = "plug_main_<%= i %>" style = "display: none">
+      <%= image_tag("button_close.gif", :class => 'close', :style => 'display: none') %>
+      <%= image_tag(plug.plug_photo.public_filename, :style => 'display: none') %>
+      <div class = "plug_link_holder" style = "display: none">
+        [ <%= link_to(plug.url, plug.url) %> ]
+      </div>
+      <div class = "plug_description_holder">
+        <h3><%= plug.title %></h3>
+        <% if_authorized? do %>
+          <div class = "admin_links">
+            <%= link_to('edit', edit_plug_path(plug)) %> &nbsp;&nbsp;
+            <%= link_to('delete', plug_path(plug), :method => :delete, :confirm => 'Are you sure?') %>
+          </div>
+        <% end %>
+        <div class = "plug_text" style = "display: none">
+          <%= markdown(plug.description) %>
+        </div>
       </div>
     </div>
-  </div>
+  <% end %>
+  
 </div>
+<% if_authorized? do %>
+  <div class = "new_plug_link"><%= link_to 'New Plug', new_plug_path %></div>
+<% end %>

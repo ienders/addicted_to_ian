@@ -14,7 +14,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :photos # For admin only
 
   # Plugs
-  map.plugs '/plugs', :controller => 'plugs'
+  map.resources :plugs
 
   # Links
   map.resources :links

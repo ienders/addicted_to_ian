@@ -1,3 +1,15 @@
+# == Schema Information
+# Schema version: 20090501023904
+#
+# Table name: albums
+#
+#  id             :integer(4)      not null, primary key
+#  name           :string(255)
+#  created_at     :datetime
+#  updated_at     :datetime
+#  cover_photo_id :integer(4)
+#
+
 class Album < ActiveRecord::Base
 
   validates_presence_of :name

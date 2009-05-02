@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090501023904) do
+ActiveRecord::Schema.define(:version => 20090502181332) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -88,10 +88,12 @@ ActiveRecord::Schema.define(:version => 20090501023904) do
   end
 
   create_table "plugs", :force => true do |t|
-    t.integer "plug_photo_id"
-    t.string  "title"
-    t.text    "description"
-    t.string  "url"
+    t.integer  "plug_photo_id"
+    t.string   "title"
+    t.text     "description"
+    t.string   "url"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "taggings", :force => true do |t|

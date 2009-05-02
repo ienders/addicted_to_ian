@@ -618,15 +618,6 @@ input.search {
 	width: 100%;
 }
 
-.plug_hero {
-  width: 500px;
-  height: 300px;
-  border: 1px solid black;
-  position: absolute;
-  top: 25px;
-  left: 15px;
-}
-
 .plug_link_holder {
   position: absolute;
   width: 500px;
@@ -698,7 +689,7 @@ input.search {
 /* Admin albums */
 /****************/
 
-.new_album_link {
+.new_album_link, .new_plug_link {
 	font-weight: bold;
 	font-size: 12px;
 	text-align: center;

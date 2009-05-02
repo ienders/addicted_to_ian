@@ -1,3 +1,21 @@
+# == Schema Information
+# Schema version: 20090501023904
+#
+# Table name: blog_photos
+#
+#  id           :integer(4)      not null, primary key
+#  blog_id      :integer(4)
+#  parent_id    :integer(4)
+#  content_type :string(255)
+#  filename     :string(255)
+#  thumbnail    :string(255)
+#  size         :integer(4)
+#  width        :integer(4)
+#  height       :integer(4)
+#  created_at   :datetime
+#  updated_at   :datetime
+#
+
 class BlogPhoto < ActiveRecord::Base
   belongs_to :blog
   

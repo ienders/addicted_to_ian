@@ -1,3 +1,15 @@
+# == Schema Information
+# Schema version: 20090501023904
+#
+# Table name: blogs
+#
+#  id         :integer(4)      not null, primary key
+#  title      :string(255)
+#  content    :text
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class Blog < ActiveRecord::Base
 
   acts_as_taggable

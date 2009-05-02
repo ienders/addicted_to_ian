@@ -14,7 +14,6 @@ class AlbumsController < ApplicationController
   def edit; end
 
   def create
-    logger.debug("Params = #{params.inspect}")
     @album = Album.new(params[:album])
     if @album.save
       flash[:notice] = 'Album was successfully created.'
