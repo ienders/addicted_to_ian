@@ -3,7 +3,7 @@ class PlugsController < ApplicationController
   before_filter :load_plug, :only => [ :edit, :update, :destroy ]
   
   def index
-    @plugs = Plug.all(:order => 'updated_at DESC')
+    @plugs = Plug.all(:order => 'created_at DESC')
   end
 
   def edit;  end

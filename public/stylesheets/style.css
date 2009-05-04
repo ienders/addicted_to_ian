@@ -537,16 +537,14 @@ input.search {
 
 .plugs_content {
 	position: relative;
-	height: 450px;
+	height: 471px;
 	width: 100%;
 }
 
 .plug_thumb_wrapper {
-	position: absolute;
-	top: 0px;
-	left: 0px;
-  height: 450px;
+  height: 442px;
   position: relative;
+	overflow: hidden;
 }
 
 .thumb_holder {
@@ -661,6 +659,26 @@ input.search {
   height: 24px;
   cursor: pointer;
 	z-index: 100;
+}
+
+.thumb_slider {
+  position: absolute;
+  width: 980px;
+  height: 10000px;
+}
+
+.row_nav {
+  float: right;
+  border: 1px solid black;
+  padding: 10px;
+  margin-top: -1px;
+  cursor: pointer;
+}
+.prev_row {
+  margin-right: 3px;
+}
+.next_row {
+  margin-right: -1px;
 }
 
 /********************************************

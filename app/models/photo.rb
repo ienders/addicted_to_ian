@@ -29,7 +29,7 @@ class Photo < ActiveRecord::Base
     :content_type => :image, 
     :storage      => :file_system, 
     :max_size     => 10000.kilobytes,
-    :resize_to    => '608>x456',
+    :resize_to    => '610>x456',
     :thumbnails   => {
       :thumb        => '62x46>',
       :gallery_hero => 'crop: 100x36'
@@ -56,7 +56,7 @@ class Photo < ActiveRecord::Base
   
   protected   
   def resize_image(img, size)
-    return if (size == "608>x456") && id
+    return if (size == "610>x456") && id
     original_exif = MiniExiftool.new(img.filename)
     if (size.is_a?(String) && size =~ /^crop: (\d*)x(\d*)/i) || (size.is_a?(Array) && size.first.is_a?(String) && size.first =~ /^crop: (\d*)x(\d*)/i)
       img.crop_resized!($1.to_i, $2.to_i)  
@@ -65,7 +65,7 @@ class Photo < ActiveRecord::Base
       super
     end
       
-    if size == "608>x456"
+    if size == "610>x456"
       # Copy original exif data into resized image.
       # Do a two pass save if it doesnt work the first time: we remove all attributes which caused the save to fail.
       resized_exif = MiniExiftool.new(self.temp_path)

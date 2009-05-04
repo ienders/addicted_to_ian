@@ -1,5 +1,3 @@
-<% plugs = [ 'liz', 'mally', 'kates', 'kimara', 'lucky', 'indagare', 'amazon', 'ibm', 'kanetix', 'weatheroffice', 'jonsonia' ] %>
-
 <script type = "text/javascript">
   function PlugThumbs(options) {
     options = $.extend({ per_row: 4, visible_rows: 3 }, options);
@@ -9,21 +7,41 @@
     this.thumbs = new Array();
     this.current_thumb = null;
     
+    this.first_row = 0;
+    this.last_row = this.visible_rows - 1;
+    this.height_offset = 0;
+    
     this.add = function(plug_thumb) {
       this.thumbs[plug_thumb.num] = plug_thumb;
     };
     this.get = function(num) {
       return this.thumbs[num];
     };
+    this.numRows = function() {
+      return Math.ceil($('.thumb_holder').size() / this.per_row);
+    };
+    this.rowHeight = function() {
+      return parseInt($('.thumb_holder:first').css('height')) - 1;
+    };
     this.fadeThumbs = function(except) {
       this.current_thumb = except;
       this.visible = false;
+      
+      if (this.numRows() > this.visible_rows) {
+        $('.row_nav').fadeOut();
+      }
+      
+      
       this.to_fade = new Array();
       this.to_fade_index = 0;
       for (var i = 0; i < $('.thumb_holder').size(); i++) {
-        if (parseInt(except.attr('rel')) != i) {
+        if (this.get(i).row < this.first_row || this.get(i).row > this.last_row) {
+          // Flat out hide all non-visible rows
+          $('#plug_' + i).hide();
+        } else if (parseInt(except.attr('rel')) != i) {
+          // Fade randomly
           this.to_fade.push(i);
-        }
+        } 
       }
       this.to_fade.sort(function() { return (Math.round(Math.random()) - 0.5) });
       this.randomFade($('#plug_' + this.to_fade[this.to_fade_index]));
@@ -44,27 +62,40 @@
       self = this
       thumb = this.current_thumb
       thumb.find('img').attr('src', thumb.find('.large_img').html());
-      thumb.animate({ left: 17, top: 27}, 2000, function() {
+      thumb.animate({ left: 17, top: 27 + self.height_offset }, 2000, function() {
         thumb.find('img').animate({ height: 300, width: 500 }, 'medium', function() {
           $('#plug_main_' + self.current_thumb.attr('rel')).fadeIn('slow', function() {
-            sifr_plugs();
-            $('.plug_text').fadeIn('slow', function() { $('.plug_link_holder').fadeIn('slow', function() { $('.close').fadeIn('slow'); }); });
+            plug = $(this);
+            plug.find('h3').sifr({
+          		fontSize: '30px',
+          		color: '#464646'
+          	});
+            plug.find('.plug_text').fadeIn('slow', function() {
+              plug.find('.plug_link_holder').fadeIn('slow', function() {
+                plug.find('.close').fadeIn('slow');
+              });
+            });
           });
         });
       });
     };
     this.closePlugAndRevertThumb = function() {
       self = this
+      
       $('#plug_main_' + self.current_thumb.attr('rel')).fadeOut('slow', function() {
         var thumb = self.get(parseInt(self.current_thumb.attr('rel')));
-        self.current_thumb.find('img').animate({ height: thumb.img_height, width: thumb.img_width }, 'medium', function() {
-          self.current_thumb.animate({ left: thumb.thumb_left, top: thumb.thumb_top }, 'medium', function() {
-            $('.plug_text').hide();
-            $('.plug_link_holder').hide();
-            $('.close').hide();
-            $('.thumb_holder').fadeIn('fast');
-            self.visible = true;
-          });
+        self.current_thumb.find('img').animate({ height: thumb.img_height, width: thumb.img_width }, 'medium');
+        self.current_thumb.animate({ left: thumb.thumb_left, top: thumb.thumb_top }, 'medium', function() {
+          $('.plug_text').hide();
+          $('.plug_link_holder').hide();
+          $('.close').hide();
+          $('.thumb_holder').fadeIn('fast');
+          
+          if (self.numRows() > self.visible_rows) {
+            $('.row_nav').fadeIn();
+          }
+          
+          self.visible = true;
         });
       });
     };
@@ -77,17 +108,27 @@
     this.row = (this.num - (this.num % thumbs.per_row)) / thumbs.per_row;
     this.img_height = parseInt(obj.find('img').css('height'));
     this.img_width  = parseInt(obj.find('img').css('width'));
-    this.thumb_top  = (parseInt(obj.css('height')) - 1) * this.row;
-    this.thumb_left = (parseInt(obj.css('width')) - 1) * this.col;
+    this.thumb_top  = (parseInt(obj.css('height')) - 1) * this.row + 1;
+    this.thumb_left = (parseInt(obj.css('width')) - 1) * this.col + 1;
     
     this.freeze = function() {
       this.obj.css('position', 'absolute').css('top', this.thumb_top).css('left', this.thumb_left);
     }
   }
-
-  var thumbs = new PlugThumbs();
   
+  var thumbs = new PlugThumbs();
+    
   $(function() {
+    if (thumbs.numRows() > thumbs.visible_rows) {
+      $('.row_nav').show();     
+      if (thumbs.last_row >= thumbs.numRows() - 1) {
+        $('.next_row').css('opacity', 0.5);
+      }
+      if (thumbs.first_row <= 0) {
+        $('.prev_row').css('opacity', 0.5);
+      }  
+    }
+    
     // Initialize thumbs
     $('.thumb_holder').each(function() {
       var thumb = new PlugThumb(thumbs, $(this));
@@ -99,6 +140,8 @@
       if (!thumbs.visible) {
         return;
       }
+      $(this).find('span').fadeOut('fast');
+      $(this).find('.plug_title_overlay').fadeOut('fast');
       thumbs.fadeThumbs($(this))
       e.preventDefault();
     });
@@ -129,28 +172,69 @@
       e.preventDefault();
     });
     
+    $('.next_row').click(function(e) {
+      if (thumbs.last_row >= thumbs.numRows() - 1) {
+        e.preventDefault();
+        return;
+      }
+      $('.prev_row').css('opacity', 1);
+      thumbs.height_offset += thumbs.rowHeight();
+      thumbs.first_row++;
+      thumbs.last_row++;
+      $('.thumb_slider').animate({ top: -thumbs.height_offset });
+      
+      if (thumbs.last_row >= thumbs.numRows() - 1) {
+        $(this).css('opacity', 0.5);
+      }
+      $(this).effect("highlight", { color: 'orange' }, 300);
+      e.preventDefault();
+    });
+    
+    $('.prev_row').click(function(e) {
+      if (thumbs.first_row <= 0) {
+        e.preventDefault();
+        return;
+      }
+      $('.next_row').css('opacity', 1);
+      thumbs.height_offset -= thumbs.rowHeight();
+      thumbs.first_row--;
+      thumbs.last_row--;
+      $('.thumb_slider').animate({ top: -thumbs.height_offset });
+      
+      if (thumbs.first_row <= 0) {
+        $(this).css('opacity', 0.5);
+      }
+      $(this).effect("highlight", { color: 'orange' }, 300);
+      e.preventDefault();
+    });
+    
   });
 </script>
 
 <div class = "plugs_content">
-   <div class = "plug_thumb_wrapper">
-    <% @plugs.each_with_index do |plug, i| %>
-      <div class="thumb_holder" id = "plug_<%= i %>" rel = "<%= i %>">
-        <%= link_to(image_tag(plug.plug_photo.public_filename(:thumb)), '#') %>
-        <div class = "large_img" style = "display: none"><%= plug.plug_photo.public_filename %></div>
-        <div class = "plug_title_overlay">
-          <span style = "display: none"><%= plug.title %></span>
+  <div class = "plug_thumb_wrapper">
+    <div class = "thumb_slider">
+      <% @plugs.each_with_index do |plug, i| %>
+        <div class="thumb_holder" id = "plug_<%= i %>" rel = "<%= i %>">
+          <%= link_to(image_tag(plug.plug_photo.public_filename(:thumb)), '#') %>
+          <div class = "large_img" style = "display: none"><%= plug.plug_photo.public_filename %></div>
+          <div class = "plug_title_overlay">
+            <span style = "display: none"><%= plug.title %></span>
+          </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
+  
+  <%= image_tag('arrow_top.png', :class => 'row_nav prev_row', :style => 'display: none') %>
+  <%= image_tag('arrow_bottom.png', :class => 'row_nav next_row', :style => 'display: none') %>
   
   <% @plugs.each_with_index do |plug, i| %>
     <div class = "plug" id = "plug_main_<%= i %>" style = "display: none">
       <%= image_tag("button_close.gif", :class => 'close', :style => 'display: none') %>
       <%= image_tag(plug.plug_photo.public_filename, :style => 'display: none') %>
       <div class = "plug_link_holder" style = "display: none">
-        [ <%= link_to(plug.url, plug.url) %> ]
+        [ <%= link_to(plug.url, 'http://' + plug.url) %> ]
       </div>
       <div class = "plug_description_holder">
         <h3><%= plug.title %></h3>
@@ -166,7 +250,6 @@
       </div>
     </div>
   <% end %>
-  
 </div>
 <% if_authorized? do %>
   <div class = "new_plug_link"><%= link_to 'New Plug', new_plug_path %></div>

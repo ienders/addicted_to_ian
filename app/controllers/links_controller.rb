@@ -3,7 +3,11 @@ class LinksController < ApplicationController
   before_filter :load_links
   before_filter :load_link, :only => [ :show, :edit, :update, :destroy ]
 
-  def index; end
+  def index
+    @categories = Link.all_categories
+    @category = params[:category]
+  end
+  
   def show;  end
   def edit;  end
   def new; @link = Link.new; end

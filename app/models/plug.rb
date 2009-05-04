@@ -12,7 +12,7 @@
 
 class Plug < ActiveRecord::Base
   belongs_to :plug_photo, :dependent => :destroy
-  after_create :save_attachments
+  after_save :save_attachments
     
   def attachable=(params)
     @attachments = params.keys.sort.inject([]) { |vals, k| vals.push(params[k]) }.reject {|a| a[:uploaded_data].blank? }.collect { |a| PlugPhoto.new(a) }
@@ -20,9 +20,11 @@ class Plug < ActiveRecord::Base
   
   protected
   def save_attachments
-    if @attachments
+    if @attachments && @attachments.first
       @attachments.first.save
-      update_attribute(:plug_photo_id, @attachments.first.id)
+      if plug_photo_id != @attachments.first.id
+        update_attribute(:plug_photo_id, @attachments.first.id)
+      end
     end
   end
 end

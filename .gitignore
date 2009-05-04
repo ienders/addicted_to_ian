@@ -4,3 +4,6 @@ tmp/**/*
 doc/api
 doc/app
 public/photos
+public/plug_photos
+public/blog_photos
+public/link_photos
