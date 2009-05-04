@@ -17,7 +17,7 @@ class LinksController < ApplicationController
     @link = Link.new(params[:link])
     if @link.save
       flash[:notice] = 'Link was successfully created.'
-      redirect_to(links_url)
+      redirect_to(:action => 'index')
     else
       render :action => "index"
     end
@@ -26,7 +26,7 @@ class LinksController < ApplicationController
   def update
     if @link.update_attributes(params[:link])
       flash[:notice] = 'Link was successfully updated.'
-      redirect_to(links_url)
+      redirect_to(:action => 'index')
     else
       render :action => "index"
     end

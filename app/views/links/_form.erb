@@ -1,4 +1,4 @@
-<% form_for(obj) do |f| %>
+<% form_for(obj, :html => { :multipart => true }) do |f| %>
   <%= f.error_messages %>
   <%= link_to_function 'cancel', "toggle('#{div}'#{defined?(div2) ? ", '#{div2}'" : ''})", :class => 'admin_link', :style => 'float: right' %>
   
@@ -13,6 +13,9 @@
   
   <h4>Description:</h4>
   <p><%= f.text_area :description, :rows => 30, :cols => 80 %></p>
+  
+  <h4>Image:</h4>
+  <p><%= file_field_tag("link[attachable][0][uploaded_data]", :size => 60) %></p>
   
   <%= f.submit "Save" %>
 <% end %>

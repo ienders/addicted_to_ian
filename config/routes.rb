@@ -17,6 +17,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :plugs
 
   # Links
+  map.link_category '/links/category/:category', :controller => 'links', :action => 'index'
   map.resources :links
 
   # Sessions

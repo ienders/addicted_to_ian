@@ -26,10 +26,6 @@
     padding-bottom: 10px;
   }
   
-  .link img {
-    height: 50px;
-  }
-  
   .link p {
     margin: 0px;
     padding-left: 3px;
@@ -50,15 +46,19 @@
     <div class = "clear"></div>
   <% end %>
   
-  <h3 class = "category_head">Tech Links</h3>
+  <h3 class = "category_head"><%= @category.titleize %> Links</h3>
   <div class = "clear"></div>
   
   <% mid = (@links.size / 2).ceil %>
-  <% [@links[0..mid], @links[mid + 1 .. @links.size - 1] ].each do |link_array| %>
+  <% [@links[0..mid - 1], @links[mid .. @links.size - 1] ].each do |link_array| %>
     <div class = "link_column">
       <% link_array.each do |link| %>
         <div class = "link" id = "link_display_<%= link.id %>">
-          <%= link_to(image_tag('slicehost.png', :alt => link.title), link.url) %>
+          <% if link.link_photo %>
+            <%= link_to(image_tag(link.link_photo.public_filename, :alt => link.title), link.url) %>
+          <% else %>
+            <h4><%= link_to(link.title, link.url) %></h4>
+          <% end %>
           
           <% if_authorized? do %>
             <div class = "clear"></div>
