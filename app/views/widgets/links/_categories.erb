@@ -1,3 +1,7 @@
 <% @categories.each do |category| %>
-  <%= link_to(category.titleize, "/links/#{category}", :class => 'link_category') %>
+  <% if @category == category %>
+    <div class = "link_category"><%= category.titleize %></div>
+  <% else %>
+    <%= link_to(category.titleize, "/links/category/#{category}", :class => 'link_category') %>
+  <% end %>
 <% end %>

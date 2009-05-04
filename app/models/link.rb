@@ -15,6 +15,7 @@
 class Link < ActiveRecord::Base
   belongs_to :link_photo, :dependent => :destroy  
   after_save :save_attachments
+  validates_presence_of :category
   
   def self.all_categories
     all.collect { |l| l.category }.uniq.compact.sort
