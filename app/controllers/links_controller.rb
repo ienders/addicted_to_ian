@@ -5,7 +5,8 @@ class LinksController < ApplicationController
 
   def index
     @categories = Link.all_categories
-    @category = params[:category]
+    @category = params[:category] || @categories.first
+    @links = Link.links_for_category(@category)
   end
   
   def show;  end

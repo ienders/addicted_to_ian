@@ -16,6 +16,14 @@ class Link < ActiveRecord::Base
   belongs_to :link_photo, :dependent => :destroy  
   after_save :save_attachments
   
+  def self.all_categories
+    all.collect { |l| l.category }.uniq.sort
+  end
+  
+  def self.links_for_category(category)
+    all(:conditions => { :category => category })
+  end
+  
   def attachable=(params)
     @attachments = params.keys.sort.inject([]) { |vals, k| vals.push(params[k]) }.reject {|a| a[:uploaded_data].blank? }.collect { |a| LinkPhoto.new(a) }
   end
