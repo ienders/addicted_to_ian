@@ -17,7 +17,7 @@ class Link < ActiveRecord::Base
   after_save :save_attachments
   
   def self.all_categories
-    all.collect { |l| l.category }.uniq.sort
+    all.collect { |l| l.category }.uniq.compact.sort
   end
   
   def self.links_for_category(category)
@@ -30,7 +30,11 @@ class Link < ActiveRecord::Base
   
   protected
   def save_attachments
-    link_photo = @attachments.first if @attachments
-    save
+    if @attachments && @attachments.first
+      @attachments.first.save
+      if link_photo_id != @attachments.first.id
+        update_attribute(:link_photo_id, @attachments.first.id)
+      end
+    end
   end
 end
