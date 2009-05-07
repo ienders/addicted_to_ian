@@ -19,7 +19,7 @@
 		  <%= link_to(image_tag('logo.png', :alt => 'addictedTOian'), '/') %>
 		  <div class = "nav_links">
 		    <% [ ['words', '/' ], [ 'pictures', '/pictures' ], [ 'plugs', '/plugs' ], [ 'links', '/links' ] ].each do |nav| %>	    
-          <div id = "<%= nav[0] %>"><%= link_to(*nav) %></div>
+          <div id = "<%= nav[0] %>"><%= link_to(image_tag('nav_'+ nav[0] + '_off.png'), nav[1]) %></div>
         <% end %>
 		  </div>
   	</div>
@@ -34,8 +34,8 @@
     <div id = "footer_container">
   	  <%= link_to(image_tag('button_rss.jpg', :alt => 'RSS', :class => 'rss'), '/blog/rss') %>
   	  <div class = "footer_links">
-  		  <div id = "contact"><%= link_to('contact_me', '/contact') %></div>
-  		  <div id = "about"><%= link_to('about', '/about') %></div>
+  		  <div id = "contact"><%= link_to(image_tag('footer_contactme'+'_off.png'), '/contact') %></div>
+  		  <div id = "about"><%= link_to(image_tag('footer_about'+'_off.png'), '/about') %></div>
   	  </div>
   		<p>&copy; Copyright 2009 Gibnai Productions.</p>
 		</div>

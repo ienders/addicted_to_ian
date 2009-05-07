@@ -42,7 +42,7 @@ p { font-weight:normal}
 img, div, input { behavior: url("scripts/iepngfix.htc") }
 
 /********************************************
- *	header									*
+ *	header									                *
 \********************************************/
 
 #header {
@@ -58,7 +58,7 @@ img, div, input { behavior: url("scripts/iepngfix.htc") }
 	position:relative;
 }
 
-#header_container img {
+#header_container .logo img{
 	position: absolute;
 	top: 112px;
 	left: 114px;
@@ -66,16 +66,7 @@ img, div, input { behavior: url("scripts/iepngfix.htc") }
 
 .nav_links div {
 	position: absolute;
-	top: 136px;
-	font-size:17px
-}
-
-.nav_links div a {
-  color:#000;
-}
-
-.nav_links div a:hover {
-  color:#FD8340;
+	top: 142px;
 }
 
 #words {
@@ -235,13 +226,13 @@ img.rss {
 
 .footer_links div {
 	position: absolute;
-	font-size: 12px;
+	top:2px;
 }
 
-.footer_links div a {
-	color: black;
-	font-weight: bold;
-}
+/*.footer_links div a {
+  color: black;
+  font-weight: bold;
+}*/
 
 .footer_links div a:hover {
 	color: #FD8340;
