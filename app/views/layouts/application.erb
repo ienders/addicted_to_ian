@@ -17,7 +17,7 @@
 <body>
   <div id="header">
     <div id="header_container">
-		  <%= link_to(image_tag('logo.png', :alt => 'addictedTOian'), '/') %>
+		  <%= link_to(image_tag('logo.png', :alt => 'addictedTOian'), '/', :class => 'logo') %>
 		  <div class = "nav_links">
 		    <% [ ['words', '/' ], [ 'pictures', '/pictures' ], [ 'plugs', '/plugs' ], [ 'links', '/links' ] ].each do |nav| %>	    
           <div id = "<%= nav[0] %>"><%= link_to(image_tag('nav_'+ nav[0] + '_off.png'), nav[1]) %></div>

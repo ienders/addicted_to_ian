@@ -58,7 +58,7 @@ img, div, input { behavior: url("scripts/iepngfix.htc") }
 	position:relative;
 }
 
-#header_container .logo img{
+#header_container .logo img {
 	position: absolute;
 	top: 112px;
 	left: 114px;
