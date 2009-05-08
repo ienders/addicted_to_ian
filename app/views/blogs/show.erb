@@ -10,12 +10,12 @@
 
 <% if !@blog %>
   <% if_authorized? do %>
-    <div id = "blog_create" class = "blog_content">
+    <div id = "blog_create" class = "main_content">
       <%= render :partial => 'form', :locals => { :obj => Blog.new, :div => 'blog_create' } %>
     </div>
   <% end %>
 <% else %>
-  <div id = "blog_display" class="blog_content">
+  <div id = "blog_display" class="main_content">
     <h3 id = "blog_title"><%=h @blog.title %></h3>
   
     <% if_authorized? do %>
@@ -45,11 +45,11 @@
   </div>
 
   <% if_authorized? do %>
-    <div id = "blog_edit" class = "blog_content" style = "display: none">
+    <div id = "blog_edit" class = "main_content" style = "display: none">
       <%= render :partial => 'form', :locals => { :obj => @blog, :div => 'blog_edit' } %>
     </div>
   
-    <div id = "blog_create" class = "blog_content" style = "display: none">
+    <div id = "blog_create" class = "main_content" style = "display: none">
       <%= render :partial => 'form', :locals => { :obj => Blog.new, :div => 'blog_create' } %>
     </div>
   <% end %>

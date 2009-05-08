@@ -7,6 +7,11 @@ class BlogsController < ApplicationController
     render :action => :show
   end
 
+  def rss
+    @blogs = Blog.all(:order => 'created_at DESC', :limit => 5)
+    render :layout => false
+  end
+
   def show; end
 
   def create

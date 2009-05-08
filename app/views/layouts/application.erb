@@ -11,6 +11,7 @@
 
 	<%= javascript_include_tag :defaults, 'sifr', 'jquery.flash.min', 'jquery.sifr.min', 'effects.explode' %>
 	<%= stylesheet_link_tag 'style' %>
+  <%= auto_discovery_link_tag(:rss, :controller => 'blogs', :action => 'rss') %>
 </head>
 
 <body>
@@ -32,7 +33,7 @@
 	</div>
   <div id="footer">
     <div id = "footer_container">
-  	  <%= link_to(image_tag('button_rss.jpg', :alt => 'RSS', :class => 'rss'), '/blog/rss') %>
+  	  <%= link_to(image_tag('button_rss.jpg', :alt => 'RSS', :class => 'rss'), '/rss.xml') %>
   	  <div class = "footer_links">
   		  <div id = "contact"><%= link_to('contact_me', '/contact') %></div>
   		  <div id = "about"><%= link_to('about', '/about') %></div>

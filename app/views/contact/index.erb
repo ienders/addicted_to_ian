@@ -1,0 +1,56 @@
+<style type = "text/css">
+  .field {
+    width: 50%;
+    float: left;
+  }
+  
+  label {
+    float: left;
+    font-weight: bold;
+    color: black;
+    padding-top: 15px;
+    padding-right: 10px;
+    width: 100px;
+  }
+  
+  .field input {
+    float: left;
+    height: 20px;
+  }
+  
+  .contact_form .submit {
+    float: right;
+  }
+</style>
+
+<div class = "main_content">
+  <p>If you want to drop me a line, just pound on your keyboard while clicking through the fields below.  When you're happy with the stream of letters you've created,
+    press the blue button. Through the magic of the Interweb, I will read your message and I will realize how cool you are for acknowledging my awesomeness.</p>
+  
+  <% if flash[:message] %>
+		<div class="message"><%= h flash[:message] %></div>
+	<% elsif flash[:warning] %>
+		<div class="message warning"><%= h flash[:warning] %></div>
+	<% end %>
+
+  <%= error_messages_for(:contact, :header_message) %>
+  
+  <div class = "contact_form">
+    <% form_for(:contact, @contact || Contact.new, :url => { :action => 'index' }) do |f| %>
+    
+      <div class = "field">
+        <label>Your Name<sup>*</sup>:</label><%= f.text_field(:name, :size => 30) %>
+      </div>
+      <div class = "field">
+        <label>Your Email:</label><%= f.text_field(:email, :size => 30) %>
+      </div>
+      <div class = "clear"></div>
+      <label>Your Message<sup>*</sup>:</label>
+      <div class = "clear"></div>
+    
+      <%= f.text_area(:message, :rows => 15, :cols => 80) %>
+    
+      <%= image_submit_tag('button_email.png', :style => 'border: 0px', :class => 'submit') %>
+    <% end %>
+  </div>
+</div>

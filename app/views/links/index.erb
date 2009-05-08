@@ -23,7 +23,7 @@
   }
   
   .link {
-    padding-bottom: 10px;
+    padding-bottom: 30px;
   }
   
   .link p {
@@ -37,10 +37,10 @@
   }
 </style>
 
-<div class="blog_content">
+<div class="main_content">
   <% if_authorized? do %>
     <%= link_to_function 'create', "toggle('link_create')", :class => 'admin_link' %>
-    <div id = "link_create" class = "blog_content" style = "display: none">
+    <div id = "link_create" class = "main_content" style = "display: none">
       <%= render :partial => 'form', :locals => { :obj => Link.new, :div => 'link_create' } %>
     </div>
     <div class = "clear"></div>
@@ -50,7 +50,7 @@
   <div class = "clear"></div>
   
   <% mid = (@links.size / 2).ceil %>
-  <% [@links[0..mid - 1], @links[mid .. @links.size - 1] ].each do |link_array| %>
+  <% [@links[0..mid - 1], @links.size == 1 ? [] : @links[mid .. @links.size - 1] ].each do |link_array| %>
     <div class = "link_column">
       <% link_array.each do |link| %>
         <div class = "link" id = "link_display_<%= link.id %>">

@@ -1,5 +1,14 @@
 ActionController::Routing::Routes.draw do |map|
 
+  # Contact
+  map.contact '/contact', :controller => 'contact', :action => 'index'
+  
+  # About
+  map.about '/about', :controller => 'about', :action => 'index'
+
+  # RSS
+  map.blog_rss '/rss.xml', :controller => 'blogs', :action => 'rss'
+
   # Words
   map.resources :blogs
   map.blog_calendar_day '/blogs/search/:by/:year/:month/:day', :controller => 'blogs', :action => 'search'

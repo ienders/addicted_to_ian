@@ -1,20 +1,20 @@
 function sifrize() {
 	$.sifr({ path: '/swf/', font: 'tuffy', color: '#000000', save: true });
-	$('.blog_content h3').sifr({
+	$('.main_content h3').sifr({
 		fontSize: '30px',
 		color: '#464646'
 	});
-	$('.blog_content h4').sifr({
+	$('.main_content h4').sifr({
 		fontSize: '20px',
 		color: '#464646',
 		link: '#F26E25',
 		hover: '#000000'
 	});
-	$('.blog_content h5').sifr({
+	$('.main_content h5').sifr({
 		fontSize: '15px',
 		color: '#464646'
 	});	
-	$('.blog_content h6').sifr({
+	$('.main_content h6').sifr({
 		fontSize: '12px',
 		color: '#464646'
 	});
