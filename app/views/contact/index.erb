@@ -5,21 +5,67 @@
   }
   
   label {
-    float: left;
     font-weight: bold;
     color: black;
     padding-top: 15px;
-    padding-right: 10px;
+    float: right;
+
+  }
+  
+  .field label {
     width: 100px;
+  }
+
+  label.message {
+    width: 120px;
   }
   
   .field input {
-    float: left;
+    float: right;
     height: 20px;
+    width: 202px;
   }
   
   .contact_form .submit {
     float: right;
+  }
+  
+  .contact_form textarea {
+    float: right;
+    width: 532px;
+  }
+  
+  .contact_form .note {
+    font-size: 10px;
+    float: right;
+    width: 461px;
+    margin-top: 0px;
+  }
+  
+  sup {
+    color: orange;
+    font-weight: bold;
+  }
+  
+  .contact_form #error, .contact_form #success {
+    width: 448px;
+    float: right;
+    height: 35px;
+    margin-right: 10px;
+    text-align: center;
+    padding-top: 15px;
+    color: black;
+    display: none;
+  }
+  
+  .contact_form #error {
+    border: 2px solid #FF6600;
+    background: #FFE1A1;
+  }
+  
+  .contact_form #success {
+    border: 2px solid green;
+    background: #CAFACB;
   }
 </style>
 
@@ -27,30 +73,27 @@
   <p>If you want to drop me a line, just pound on your keyboard while clicking through the fields below.  When you're happy with the stream of letters you've created,
     press the blue button. Through the magic of the Interweb, I will read your message and I will realize how cool you are for acknowledging my awesomeness.</p>
   
-  <% if flash[:message] %>
-		<div class="message"><%= h flash[:message] %></div>
-	<% elsif flash[:warning] %>
-		<div class="message warning"><%= h flash[:warning] %></div>
-	<% end %>
-
-  <%= error_messages_for(:contact, :header_message) %>
-  
   <div class = "contact_form">
     <% form_for(:contact, @contact || Contact.new, :url => { :action => 'index' }) do |f| %>
     
       <div class = "field">
-        <label>Your Name<sup>*</sup>:</label><%= f.text_field(:name, :size => 30) %>
+        <%= f.text_field(:name, :size => 30) %>
+        <label>Your Name<sup>*</sup>:</label>
       </div>
       <div class = "field">
-        <label>Your Email:</label><%= f.text_field(:email, :size => 30) %>
+        <%= f.text_field(:email, :size => 30) %>
+        <label>Your Email:</label>
       </div>
-      <div class = "clear"></div>
-      <label>Your Message<sup>*</sup>:</label>
       <div class = "clear"></div>
     
       <%= f.text_area(:message, :rows => 15, :cols => 80) %>
+      <label class = "message">Your Message<sup>*</sup>:</label>
+      <div class = "clear"></div>
     
       <%= image_submit_tag('button_email.png', :style => 'border: 0px', :class => 'submit') %>
+      <p class = "note"><strong><sup>*</sup></strong> Means it's a required field and stuff.</p>
+      <div id = "error">You were unable to save your thing.</div>
+      <div id = "success">Your message has been sent.  Thanks homie!</div>
     <% end %>
   </div>
 </div>
