@@ -18,17 +18,17 @@ function sifrize() {
 		fontSize: '12px',
 		color: '#464646'
 	});
-	$('.nav_links div').sifr({
-    fontSize: '17px',
-		link: '#000000',
-		hover: '#F26E25'
-	});
-	$('.footer_links div').sifr({
-		font: 'tuffy_bold',
-		fontSize: '14px',
-		link: '#000000',
-		hover: '#F26E25'
-	});
+  // $('.nav_links div').sifr({
+  //     fontSize: '17px',
+  //  link: '#000000',
+  //  hover: '#F26E25'
+  // });
+  // $('.footer_links div').sifr({
+  //  font: 'tuffy_bold',
+  //  fontSize: '14px',
+  //  link: '#000000',
+  //  hover: '#F26E25'
+  // });
 	$('.widget h3').sifr({
 		fontSize: '18px'
 	});
