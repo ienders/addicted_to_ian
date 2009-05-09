@@ -45,6 +45,14 @@ function sifrize() {
 		link: '#F26E25',
 		hover: '#000000'
 	});
+	$('h1#name').sifr({
+		fontSize: '36px',
+		color: '#000'
+	});
+	$('h3.underlined_header').sifr({
+		fontSize: '15px',
+		color: '#000',
+	});
 }
 
 $(document).ready(function() {
