@@ -4,10 +4,19 @@ class ContactController < ApplicationController
     if request.post?
       @contact = Contact.new(params[:contact])
       if @contact.valid?
-        flash[:message] = 'Your message has been sent.  Sweetness.'
-        redirect_to :action => 'index'
+        Mailer.deliver_contact(@contact)
+        render :update do |page|
+          page << "$('#error').fadeOut(function() {
+            $('#success').fadeIn();
+          })"
+        end
       else
-        flash[:warning] = "Dang, you didn't fill out the boxes right."
+        render :update do |page|
+          page << "$('#error').html('#{h(@contact.error_message)}')"
+          page << "$('#success').fadeOut(function() {
+            $('#error').fadeIn();
+          })"
+        end
       end
     end
   end

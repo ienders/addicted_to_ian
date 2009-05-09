@@ -1,10 +1,10 @@
 <style type = "text/css">
-  .field {
+  .contact_form .field {
     width: 50%;
     float: left;
   }
   
-  label {
+  .contact_form label {
     font-weight: bold;
     color: black;
     padding-top: 15px;
@@ -12,18 +12,21 @@
 
   }
   
-  .field label {
+  .contact_form .field label {
     width: 100px;
   }
 
-  label.message {
+  .contact_form label.message {
     width: 120px;
   }
   
-  .field input {
+  .contact_form .field input {
     float: right;
     height: 20px;
-    width: 202px;
+    width: 197px;
+    font-size: 13px;
+    padding-left: 7px;
+    padding-top: 5px;
   }
   
   .contact_form .submit {
@@ -32,7 +35,10 @@
   
   .contact_form textarea {
     float: right;
-    width: 532px;
+    width: 526px;
+    padding: 5px;
+    font-family: verdana, sans-serif;
+    font-size: 13px;
   }
   
   .contact_form .note {
@@ -42,7 +48,7 @@
     margin-top: 0px;
   }
   
-  sup {
+  .contact_form sup {
     color: orange;
     font-weight: bold;
   }
@@ -74,7 +80,7 @@
     press the blue button. Through the magic of the Interweb, I will read your message and I will realize how cool you are for acknowledging my awesomeness.</p>
   
   <div class = "contact_form">
-    <% form_for(:contact, @contact || Contact.new, :url => { :action => 'index' }) do |f| %>
+    <% remote_form_for(:contact, @contact || Contact.new, :url => { :action => 'index' }) do |f| %>
     
       <div class = "field">
         <%= f.text_field(:name, :size => 30) %>
