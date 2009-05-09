@@ -1,115 +1,4 @@
-<style type="text/css">
-  .resume {
-    padding: 0px 15px 10px;
-    width: 100%;
-  }
-  
-  .resume p {
-    margin-top: 8px;
-    margin-bottom: 10px;
-  }
-  
-  .resume h1 {
-    padding-bottom: 3px;
-    margin-bottom: 0px;
-  }
-  
-  .resume h3 {
-    width: 100%;
-    border-bottom: 1px solid black;
-    padding-top: 5px;
-    padding-bottom: 3px;
-    margin-bottom: 0px;
-		font-size: 19px;
-  }
-
-  .resume ul {
-    margin-bottom: 0px;
-    margin-top: 0px;
-    padding-bottom: 10px;
-    padding-top: 10px;
-  }
-  
-  .resume_head {
-    width: 100%;
-    clear: both;
-  }
-  
-  .resume_head .name {
-    float: left;
-    padding-bottom: 20px;
-  }
-  
-  .resume_head .contact_details {
-    padding-top: 15px;
-    float: right;
-    text-align: right;
-    font-size: smaller;
-  }
-  
-  .resume_main {
-    padding: 20px 15px 10px 15px;
-    width: 100%;
-  }
-  
-  .skill {
-    padding-top: 8px;
-    clear: both;
-    width: 100%;
-  }
-  
-  .skill_name {
-    float: left;
-    text-align: right;
-    font-weight: bold;
-    width: 200px;
-  }
-  
-  .skill_description {
-    float: left;
-    padding-left: 15px;
-    width: 730px;
-    padding-bottom: 7px;
-  }
-  
-  .job {
-    padding-top: 8px;
-    padding-left: 15px;
-    padding-right: 15px;
-    clear: both;
-  }
-  
-  .job_description {
-    float: left;
-    width: 668px;
-  }
-  
-  .job_description ul {
-    padding-top: 0px;
-    padding-bottom: 15px;
-    margin-left: 20px;
-  }
-  
-  .job_date_location {
-    float: left;
-    width: 250px;
-    font-weight: bold;
-    text-align: right;
-  }
-  
-  .job_date_location .location {
-    font-size: smaller;
-    text-align: right;
-  }
-  
-  .job_description .title {
-    font-weight: bold;
-    font-size: 16px;
-  }
-</style>
-
 <div class = "resume">
-
   <div class = "resume_head">
     <div class = "name">
       <h1>Ian Enders</h1>
@@ -137,7 +26,7 @@
     <div class = "skill_name">Programming Languages:</div>
     <div class= "skill_description">
       Strong desire to produce excellently factored and readable object-oriented code.<br />
-      <strong>Perl, PHP, Java, C++, C, Visual Basic</strong>
+      <strong>Perl, Ruby, PHP, Java, C++, C, Visual Basic</strong>
     </div>
   </div>
   
@@ -145,7 +34,10 @@
     <div class = "skill_name">Web Development:</div>
     <div class= "skill_description">
       Incredibly strong web fundamentals on both front and back end.<br />
-      <strong>HTML, CGI, SVG, Embperl, Mason, Coldfusion/CFML, Javascript, DOM, XSL, CSS, Flash, Apache, Remote Scripting, XMLHttpRequests</strong>
+      <strong>
+        Ruby on Rails, Javascript, jQuery, Prototype, HTML, CGI, SVG, Embperl, Mason,
+        Coldfusion/CFML, sIFR, DOM, XSL, CSS, Flash, Apache, Remote Scripting, XMLHttpRequests/AJAX
+      </strong>
     </div>
   </div>
   
@@ -153,7 +45,7 @@
     <div class = "skill_name">Data Management:</div>
     <div class= "skill_description">
       Interested in rapid, efficient, and easy to maintain data storage and access in a variety of formats.<br />
-      <strong>XML, DOM &amp; SAX Parsing, SQL, Perl DBI, JDBC, mysql, Oracle, Sybase</strong>
+      <strong>XML, DOM &amp; SAX Parsing, SQL, Perl DBI, JPA, JDBC, Hibernate, mysql, Oracle, Sybase</strong>
     </div>
   </div>
   
@@ -171,16 +63,41 @@
   
   <div class = "job">
     <div class = "job_description">
-      <div class = "title">Web Service Magician (Software Developer)<br />Amazon.com</div>
+      <div class = "title">Loaded Gun for Hire (Freelance Software Engineer)</div>
       <ul>
-        <li>Responsible for end-to-end Web Service development, including project proposal, specification, development and testing</li>
-        <li>Built multithreaded Java processes to communicate in distributed Unix Web environment</li>
-        <li>Produced exciting and interesting prototypes for possible future projects using Perl Mason</li>
-        <li>Worked with Amazon.com and U.S.P.S. Web APIs to access data through XML DOM and HTTP</li>
+        <li>Using Ruby on Rails and story-driven development, produce website quickly in an agile manner, adapting to changing requirements and desires of business owners</li>
+        <li>Create solutions for importing large amounts of images and product data asynchronously on a regular basis to feed large scale websites, like Liz Claiborne</li>
+        <li>Lead and inspire partners and teammates at IntersectNYC to produce well thought out and creative solutions to common problems</li>
+        <li>Perform server setup tasks, with an understanding of all major deployment/hosting technologies available to Rails applications (Passenger, Thin/nginx, Mongrel/Pen, etc.)</li>
+        <li>Have experience dealing with the major players in Rails hosting community like Slicehost, Engine Yard, Engine Yard Solo and Media Temple</li>
+        <li>Experience developing full e-Commerce sites, including knowledge of Credit Card Gateways like Authorize.net</li>
+        <li>Perform continuous support on and maintain stability of projects after initial launch</li>
+        <li>For example clients and projects, see <a href = "/plugs">portfolio</a></li>
       </ul>
     </div>
     <div class = "job_date_location">
-      Fall 2005
+      August 2008 - Present
+      <div class = "location">Toronto, Ontario</div>
+    </div>
+  </div>
+  
+  <div class = "job">
+    <div class = "job_description">
+      <div class = "title">Web Service Magician (Software Development Engineer)<br />Amazon.com</div>
+      <ul>
+        <li>Sole developer to deliver end-to-end product integrating United States Postal Service with Seller Central, the platform for merchants to sell on Amazon.com</li>
+        <li>First at company to adopt and integrate Amazon's frameworks with Java Persistence API for object-relational mapping in service layers</li>
+        <li>Worked on various pieces of the Amazon site, dealing with the full gamut of legacy code bases, proprietary software, and exciting cutting edge technologies</li>
+        <li>Produced scalable and efficient software which serves up millions of requests a day</li>
+        <li>Responsible for end-to-end Web Service development, including project proposal, specification, development and testing</li>
+        <li>Built multithreaded Java processes to communicate in distributed Unix Web environment</li>
+        <li>Produced exciting and interesting prototypes for possible future projects using Perl Mason</li>
+        <li>Went on rotation to handle problems when site crashed and burned, day or night</li>
+        <li>Actively participated in the hiring process, conducting interviews and making judgements on candidates</li>
+      </ul>
+    </div>
+    <div class = "job_date_location">
+      July 2006 - July 2008 / Fall 2005
       <div class = "location">Seattle, Washington</div>
     </div>
   </div>

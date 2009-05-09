@@ -865,3 +865,115 @@ input.search {
   border: 2px solid green;
   background: #CAFACB;
 }
+
+
+/******************************
+ * Resume
+ ******************************/
+.resume {
+  padding: 0px 15px 10px;
+  width: 100%;
+}
+
+.resume p {
+  margin-top: 8px;
+  margin-bottom: 10px;
+}
+
+.resume h1 {
+  padding-bottom: 3px;
+  margin-bottom: 0px;
+}
+
+.resume h3 {
+  width: 100%;
+  border-bottom: 1px solid black;
+  padding-top: 5px;
+  padding-bottom: 3px;
+  margin-bottom: 0px;
+	font-size: 19px;
+}
+
+.resume ul {
+  margin-bottom: 0px;
+  margin-top: 0px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.resume_head {
+  width: 100%;
+  clear: both;
+}
+
+.resume_head .name {
+  float: left;
+  padding-bottom: 20px;
+}
+
+.resume_head .contact_details {
+  padding-top: 15px;
+  float: right;
+  text-align: right;
+  font-size: smaller;
+}
+
+.resume_main {
+  padding: 20px 15px 10px 15px;
+  width: 100%;
+}
+
+.skill {
+  padding-top: 8px;
+  clear: both;
+  width: 100%;
+}
+
+.skill_name {
+  float: left;
+  text-align: right;
+  font-weight: bold;
+  width: 200px;
+}
+
+.skill_description {
+  float: left;
+  padding-left: 15px;
+  width: 730px;
+  padding-bottom: 7px;
+}
+
+.job {
+  padding-top: 8px;
+  padding-left: 15px;
+  padding-right: 15px;
+  clear: both;
+}
+
+.job_description {
+  float: left;
+  width: 668px;
+}
+
+.job_description ul {
+  padding-top: 0px;
+  padding-bottom: 15px;
+  margin-left: 20px;
+}
+
+.job_date_location {
+  float: left;
+  width: 250px;
+  font-weight: bold;
+  text-align: right;
+}
+
+.job_date_location .location {
+  font-size: smaller;
+  text-align: right;
+}
+
+.job_description .title {
+  font-weight: bold;
+  font-size: 16px;
+}
