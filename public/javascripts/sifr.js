@@ -18,17 +18,6 @@ function sifrize() {
 		fontSize: '12px',
 		color: '#464646'
 	});
-  // $('.nav_links div').sifr({
-  //     fontSize: '17px',
-  //  link: '#000000',
-  //  hover: '#F26E25'
-  // });
-  // $('.footer_links div').sifr({
-  //  font: 'tuffy_bold',
-  //  fontSize: '14px',
-  //  link: '#000000',
-  //  hover: '#F26E25'
-  // });
 	$('.widget h3').sifr({
 		fontSize: '18px'
 	});
@@ -45,13 +34,19 @@ function sifrize() {
 		link: '#F26E25',
 		hover: '#000000'
 	});
-	$('h1#name').sifr({
+	$('.resume h1').sifr({
 		fontSize: '36px',
 		color: '#000'
 	});
-	$('h3.underlined_header').sifr({
-		fontSize: '15px',
-		color: '#000',
+	$('.resume h3').sifr({
+		color: '#000'
+	});
+	$('.resume .degree').sifr();
+	$('.resume .skill_name').sifr({
+		font: 'tuffy_bold'
+	});
+	$('.resume .title').sifr({
+		fontSize: '16px'
 	});
 }
 
