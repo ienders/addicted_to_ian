@@ -785,3 +785,83 @@ input.search {
 	margin-left: 35px;
 	padding: 5px;
 }
+
+
+/**********************
+ * Contact Form
+ **********************/
+
+.contact_form .field {
+  width: 50%;
+  float: left;
+}
+
+.contact_form label {
+  font-weight: bold;
+  color: black;
+  padding-top: 15px;
+  float: right;
+
+}
+
+.contact_form .field label {
+  width: 100px;
+}
+
+.contact_form label.message {
+  width: 120px;
+}
+
+.contact_form .field input {
+  float: right;
+  height: 20px;
+  width: 197px;
+  font-size: 13px;
+  padding-left: 7px;
+  padding-top: 5px;
+}
+
+.contact_form .submit {
+  float: right;
+}
+
+.contact_form textarea {
+  float: right;
+  width: 526px;
+  padding: 5px;
+  font-family: verdana, sans-serif;
+  font-size: 13px;
+}
+
+.contact_form .note {
+  font-size: 10px;
+  float: right;
+  width: 461px;
+  margin-top: 0px;
+}
+
+.contact_form sup {
+  color: orange;
+  font-weight: bold;
+}
+
+.contact_form #error, .contact_form #success {
+  width: 448px;
+  float: right;
+  height: 35px;
+  margin-right: 10px;
+  text-align: center;
+  padding-top: 15px;
+  color: black;
+  display: none;
+}
+
+.contact_form #error {
+  border: 2px solid #FF6600;
+  background: #FFE1A1;
+}
+
+.contact_form #success {
+  border: 2px solid green;
+  background: #CAFACB;
+}

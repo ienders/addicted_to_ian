@@ -5,6 +5,7 @@ ActionController::Routing::Routes.draw do |map|
   
   # About
   map.about '/about', :controller => 'about', :action => 'index'
+  map.resume '/resume', :controller => 'about', :action => 'resume'
 
   # RSS
   map.blog_rss '/rss.xml', :controller => 'blogs', :action => 'rss'
