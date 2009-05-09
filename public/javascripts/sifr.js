@@ -52,7 +52,6 @@ function sifrize() {
 	$('h3.underlined_header').sifr({
 		fontSize: '15px',
 		color: '#000',
-		padding: '10px 0'
 	});
 }
 
