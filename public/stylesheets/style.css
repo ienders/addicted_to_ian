@@ -943,6 +943,12 @@ input.search {
   padding-bottom: 7px;
 }
 
+.skillz {
+  color: #000;
+  margin-top:8px;
+/*  font-weight:bold;*/
+}
+
 .job {
   padding-top: 8px;
   padding-left: 15px;
