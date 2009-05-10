@@ -335,12 +335,14 @@ input.search {
 .album_nav {
   float:left;
   margin-right:18px;
+	position: relative;
 }
 
 .albums {
   float:left;
   width:348px;
   border:1px solid #000;
+	position: relative;
 }
 
 #picture img.centered_image {
@@ -414,7 +416,8 @@ input.search {
   margin-top:33px;
   position: absolute;
   width: 400px;
-  top: 345px;
+  top: 163px;
+	left: 0px;
 }
 
 .arrows img, .thumb_arrows img {
@@ -429,7 +432,8 @@ input.search {
 
 #forward_album {
   position: absolute;
-  top: 346px;
+	left: 0px;
+  top: 163px;
   margin-left: -1px;
   border:1px solid black;
   background-color: white;
@@ -439,11 +443,13 @@ input.search {
 #forward_images {
   position: absolute;
   top: 245px;
+	left: 0px;
 }
 
 #thumb_area {
 	position: absolute;
 	top: 27px;
+	left: 0px;
 }
 
 .gallery_image {
@@ -461,6 +467,7 @@ input.search {
 	height: 91px;
 	width: 608px;
 	top: 363px;
+	left: 0px;
 	border: 1px solid black;
 	background-color: #000000;
 	opacity: 0.9;
@@ -499,6 +506,7 @@ input.search {
 	position: absolute;
 	padding-left: 5px;
 	top: 76px;
+	left: 0px;
 }
 
 #image_data .date_info {
@@ -626,6 +634,8 @@ input.search {
 
 .plug_title_overlay {
   position: absolute;
+	top: 0px;
+	left: 0px;
   margin-left: 20px;
   padding: 10px 0 5px 10px;
   width: 214px;
@@ -866,6 +876,14 @@ input.search {
   background: #CAFACB;
 }
 
+/******************************
+ * About
+ ******************************/
+
+.about_name {
+  font-weight: bold;
+  font-size: 18px;
+}
 
 /******************************
  * Resume

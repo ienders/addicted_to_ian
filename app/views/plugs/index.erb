@@ -47,7 +47,7 @@
       this.randomFade($('#plug_' + this.to_fade[this.to_fade_index]));
     };
     this.randomFade = function(thumb) {
-      self = this
+      var self = this;
       var j = parseInt(thumb.attr('rel'));
       thumb.fadeOut(100, function() {
         self.to_fade_index++;
@@ -59,7 +59,7 @@
       });
     };
     this.slideThumbAndOpenPlug = function() {
-      self = this
+      var self = this;
       thumb = this.current_thumb
       thumb.find('img').attr('src', thumb.find('.large_img').html());
       thumb.animate({ left: 17, top: 27 + self.height_offset }, 2000, function() {
@@ -80,7 +80,7 @@
       });
     };
     this.closePlugAndRevertThumb = function() {
-      self = this
+      var self = this;
       
       $('#plug_main_' + self.current_thumb.attr('rel')).fadeOut('slow', function() {
         var thumb = self.get(parseInt(self.current_thumb.attr('rel')));
@@ -244,6 +244,7 @@
             <%= link_to('delete', plug_path(plug), :method => :delete, :confirm => 'Are you sure?') %>
           </div>
         <% end %>
+        <div class = "clear"></div>
         <div class = "plug_text" style = "display: none">
           <%= markdown(plug.description) %>
         </div>

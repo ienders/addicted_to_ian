@@ -1,4 +1,9 @@
-<%= image_tag(photo.public_filename, :width => photo.width, :height => photo.height, :style => 'display: none') %>
+<%= image_tag(
+  photo.public_filename,
+  :width  => photo.width,
+  :height => photo.height,
+  :style  => "display: none; height: #{photo.height}px; width: #{photo.width}px"
+) %>
 
 <div id = "image_data" style = "display: none">
   <% if photo.title %>
@@ -33,7 +38,7 @@
 
 <script type = "text/javascript">
   $(function() {
-    $('#picture').find('img').css('margin-top', (parseInt($('#picture').css('height')) - $('#picture').find('img').attr('height')) / 2);
+    $('#picture').find('img').css('margin-top', (parseInt($('#picture').css('height')) - parseInt($('#picture').find('img').css('height'))) / 2);
     var minX = parseInt($('.pictures').offset().left);
     var maxX = parseInt($('.pictures').offset().left) + parseInt($('.pictures').css('width'));
     var minY = parseInt($('.pictures').offset().top);

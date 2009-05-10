@@ -26,7 +26,7 @@ function sifrize() {
 		fontSize: '14px',
 		color: '#888888',
 		link: '#464646',
-		hover: '#000000',
+		hover: '#000000'
 	});
 	$('.month_nav').sifr({
 		font: 'tuffy_bold',
@@ -42,10 +42,6 @@ function sifrize() {
 		color: '#000'
 	});
 	$('.resume .degree').sifr();
-  // $('.resume .skill_name').sifr({
-  //  // font: 'tuffy_bold'
-  //  fontSize: '11px'
-  // });
 	$('.resume .title').sifr({
 		fontSize: '16px'
 	});

@@ -5,10 +5,17 @@
   <div class = "thumbs" id ="thumbs_row_<%= i %>" <%= i >= num_image_rows ? 'style = "display: none"' : '' %>>
     <% row.each do |photo| %>
       <div class = "gallery_image" rel = "<%= photo.id %>">
-        <%= image_tag(photo.thumb_url, :width => photo.thumb_width, :height => photo.thumb_height) %>
+        <%= image_tag(
+          photo.thumb_url,
+          :width  => photo.thumb_width,
+          :height => photo.thumb_height,
+          :style  => "height: #{photo.thumb_height}px; width: #{photo.thumb_width}px"
+        ) %>
       </div>
     <% end %>
   </div>
+  
+  <div class = "clear"></div>
 <% end %>
 
 <script type = "text/javascript">
@@ -27,7 +34,7 @@
     
     // Center the thumbnails vertically in their container.
     $('.gallery_image').each(function() {
-      $(this).find('img').css('margin-top', (parseInt($(this).css('height')) - $(this).find('img').attr('height')) / 2);
+      $(this).find('img').css('margin-top', (parseInt($(this).css('height')) - parseInt($(this).find('img').css('height'))) / 2);
     });
 
     // Select the first image in the gallery.
