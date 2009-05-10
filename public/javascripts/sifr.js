@@ -49,6 +49,11 @@ function sifrize() {
 	$('.resume .title').sifr({
 		fontSize: '16px'
 	});
+	$('.about_name').sifr({
+		font: 'tuffy_bold',
+		fontSize: '18px'
+	});
+	
 }
 
 $(document).ready(function() {
