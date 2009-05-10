@@ -932,8 +932,10 @@ input.search {
 .skill_name {
   float: left;
   text-align: right;
-  font-weight: bold;
+/*  font-weight: bold;*/
   width: 200px;
+  color: #000;
+  font-size:11px;
 }
 
 .skill_description {
@@ -943,10 +945,11 @@ input.search {
   padding-bottom: 7px;
 }
 
-.skillz {
+.skillz, .job_date_location {
   color: #000;
   margin-top:8px;
 /*  font-weight:bold;*/
+font-weight:normal;
 }
 
 .job {
@@ -967,10 +970,13 @@ input.search {
   margin-left: 20px;
 }
 
+.job_description ul li {
+  margin-top:8px;
+}
+
 .job_date_location {
   float: left;
   width: 250px;
-  font-weight: bold;
   text-align: right;
 }
 

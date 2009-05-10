@@ -43,7 +43,8 @@ function sifrize() {
 	});
 	$('.resume .degree').sifr();
 	$('.resume .skill_name').sifr({
-		font: 'tuffy_bold'
+		// font: 'tuffy_bold'
+		fontSize: '11px'
 	});
 	$('.resume .title').sifr({
 		fontSize: '16px'
