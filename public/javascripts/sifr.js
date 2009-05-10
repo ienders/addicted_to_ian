@@ -42,10 +42,10 @@ function sifrize() {
 		color: '#000'
 	});
 	$('.resume .degree').sifr();
-	$('.resume .skill_name').sifr({
-		// font: 'tuffy_bold'
-		fontSize: '11px'
-	});
+  // $('.resume .skill_name').sifr({
+  //  // font: 'tuffy_bold'
+  //  fontSize: '11px'
+  // });
 	$('.resume .title').sifr({
 		fontSize: '16px'
 	});
