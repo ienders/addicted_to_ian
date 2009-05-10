@@ -26,9 +26,13 @@ sIFR.replace(tuffy, {
 
 sIFR.replace(tuffy, {
   selector: '.main_content h4',
-  css: '.sIFR-root { font-size: 20px; color: #464646; }'
-//	link: '#F26E25',
-//	hover: '#000000'
+  css: [
+  '.sIFR-root { font-size: 20px; color: #464646; }',
+  'a:link { color: #F26E25; }',    
+	'a:visited { color: #F26E25; }',  
+	'a:hover { color: #000000; }',	
+	'a:active { color: #F26E25; }'
+	]
 });
 
 sIFR.replace(tuffy, {
@@ -48,16 +52,24 @@ sIFR.replace(tuffy, {
 
 sIFR.replace(tuffy_bold, {
   selector: '.month_name',
-  css: '.sIFR-root { font-size: 14px; color: #888888 }'
-//	link: '#464646',
-//	hover: '#000000'
+  css: [
+  '.sIFR-root { font-size: 14px; color: #888888 }',
+  'a:link { color: #F26E25; }',    
+	'a:visited { color: #F26E25; }',  
+	'a:hover { color: #000000; }',	
+	'a:active { color:#F26E25; }'
+	]
 });
 
 sIFR.replace(tuffy_bold, {
   selector: '.month_nav',
-  css: '.sIFR-root { font-size: 14px; color: #000000 }'
-	// link: '#F26E25',
-	// hover: '#000000',
+  css: [
+  '.sIFR-root { font-size: 14px; color: #000000 }',
+  'a:link { color: #F26E25; }',    
+	'a:visited { color: #F26E25; }',  
+	'a:hover { color: #000000; }',	
+	'a:active { color: #F26E25; }'
+	]
 });
 
 sIFR.replace(tuffy, {
