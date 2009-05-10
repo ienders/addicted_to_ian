@@ -66,9 +66,9 @@
         thumb.find('img').animate({ height: 300, width: 500 }, 'medium', function() {
           $('#plug_main_' + self.current_thumb.attr('rel')).fadeIn('slow', function() {
             plug = $(this);
-            plug.find('h3').sifr({
-          		fontSize: '30px',
-          		color: '#464646'
+          	sIFR.replace(tuffy, {
+          	  selector: '#plug_main_' + self.current_thumb.attr('rel') + ' h3',
+          	  css: '.sIFR-root { font-size: 30px; color: #464646 }'
           	});
             plug.find('.plug_text').fadeIn('slow', function() {
               plug.find('.plug_link_holder').fadeIn('slow', function() {
