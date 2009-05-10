@@ -15,6 +15,7 @@ body {
 	font-family: verdana, sans-serif;
 	color:#666;
 	font-size:12px;
+	line-height:14pt;
 }
 
 a {
@@ -363,15 +364,18 @@ input.search {
 
 .album_data h4 {
   float:left;
-  width:170px;
+  width:165px;
   margin:2px 0 0 10px;
   font-weight:normal;
+  font-size:11px;
   
 }
 
 .album_data h5 {
   float:right;
-  margin:4px 5px 0 0;
+  width:60px;
+   font-size:11px;
+  margin:2px 5px 0 0;
   font-weight:normal;
   text-align:right;
 }
@@ -498,6 +502,9 @@ input.search {
 	text-align: right;
 	padding-right: 5px;
 	padding-top: 5px;
+	position:absolute;
+	top:5px;
+	right:5px;
 }
 
 #image_data .file_info {
@@ -699,8 +706,8 @@ input.search {
 	padding:2px;
 }
 
-
 .admin_links {
+  float:left;
 	font-size: 9px;
 }
 
