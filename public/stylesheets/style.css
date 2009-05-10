@@ -501,6 +501,9 @@ input.search {
 	text-align: right;
 	padding-right: 5px;
 	padding-top: 5px;
+	position:absolute;
+	top:5px;
+	right:5px;
 }
 
 #image_data .file_info {
@@ -701,7 +704,6 @@ input.search {
 	margin:10px 0;
 	padding:2px;
 }
-
 
 .admin_links {
   float:left;
