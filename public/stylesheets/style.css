@@ -822,7 +822,9 @@ input.search {
 }
 
 .contact_form .submit {
-  float: right;
+/*  float: right;*/
+	float: left;
+	margin-left: 119px;
 }
 
 .contact_form textarea {
@@ -835,8 +837,10 @@ input.search {
 
 .contact_form .note {
   font-size: 10px;
-  float: right;
-  width: 461px;
+/*  float: right;*/
+	float: left;
+  width: 465px;
+	text-align: right;
   margin-top: 0px;
 }
 
@@ -849,7 +853,7 @@ input.search {
   width: 448px;
   float: right;
   height: 35px;
-  margin-right: 10px;
+  margin-left: 10px;
   text-align: center;
   padding-top: 15px;
   color: black;
