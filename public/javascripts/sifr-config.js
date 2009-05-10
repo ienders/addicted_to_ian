@@ -84,3 +84,5 @@ sIFR.replace(tuffy_bold, {
   selector: '.about_name',
   css: '.sIFR-root { font-size: 18px; color: #000000 }'
 });
+
+$('.sIFR-alternate').hide();
