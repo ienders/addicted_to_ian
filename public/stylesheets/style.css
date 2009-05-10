@@ -363,15 +363,18 @@ input.search {
 
 .album_data h4 {
   float:left;
-  width:170px;
+  width:165px;
   margin:2px 0 0 10px;
   font-weight:normal;
+  font-size:11px;
   
 }
 
 .album_data h5 {
   float:right;
-  margin:4px 5px 0 0;
+  width:60px;
+   font-size:11px;
+  margin:2px 5px 0 0;
   font-weight:normal;
   text-align:right;
 }
@@ -701,6 +704,7 @@ input.search {
 
 
 .admin_links {
+  float:left;
 	font-size: 9px;
 }
 
