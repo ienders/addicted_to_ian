@@ -1,6 +1,7 @@
 function sifrize() {
 	$.sifr({ path: '/swf/', font: 'tuffy', color: '#000000', save: true });
 	$('.main_content h3').sifr({
+		font: 'tuffy',
 		fontSize: '30px',
 		color: '#464646'
 	});
