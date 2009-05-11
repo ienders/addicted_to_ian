@@ -15,7 +15,6 @@ body {
 	font-family: verdana, sans-serif;
 	color:#666;
 	font-size:12px;
-	line-height:14pt;
 }
 
 a {
@@ -903,6 +902,7 @@ input.search {
 .resume p {
   margin-top: 8px;
   margin-bottom: 10px;
+	line-height:14pt;
 }
 
 .resume h1 {
@@ -974,7 +974,8 @@ input.search {
   color: #000;
   margin-top:8px;
 /*  font-weight:bold;*/
-font-weight:normal;
+  font-weight:normal;
+	line-height:14pt;
 }
 
 .job {
@@ -997,6 +998,7 @@ font-weight:normal;
 
 .job_description ul li {
   margin-top:8px;
+	line-height:14pt;
 }
 
 .job_date_location {
