@@ -107,6 +107,11 @@ img, div, input { behavior: url("scripts/iepngfix.htc") }
 	margin-right:40px;
 }
 
+.main_content img {
+  float:left;
+  margin-bottom:10px;
+}
+
 .main_content h3 {
   float: left;
   color: #464646;
@@ -891,6 +896,8 @@ input.search {
 .about_name {
   font-weight: bold;
   font-size: 18px;
+  float:left;
+  line-height:0.8em;
 }
 
 /******************************
