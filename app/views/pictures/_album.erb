@@ -1,47 +1,49 @@
-<% partitioned_gallery = [] %>
-<% (0..album.size - 1).step(5) {|i| partitioned_gallery.push(album.photos[i..i + 4]) } %>
+<% if album %>
+  <% partitioned_gallery = [] %>
+  <% (0..album.size - 1).step(5) {|i| partitioned_gallery.push(album.photos[i..i + 4]) } %>
 
-<% partitioned_gallery.each_with_index do |row, i| %>
-  <div class = "thumbs" id ="thumbs_row_<%= i %>" <%= i >= num_image_rows ? 'style = "display: none"' : '' %>>
-    <% row.each do |photo| %>
-      <div class = "gallery_image" rel = "<%= photo.id %>">
-        <%= image_tag(
-          photo.thumb_url,
-          :width  => photo.thumb_width,
-          :height => photo.thumb_height,
-          :style  => "height: #{photo.thumb_height}px; width: #{photo.thumb_width}px"
-        ) %>
-      </div>
-    <% end %>
-  </div>
+  <% partitioned_gallery.each_with_index do |row, i| %>
+    <div class = "thumbs" id ="thumbs_row_<%= i %>" <%= i >= num_image_rows ? 'style = "display: none"' : '' %>>
+      <% row.each do |photo| %>
+        <div class = "gallery_image" rel = "<%= photo.id %>">
+          <%= image_tag(
+            photo.thumb_url,
+            :width  => photo.thumb_width,
+            :height => photo.thumb_height,
+            :style  => "height: #{photo.thumb_height}px; width: #{photo.thumb_width}px"
+          ) %>
+        </div>
+      <% end %>
+    </div>
   
-  <div class = "clear"></div>
-<% end %>
+    <div class = "clear"></div>
+  <% end %>
 
-<script type = "text/javascript">
-  $(function() {
-    num_image_rows = <%= partitioned_gallery.size %>;
+  <script type = "text/javascript">
+    $(function() {
+      num_image_rows = <%= partitioned_gallery.size %>;
     
-    // Hide top and bottom nav arrows if we don't need them.
-    $('#forward_images').<%= partitioned_gallery.size <= num_image_rows ? 'fadeOut' : 'fadeIn' %>("slow");
-    $('#back_images').<%= partitioned_gallery.size <= num_image_rows ? 'fadeOut' : 'fadeIn' %>("slow");
+      // Hide top and bottom nav arrows if we don't need them.
+      $('#forward_images').<%= partitioned_gallery.size <= num_image_rows ? 'fadeOut' : 'fadeIn' %>("slow");
+      $('#back_images').<%= partitioned_gallery.size <= num_image_rows ? 'fadeOut' : 'fadeIn' %>("slow");
     
-    // Reset top/bottom arrows to the proper state for greyed out / not greyed
-    $('#back_images').css('background-color', '#DDDDDD');
-    $('#back_images').find('img').fadeOut();
-    $('#forward_images').css('background-color', 'white');
-    $('#forward_images').find('img').fadeIn();
+      // Reset top/bottom arrows to the proper state for greyed out / not greyed
+      $('#back_images').css('background-color', '#DDDDDD');
+      $('#back_images').find('img').fadeOut();
+      $('#forward_images').css('background-color', 'white');
+      $('#forward_images').find('img').fadeIn();
     
-    // Center the thumbnails vertically in their container.
-    $('.gallery_image').each(function() {
-      $(this).find('img').css('margin-top', (parseInt($(this).css('height')) - parseInt($(this).find('img').css('height'))) / 2);
+      // Center the thumbnails vertically in their container.
+      $('.gallery_image').each(function() {
+        $(this).find('img').css('margin-top', (parseInt($(this).css('height')) - parseInt($(this).find('img').css('height'))) / 2);
+      });
+
+      // Select the first image in the gallery.
+      $('.gallery_image:first').click();
+    
+      // Reset our position in the gallery to what is visible on first load.
+      image_row_first = 0;
+      image_row_last = <%= num_image_rows - 1 %>;
     });
-
-    // Select the first image in the gallery.
-    $('.gallery_image:first').click();
-    
-    // Reset our position in the gallery to what is visible on first load.
-    image_row_first = 0;
-    image_row_last = <%= num_image_rows - 1 %>;
-  });
-</script>
+  </script>
+<% end %>
