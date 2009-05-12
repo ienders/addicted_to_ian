@@ -388,7 +388,7 @@ input.search {
 
 .pictures {
   float:left;
-  width:610px;
+  width:608px;
 	height: 456px;
 	vertical-align: middle;
 	background-color: #DDDDDD;
@@ -399,7 +399,7 @@ input.search {
 
 #picture {
 	height: 456px;
-	width: 610px;
+	width: 608px;
 }
 
 .arrows {
