@@ -15,6 +15,13 @@ Rails::Initializer.run do |config|
     
   config.time_zone = 'UTC'
 
+  config.action_mailer.raise_delivery_errors = true
+  ActionMailer::Base.delivery_method = :sendmail
+  ActionMailer::Base.sendmail_settings = {
+      :location       => '/usr/sbin/sendmail',
+      :arguments      => '-i -t'
+  }
+
   config.action_controller.session = {
     :session_key => '_addicted_to_ian_session',
     :secret      => '63ed143bd8c4b43187fae6b94a9a257ba0011f7fc68234c561abf5750b8d9d03fb3dbcd66491aa22bd2d33fcb865aa145379a44ea906bfbb2293c1a7a1f00261'
