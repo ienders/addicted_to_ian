@@ -145,7 +145,7 @@ img, div, input { behavior: url("scripts/iepngfix.htc") }
 	font-size: 12px;
 	margin-top: 0px;
 	margin-bottom: 15px;
-	line-height: 14pt;
+	line-height: 13pt;
 	font-weight: 550;
 	width: 100%;
 }
@@ -911,21 +911,21 @@ input.search {
 .resume p {
   margin-top: 8px;
   margin-bottom: 10px;
-	line-height:14pt;
+	line-height:12pt;
 }
 
 .resume h1 {
-  padding-bottom: 3px;
   margin-bottom: 0px;
+  line-height:0.8em;
 }
 
 .resume h3 {
   width: 100%;
   border-bottom: 1px solid black;
   padding-top: 5px;
-  padding-bottom: 3px;
   margin-bottom: 0px;
 	font-size: 19px;
+	line-height:0.8em;
 }
 
 .resume ul {
@@ -935,6 +935,10 @@ input.search {
   padding-top: 10px;
 }
 
+.resume .degree {
+  line-height:0.8em;
+}
+
 .resume_head {
   width: 100%;
   clear: both;
@@ -942,7 +946,7 @@ input.search {
 
 .resume_head .name {
   float: left;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
 
 .resume_head .contact_details {
@@ -984,7 +988,7 @@ input.search {
   margin-top:8px;
 /*  font-weight:bold;*/
   font-weight:normal;
-	line-height:14pt;
+	line-height:12pt;
 }
 
 .job {
@@ -1007,7 +1011,7 @@ input.search {
 
 .job_description ul li {
   margin-top:8px;
-	line-height:14pt;
+	line-height:12pt;
 }
 
 .job_date_location {
@@ -1023,5 +1027,6 @@ input.search {
 
 .job_description .title {
   font-weight: bold;
+  line-height:0.8em;
   font-size: 16px;
 }
