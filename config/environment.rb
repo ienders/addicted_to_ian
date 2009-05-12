@@ -16,8 +16,8 @@ Rails::Initializer.run do |config|
   config.time_zone = 'UTC'
 
   config.action_mailer.raise_delivery_errors = true
-  ActionMailer::Base.delivery_method = :sendmail
-  ActionMailer::Base.sendmail_settings = {
+  config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.sendmail_settings = {
       :location       => '/usr/sbin/sendmail',
       :arguments      => '-i -t'
   }
