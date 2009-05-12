@@ -112,12 +112,14 @@ img, div, input { behavior: url("scripts/iepngfix.htc") }
   color: #464646;
   font-size: 30px;
   font-weight: normal;
+	line-height: 0.8em;
 }
 
 .main_content h4 {
 	float: left;
 	margin-top: 5px;
 	font-size: 20px;
+	line-height: 0.6em;
 }
 
 .main_content h5 {
@@ -136,8 +138,8 @@ img, div, input { behavior: url("scripts/iepngfix.htc") }
 	float:left;
 	color:#464646;
 	font-size: 12px;
-	margin-top: 10px;
-	margin-bottom: 5px;
+	margin-top: 0px;
+	margin-bottom: 15px;
 	line-height: 14pt;
 	font-weight: 550;
 	width: 100%;
@@ -276,6 +278,7 @@ img.rss {
 	font-size:18px;
 	font-weight: normal;
 	color: #464646;
+	line-height: 0.8em;
 }
 
 /********************************************
@@ -283,7 +286,6 @@ img.rss {
 \********************************************/
 
 .search_container {
-	margin-top: 5px;
 	position: relative;
 	width: 100%;
 	height: 40px;
@@ -310,7 +312,7 @@ input.search {
 \********************************************/
 
 .tags {
-	margin-top: 10px;
+	margin-top: 5px;
 	text-align: center;
 	width: 100%;
 }
@@ -502,8 +504,8 @@ input.search {
 	padding-right: 5px;
 	padding-top: 5px;
 	position:absolute;
-	top:5px;
-	right:5px;
+	top:0px;
+	right:0px;
 }
 
 #image_data .file_info {
@@ -572,6 +574,7 @@ input.search {
   color: #464646;
   font-size: 30px;
   font-weight: normal;
+	line-height: 0.8em;
 }
 
 .plugs_content h4 {
@@ -585,8 +588,7 @@ input.search {
 	float:left;
 	color:#464646;
 	font-size: 12px;
-	margin-top: 10px;
-	margin-bottom: 5px;
+	margin-bottom: 15px;
 	line-height: 14pt;
 	font-weight: 550;
 	z-index: 1;

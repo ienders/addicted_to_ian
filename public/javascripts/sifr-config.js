@@ -6,7 +6,7 @@ sIFR.activate(tuffy, tuffy_bold);
 function sifrize() {
 	sIFR.replace(tuffy, {
 	  selector: '.main_content h3',
-	  css: '.sIFR-root { font-size: 30px; color: #464646;  }'
+	  css: '.sIFR-root { font-size: 30px; color: #464646; line-height: 0.4em  }'
 	});
 
 
@@ -14,10 +14,10 @@ function sifrize() {
 	  selector: '.main_content h4',
 	  css: [
 	  '.sIFR-root { font-size: 20px; color: #464646; }',
-	  'a:link { color: #F26E25; }',    
-		'a:visited { color: #F26E25; }',  
-		'a:hover { color: #000000; }',	
-		'a:active { color: #F26E25; }'
+	  'a:link { color: #F26E25; text-decoration: none }',    
+		'a:visited { color: #F26E25; text-decoration: none }',  
+		'a:hover { color: #000000; text-decoration: none }',	
+		'a:active { color: #F26E25; text-decoration: none }'
 		]
 	});
 
@@ -40,10 +40,10 @@ function sifrize() {
 	  selector: '.month_name',
 	  css: [
 	  '.sIFR-root { font-size: 14px; color: #888888 }',
-	  'a:link { color: #F26E25; }',    
-		'a:visited { color: #F26E25; }',  
-		'a:hover { color: #000000; }',	
-		'a:active { color:#F26E25; }'
+	  'a:link { color: #F26E25; text-decoration: none }',    
+		'a:visited { color: #F26E25; text-decoration: none }',  
+		'a:hover { color: #000000; text-decoration: none }',	
+		'a:active { color:#F26E25; text-decoration: none }'
 		]
 	});
 
@@ -51,10 +51,10 @@ function sifrize() {
 	  selector: '.month_nav',
 	  css: [
 	  '.sIFR-root { font-size: 14px; color: #000000 }',
-	  'a:link { color: #F26E25; }',    
-		'a:visited { color: #F26E25; }',  
-		'a:hover { color: #000000; }',	
-		'a:active { color: #F26E25; }'
+	  'a:link { color: #F26E25; text-decoration: none }',    
+		'a:visited { color: #F26E25; text-decoration: none }',  
+		'a:hover { color: #000000; text-decoration: none }',	
+		'a:active { color: #F26E25; text-decoration: none }'
 		]
 	});
 
