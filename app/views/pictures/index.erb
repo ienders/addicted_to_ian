@@ -110,9 +110,9 @@
     
     $('.gallery_image').live('click', function() {
       var img = $(this);
-      $('.gallery_image').css('border', '0px').css('background-color', '#CCCCCC');
+      $('.gallery_image').css('border', '0px').css('background-color', '#CCCCCC').css('margin-top', 0).css('margin-left', 0);
       $('.gallery_image').find('img').css('opacity', 1);
-      $(this).css('border', '1px solid black').css('background-color', 'white');
+      $(this).css('border', '1px solid black').css('background-color', 'white').css('margin-top', -2).css('margin-left', -2);
       $(this).find('img').css('opacity', 0.5);
       $('#image_loading').fadeIn(3000);
       $('#picture').find('img').fadeOut('fast', function() {
