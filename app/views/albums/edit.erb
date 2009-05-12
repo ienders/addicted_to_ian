@@ -35,7 +35,7 @@
   <% end %>
   <div class = "clear"></div>
   <div class = "edit_photos">
-    <% @album.photos.each do |photo| %>
+    <% @album.photos.sort{|a, b| a.position <=> b.position }.each do |photo| %>
       <%= render :partial => 'photo', :object => photo %>
     <% end %>
   </div>

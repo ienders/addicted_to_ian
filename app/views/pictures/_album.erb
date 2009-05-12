@@ -1,6 +1,6 @@
 <% if album %>
   <% partitioned_gallery = [] %>
-  <% (0..album.size - 1).step(5) {|i| partitioned_gallery.push(album.photos[i..i + 4]) } %>
+  <% (0..album.size - 1).step(5) {|i| partitioned_gallery.push(album.photos.sort{|a, b| a.position <=> b.position }[i..i + 4]) } %>
 
   <% partitioned_gallery.each_with_index do |row, i| %>
     <div class = "thumbs" id ="thumbs_row_<%= i %>" <%= i >= num_image_rows ? 'style = "display: none"' : '' %>>
