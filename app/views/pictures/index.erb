@@ -192,7 +192,7 @@
 <div class = "pictures">
   <div id = "image_loading" style = "display: none"><%= image_tag('gallery-loading.gif') %></div>
   <div id = "picture">
-    <% if @albums.first.photos.first %>
+    <% if @albums.first && @albums.first.photos.first %>
       <%= image_tag(@albums.first.photos.first.public_filename) %>
     <% end %>
   </div>
