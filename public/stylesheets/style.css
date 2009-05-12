@@ -463,7 +463,7 @@ input.search {
 }
 
 .gallery_image {
-	width: 62px;
+	width: 61px;
 	height: 46px;
 	text-align: center;
 	float: left;
@@ -475,7 +475,7 @@ input.search {
 #image_data {
 	position: absolute;
 	height: 91px;
-	width: 608px;
+	width: 606px;
 	top: 363px;
 	left: 0px;
 	border: 1px solid black;
@@ -769,7 +769,7 @@ input.search {
 }
 
 .edit_photo_thumb {
-	width: 62px;
+	width: 61px;
 	height: 46px;
 	text-align: center;
 	background-color: #CCCCCC;

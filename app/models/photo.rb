@@ -31,7 +31,7 @@ class Photo < ActiveRecord::Base
     :max_size     => 10000.kilobytes,
     :resize_to    => '608>x456',
     :thumbnails   => {
-      :thumb        => '62x46>',
+      :thumb        => '61x46>',
       :gallery_hero => 'crop: 100x36'
     }
   )
