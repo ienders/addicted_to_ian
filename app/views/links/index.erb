@@ -46,7 +46,7 @@
     <div class = "clear"></div>
   <% end %>
   
-  <h3 class = "category_head"><%= @category.titleize %> Links</h3>
+  <h3 class = "category_head"><%= (@category || '').titleize %> Links</h3>
   <div class = "clear"></div>
   
   <% mid = (@links.size / 2).ceil %>
