@@ -34,6 +34,8 @@ namespace :deploy do
       ln -nfs #{shared_path}/#{dir} #{release_path}/public/#{dir}
       CMD
     end
+    
+    run "mkdir -p #{release_path}/tmp/attachment_fu"
   end
 end
 
