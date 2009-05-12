@@ -36,6 +36,7 @@ namespace :deploy do
     end
     
     run "mkdir -p #{release_path}/tmp/attachment_fu"
+    run "chmod 777 #{release_path}/tmp/attachment_fu"
   end
 end
 

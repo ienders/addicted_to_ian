@@ -84,6 +84,7 @@
       
       $('#plug_main_' + self.current_thumb.attr('rel')).fadeOut('slow', function() {
         var thumb = self.get(parseInt(self.current_thumb.attr('rel')));
+        self.current_thumb.find('a').css('cursor', 'pointer');
         self.current_thumb.find('img').animate({ height: thumb.img_height, width: thumb.img_width }, 'medium');
         self.current_thumb.animate({ left: thumb.thumb_left, top: thumb.thumb_top }, 'medium', function() {
           $('.plug_text').hide();
@@ -140,6 +141,7 @@
       if (!thumbs.visible) {
         return;
       }
+      $(this).find('a').css('cursor', 'default');
       $(this).find('span').fadeOut('fast');
       $(this).find('.plug_title_overlay').fadeOut('fast');
       thumbs.fadeThumbs($(this))
