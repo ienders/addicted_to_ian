@@ -822,9 +822,9 @@ input.search {
 .contact_form label {
   font-weight: bold;
   color: black;
-  padding-top: 15px;
+  padding-top: 11px;
   float: right;
-
+  line-height:2em;
 }
 
 .contact_form .field label {
@@ -895,7 +895,7 @@ input.search {
 
 .about_name {
   font-weight: bold;
-  font-size: 18px;
+  font-size: 16px;
   float:left;
   line-height:0.8em;
 }
