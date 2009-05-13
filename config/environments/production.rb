@@ -25,12 +25,7 @@ config.action_controller.perform_caching             = true
 
 
 config.action_mailer.raise_delivery_errors = true
-
-ActionMailer::Base.delivery_method = :sendmail
-ActionMailer::Base.sendmail_settings = {
-  :location       => '/usr/sbin/sendmail',
-  :arguments      => '-i -t -f mail@addictedtoian.com'
-}
+ActionMailer::Base.delivery_method = :smtp
 
 # For Exif.
 ENV['HOME'] = "#{Rails.root}/tmp/attachment_fu"
