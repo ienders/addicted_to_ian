@@ -119,8 +119,8 @@
       var width = parseInt($('#photo_width_' + id).html());
       var height = parseInt($('#photo_height_' + id).html());
             
-      $('#picture').html( $('#photo_' + id).html());
-//      $('#picture').append($(document.createElement('img')).attr('src', $('#photo_filename_' + id).html()).css({ width: width, height: height }));
+      $('#picture').html('');
+      $('#picture').append($(document.createElement('img')).attr('src', $('#photo_filename_' + id).html()).css({ width: width, height: height }));
       $('#picture').append($(document.createElement('div')).attr('id', 'image_data').css('display', 'none').html($('#photo_data_' + id).html()));
       
       $('#picture').find('img').css('margin-top', (parseInt($('#picture').css('height')) - height) / 2);
