@@ -15,6 +15,9 @@
         </div>
 
         <div id = "photo_filename_<%= photo.id %>" style = "display: none"><%= photo.public_filename %></div>
+        <div id = "photo_<%= photo.id %>" style = "display: none">
+          <%= image_tag(photo.public_filename, :style  => "height: #{photo.height}px; width: #{photo.width}px") %>
+        </div>
         <div id = "photo_height_<%= photo.id %>" style = "display: none"><%= photo.height %></div>
         <div id = "photo_width_<%= photo.id %>" style = "display: none"><%= photo.width %></div>
 
