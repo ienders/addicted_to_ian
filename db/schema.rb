@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090504011557) do
+ActiveRecord::Schema.define(:version => 20090514011501) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -61,6 +61,17 @@ ActiveRecord::Schema.define(:version => 20090504011557) do
   end
 
   add_index "links", ["category"], :name => "index_links_on_category"
+
+  create_table "photo_exif_tags", :force => true do |t|
+    t.integer  "photo_id"
+    t.string   "tag"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "photo_exif_tags", ["photo_id", "tag"], :name => "index_photo_exif_tags_on_photo_id_and_tag"
+  add_index "photo_exif_tags", ["photo_id"], :name => "index_photo_exif_tags_on_photo_id"
 
   create_table "photos", :force => true do |t|
     t.integer  "album_id"

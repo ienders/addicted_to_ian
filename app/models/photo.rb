@@ -21,8 +21,6 @@
 
 class Photo < ActiveRecord::Base
   
-  exif_fu
-  
   belongs_to :album
   
   has_attachment(
@@ -35,6 +33,8 @@ class Photo < ActiveRecord::Base
       :gallery_hero => 'crop: 100x36'
     }
   )
+  
+  has_many :photo_exif_tags
   
   def is_cover_photo?
     album.cover == self
@@ -51,6 +51,11 @@ class Photo < ActiveRecord::Base
   def thumb_height
     Photo.first(:conditions => { :thumbnail => 'thumb', :parent_id => id }).height
   end
+  
+  def tag(name)
+    t = photo_exif_tags.select{|t| t.tag == name }.first
+    t ? t.value : nil
+  end
 
   validates_as_attachment
   
@@ -66,22 +71,10 @@ class Photo < ActiveRecord::Base
     end
       
     if size == "608>x456"
-      # Copy original exif data into resized image.
-      # Do a two pass save if it doesnt work the first time: we remove all attributes which caused the save to fail.
-      resized_exif = MiniExiftool.new(self.temp_path)
-      MiniExiftool.writable_tags.each do |tag|
-        if !original_exif[tag].blank?
-          resized_exif[tag] = original_exif[tag]
+      %w{ CreateDate Model Aperture FocalLength ISO ShutterSpeed Flash MeteringMode }.each do |tag|
+        if !(val = original_exif[tag]).blank?
+          photo_exif_tags << PhotoExifTag.new(:tag => tag, :value => val)
         end
-      end
-      if !resized_exif.save
-        resized_exif.revert
-        MiniExiftool.writable_tags.reject {|t| resized_exif.errors[t] }.each do |tag|
-          if !original_exif[tag].blank?
-            resized_exif[tag] = original_exif[tag]
-          end
-        end
-        resized_exif.save
       end
     end
   end

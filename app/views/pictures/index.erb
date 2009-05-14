@@ -114,17 +114,26 @@
       $('.gallery_image').find('img').css('opacity', 1);
       $(this).css('border', '1px solid black').css('background-color', 'white').css('margin-top', -2).css('margin-left', -2);
       $(this).find('img').css('opacity', 0.5);
-      $('#image_loading').fadeIn(3000);
-      $('#picture').find('img').fadeOut('fast', function() {
-        <%= remote_function(
-          :url    => { :action => 'photo' },
-          :update => :picture,
-          :with   => "'id=' + img.attr('rel')",
-          :success => "$('#image_loading').hide(); $('#picture').find('img').fadeIn('fast')"
-        ) %>
-      });
+
+      var id = img.attr('rel');
+      var width = parseInt($('#photo_width_' + id).html());
+      var height = parseInt($('#photo_height_' + id).html());
+            
+      $('#picture').html('');
+      $('#picture').append($(document.createElement('img')).attr('src', $('#photo_filename_' + id).html()).css({ width: width, height: height }));
+      $('#picture').append($(document.createElement('div')).attr('id', 'image_data').css('display', 'none'));
+      
+      $('#picture').find('img').css('margin-top', (parseInt($('#picture').css('height')) - height) / 2);
+      var minX = parseInt($('.pictures').offset().left);
+      var maxX = parseInt($('.pictures').offset().left) + parseInt($('.pictures').css('width'));
+      var minY = parseInt($('.pictures').offset().top);
+      var maxY = parseInt($('.pictures').offset().top) + parseInt($('.pictures').css('height'));
+      var x = parseInt(currentX);
+      var y = parseInt(currentY);    
+      if (x >= minX && x <= maxX && y >= minY && y <= maxY) {
+        $('#image_data').show();
+      }
     });
-    
     
     $('#picture').hover(
       function () {
