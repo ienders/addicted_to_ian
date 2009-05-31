@@ -747,7 +747,7 @@ input.search {
   margin-bottom: 5px;
 }
 
-#new_photos {
+#new_photos, .new_photos_entry {
   margin-left: 35px;
   text-align: right;
   font-weight: bold;

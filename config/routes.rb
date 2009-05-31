@@ -12,9 +12,11 @@ ActionController::Routing::Routes.draw do |map|
 
   # Words
   map.resources :blogs
+  map.resources :blog_photos
   map.blog_calendar_day '/blogs/search/:by/:year/:month/:day', :controller => 'blogs', :action => 'search'
   map.blog_search '/blogs/search/:by', :controller => 'blogs', :action => 'search'
-
+  map.blog_new_photo_field '/blog/new_photo_field', :controller => 'blogs', :action => 'new_photo_field'
+  
   # Pictures
   map.pictures '/pictures', :controller => 'pictures'
   map.pictures_album '/pictures/album/:id', :controller => 'pictures', :action => 'album'

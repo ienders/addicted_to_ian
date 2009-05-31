@@ -32,6 +32,10 @@ class BlogsController < ApplicationController
       render :action => "edit"
     end
   end
+  
+  def new_photo_field
+    render :partial => 'blog_photo_fields', :locals => { :num => params[:num] }
+  end
 
   def destroy
     @blog.destroy

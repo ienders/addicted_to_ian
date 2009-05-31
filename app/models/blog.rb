@@ -16,6 +16,13 @@ class Blog < ActiveRecord::Base
   has_many :blog_photos, :dependent => :destroy
   after_save :save_attachments
 
+  def photo_by_filename(filename)
+    blog_photos.each do |blog_photo|
+      return blog_photo if blog_photo.filename == filename
+    end
+    nil
+  end
+
   def next
     self.class.first(:conditions => [ 'created_at > ?', created_at ], :order => 'created_at ASC')
   end
@@ -38,6 +45,17 @@ class Blog < ActiveRecord::Base
   
   def attachable=(params)
     @attachments = params.keys.sort.inject([]) { |vals, k| vals.push(params[k]) }.reject {|a| a[:uploaded_data].blank? }.collect { |a| BlogPhoto.new(a) }
+  end
+  
+  def image_replaced_content
+    content.gsub(/#\{img:\s*(.*)\s+(\S*)\}/) do |match|
+      logger.debug("matched = #{match}, #{$1}, #{$2}")      
+      if !(photo = photo_by_filename($1))
+        ''
+      else
+        "<img src = \"#{photo.public_filename}\" style = \"align: #{$2}\" />"
+      end
+    end
   end
   
   protected

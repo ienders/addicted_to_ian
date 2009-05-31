@@ -40,7 +40,7 @@
     <% end %>
   </div>
   <% form_for(@album, :html => { :multipart => true }) do |f| %>
-    <%= render :partial => 'photo_fields', :locals => { :num => 1 } %>
+    <%= render :partial => 'photo_fields', :locals => { :num => @album.photos.size + 1 } %>
     <div id = "new_photos">
       <%= f.submit "Add New Photos" %>
       <%= link_to_function('+ Add Another Photo', "add_photo_field()") %>
