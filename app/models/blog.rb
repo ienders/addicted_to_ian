@@ -53,7 +53,7 @@ class Blog < ActiveRecord::Base
       if !(photo = photo_by_filename($1))
         ''
       else
-        "<img src = \"#{photo.public_filename}\" style = \"align: #{$2}\" />"
+        "<p style = \"text-align: #{$2}\"><img src = \"#{photo.public_filename}\"  style = \"float: none\" /></p>"
       end
     end
   end

@@ -5,7 +5,6 @@ require File.join(File.dirname(__FILE__), 'boot')
 Rails::Initializer.run do |config|
   config.gem 'mini_exiftool'
   
-  
   begin
     require 'rdiscount'
     BlueCloth = RDiscount
@@ -13,7 +12,7 @@ Rails::Initializer.run do |config|
     require 'bluecloth'
   end
     
-  config.time_zone = 'UTC'
+  config.time_zone = 'Eastern Time (US & Canada)'
 
   config.action_controller.session = {
     :session_key => '_addicted_to_ian_session',
