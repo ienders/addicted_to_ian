@@ -19,9 +19,9 @@
       <div class = "clear"></div>
       <p class = "result_preview">
       <% if @by == 'keyword' %>
-        <%= highlight(excerpt(markdown(blog.content).gsub(/<\/?[^>]*>/, ''), @value, :radius => 50), @value) %></p>
+        <%= highlight(excerpt(markdown(blog.image_replaced_content).gsub(/<\/?[^>]*>/, ''), @value, :radius => 50), @value) %></p>
       <% else %>
-        <%= truncate(markdown(blog.content).gsub(/<\/?[^>]*>/, ''), 200) %>
+        <%= truncate(markdown(blog.image_replaced_content).gsub(/<\/?[^>]*>/, ''), 200) %>
       <% end %>
       </p>
       <div class = "clear"></div>
