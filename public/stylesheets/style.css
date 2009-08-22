@@ -322,18 +322,15 @@ input.search {
 	width: 100%;
 }
 
-.tag_small {
-	font-size: 12px;
-}
+.tag_1 { font-size: 11px }
 
-.tag_medium {
-	font-size: 18px;
-}
+.tag_2 { font-size: 13px; }
 
-.tag_large {
-	font-size: 24px;
-}
+.tag_3 { font-size: 15px }
 
+.tag_4 { font-size: 17px;}
+
+.tag_5 { font-size: 19px;}
 
 /********************************************
  *	photo album   						              *
