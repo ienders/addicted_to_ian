@@ -139,7 +139,7 @@ img, div, input { behavior: url("scripts/iepngfix.htc") }
 	font-size: 12px;
 }
 
-.main_content p {
+.main_content p, .main_content pre {
 	float:left;
 	color:#464646;
 	font-size: 12px;
