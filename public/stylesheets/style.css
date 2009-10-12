@@ -139,7 +139,7 @@ img, div, input { behavior: url("scripts/iepngfix.htc") }
 	font-size: 12px;
 }
 
-.main_content p, .main_content pre {
+.main_content p, .main_content pre, .main_content ol, .main_content ul {
 	float:left;
 	color:#464646;
 	font-size: 12px;
@@ -148,6 +148,18 @@ img, div, input { behavior: url("scripts/iepngfix.htc") }
 	line-height: 13pt;
 	font-weight: 550;
 	width: 100%;
+}
+
+.main_content ol, .main_content ul {
+	float:left;
+	color:#464646;
+	font-size: 12px;
+	margin-top: 0px;
+	line-height: 13pt;
+	font-weight: 550;
+	width: 100%;
+	margin-left: 10px;
+	padding-left: 1.5em;
 }
 
 .main_content p a {
