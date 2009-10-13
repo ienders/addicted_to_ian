@@ -2,6 +2,7 @@ class BlogsController < ApplicationController
 
   before_filter :load_blog,     :only => [ :index, :show, :destroy, :update ]
   before_filter :load_calendar, :only => [ :index, :show ]
+  before_filter :load_twitter_client
 
   def index
     render :action => :show

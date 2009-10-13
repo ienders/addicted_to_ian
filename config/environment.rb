@@ -4,6 +4,7 @@ require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
   config.gem 'mini_exiftool'
+  config.gem 'twitter4r', :lib => 'twitter', :version => '0.3.1'
   
   begin
     require 'rdiscount'
