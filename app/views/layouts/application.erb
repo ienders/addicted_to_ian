@@ -12,6 +12,15 @@
 
 	<%= javascript_include_tag :defaults, 'jquery.flash.min', 'effects.explode', 'sifr', 'sifr-config' %>
 	<%= stylesheet_link_tag 'style', 'sifr' %>
+	
+	<%= javascript_include_tag 'shCore', 'shBrushBash', 'shBrushCss', 'shBrushJava', 'shBrushJScript', 'shBrushPhp', 'shBrushPlain', 'shBrushRuby', 'shBrushSql', 'shBrushXml'  %>
+	<%= stylesheet_link_tag 'shCore', 'shThemeDefault' %>
+	
+	<script type="text/javascript">
+		SyntaxHighlighter.config.clipboardSwf = '/swf/clipboard.swf';
+		SyntaxHighlighter.all();
+	</script>
+	
   <%= auto_discovery_link_tag(:rss, :controller => 'blogs', :action => 'rss') %>
 </head>
 
