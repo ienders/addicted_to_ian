@@ -16,7 +16,7 @@ module TwitterHelper
         "#{distance} ago"
       end
     else
-      return "on #{system_date.to_formatted_s(date_format)}"
+      return "on #{time.to_formatted_s(date_format)}"
     end
   end
 
@@ -40,7 +40,7 @@ module TwitterHelper
   end
   
   def twitter_text(text)
-    text.gsub(/(https?:\/\/[^\s]*)/, '<a href = "\1">\1</a>').gsub(/(\s+|^)\@([^\s]*)/, '\1@<a href = "http://www.twitter.com/\2">\2</a>')
+    text.gsub(/(https?:\/\/[^\s]*)/, '<a href = "\1">\1</a>').gsub(/(\s+|^)\@([^\!\.\?\s]*)/, '\1@<a href = "http://www.twitter.com/\2">\2</a>')
   end
   
 end
