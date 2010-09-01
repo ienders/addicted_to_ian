@@ -217,9 +217,60 @@ p.light {
 	margin-left: 10px;
 }
 
-/*.blog_text {
-	min-height: 400px;
-}*/
+.comments {
+	float: left;
+	width: 100%;
+}
+
+
+.main_content .comments textarea {
+	width: 658px;
+	height: 100px;
+	border: 1px solid black;
+}
+
+.userinfo {
+	width: 316px;
+	font-weight: bold;
+	float: left;
+	font-size: 10px;
+	margin-left: 30px;
+	text-align: left;
+}
+
+.userinfo .field {
+	width: 50px;
+	float: left;
+	padding-top: 10px;
+}
+
+.main_content .userinfo input[type="text"] {
+	border: 1px solid black;
+	width: 240px;
+	float: left;
+}
+
+.userinfo .reply_button {
+	font-size: 12px;
+	text-align: right;
+}
+
+.main_content .userinfo .reply_button input {
+	border: 1px solid black;
+	float: right;
+	margin-right: 69px;
+	height: 33px;
+	width: 145px;
+	font-size: 13px;
+	font-weight: bold;
+	color: white;
+	background-color: #2a7ed8;
+}
+
+.captcha {
+	float: left;
+	width: 312px;
+}
 
 /********************************************
  *	footer									                *

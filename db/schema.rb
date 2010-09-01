@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090514011501) do
+ActiveRecord::Schema.define(:version => 20091128041859) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -37,6 +37,18 @@ ActiveRecord::Schema.define(:version => 20090514011501) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "comments", :force => true do |t|
+    t.integer  "blog_id"
+    t.string   "user_name"
+    t.string   "email"
+    t.string   "website_url"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["blog_id"], :name => "index_comments_on_blog_id"
 
   create_table "link_photos", :force => true do |t|
     t.integer  "parent_id"

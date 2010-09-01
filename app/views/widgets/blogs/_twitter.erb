@@ -1,9 +1,15 @@
 <div class = "tags">
-  <% @twitter.timeline_for(:me, :count => 4) do |status| %>
+  <% begin %>
+    <% @twitter.timeline_for(:me, :count => 4) do |status| %>
+      <div class="tweet">
+        <strong><%= link_to(status.user.screen_name, "http://www.twitter.com/#{status.user.screen_name}") %>:</strong>
+        <%= twitter_text(status.text) %><br />
+        <span class = "tweet_info"><%= twitter_time(status.created_at) %> from <%= status.source %></span>
+      </div>
+    <% end %>
+  <% rescue Exception => ex %>
     <div class="tweet">
-      <strong><%= link_to(status.user.screen_name, "http://www.twitter.com/#{status.user.screen_name}") %>:</strong>
-      <%= twitter_text(status.text) %><br />
-      <span class = "tweet_info"><%= twitter_time(status.created_at) %> from <%= status.source %></span>
+      <strong>Twitter currently unavailable.</strong>
     </div>
   <% end %>
 </div>

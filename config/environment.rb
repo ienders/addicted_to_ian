@@ -2,6 +2,9 @@ RAILS_GEM_VERSION = '2.3.2' unless defined? RAILS_GEM_VERSION
 
 require File.join(File.dirname(__FILE__), 'boot')
 
+ENV['RECAPTCHA_PUBLIC_KEY']  = "6LcvrAkAAAAAAAL8Kv9wmsuT2cz3ZuFaVbxXxW3M"
+ENV['RECAPTCHA_PRIVATE_KEY'] = "6LcvrAkAAAAAAH97RXpfZvWKRT9o9IdUog61LNCv"
+
 Rails::Initializer.run do |config|
   config.gem 'mini_exiftool'
   config.gem 'twitter4r', :lib => 'twitter', :version => '0.3.1'

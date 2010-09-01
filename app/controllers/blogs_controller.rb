@@ -62,6 +62,48 @@ class BlogsController < ApplicationController
     load_calendar
   end
   
+  
+  def post_comment
+    rel = params[:comment][:blog_id]
+    @comment = Comment.new(params[:comment])
+    captcha_valid = verify_recaptcha
+    if captcha_valid && @comment.save
+      Mailer.deliver_comment(@comment)
+      render :update do |page|
+        page.insert_html(
+          :before, "new_comment_drop",
+          :partial => 'comment',
+          :object  => @comment,
+          :locals  => { :visible => true }
+        )
+        page.replace_html("comment_count", @comment.blog.comments.size)
+        page.replace_html("comment_errors", '')
+        page << "$('.reply_content').val('');"
+        page << "Recaptcha.reload();"
+      end
+    else
+      if !captcha_valid
+        render :update do |page|
+          page.replace_html("comment_errors", 'Your captcha response does not match, please try again')
+          page << "Recaptcha.reload();"
+        end        
+      else
+        render :update do |page|
+          page.replace_html("comment_errors", @comment.errors.full_messages.join('<br />'))
+          page << "Recaptcha.reload();"
+        end
+      end
+    end
+  end
+  
+  def delete_comment
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+    render :update do |page|
+      page.remove "comment_#{params[:id]}"
+    end
+  end
+  
   protected
   def load_blog
     if params[:id]
