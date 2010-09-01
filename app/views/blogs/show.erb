@@ -43,7 +43,7 @@
       <% end %>
     </div>
     
-    <div class = "comments">
+    <!-- <div class = "comments">
       <span>comments <span id = "comment_count"><%= @blog.comments.size %></span></span>
       <%= render :partial => 'comment', :collection => @blog.comments.sort {|a,b| a.created_at <=> b.created_at } %>
       <div id = "new_comment_drop"></div>
@@ -65,7 +65,7 @@
           <%= recaptcha_tags(:ajax => true, :display => { :theme => 'blackglass' }) %>
         </div>
       <% end %>
-    </div>
+    </div> -->
   </div>
   
 
