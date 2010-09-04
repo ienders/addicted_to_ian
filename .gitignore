@@ -3,6 +3,8 @@ tmp/**/*
 .DS_Store
 doc/api
 doc/app
+public/stylesheets/cache/*
+public/javascripts/cache/*
 public/photos
 public/plug_photos
 public/blog_photos

@@ -10,11 +10,13 @@
   
 	<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
 
-	<%= javascript_include_tag :defaults, 'jquery.flash.min', 'effects.explode', 'sifr', 'sifr-config' %>
-	<%= stylesheet_link_tag 'style', 'sifr' %>
-	
-	<%= javascript_include_tag 'shCore', 'shBrushBash', 'shBrushCss', 'shBrushJava', 'shBrushJScript', 'shBrushPhp', 'shBrushPlain', 'shBrushRuby', 'shBrushSql', 'shBrushXml'  %>
-	<%= stylesheet_link_tag 'shCore', 'shThemeDefault' %>
+  <% bundle do %>
+    <%= javascript_include_tag :defaults, 'jquery.flash.min', 'effects.explode', 'sifr', 'sifr-config' %>
+    <%= stylesheet_link_tag 'style', 'sifr' %>
+
+    <%= javascript_include_tag 'shCore', 'shBrushBash', 'shBrushCss', 'shBrushJava', 'shBrushJScript', 'shBrushPhp', 'shBrushPlain', 'shBrushRuby', 'shBrushSql', 'shBrushXml'  %>
+    <%= stylesheet_link_tag 'shCore', 'shThemeDefault' %>
+   <% end %>
 	
 	<script type="text/javascript">
 		SyntaxHighlighter.config.clipboardSwf = '/swf/clipboard.swf';
