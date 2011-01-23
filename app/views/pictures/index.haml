@@ -1,15 +1,15 @@
 - num_albums_at_once = 4
 - num_image_rows_at_once = 4
 :javascript
-  var num_albums =  @albums.size ;
-  var num_albums_at_once =  num_albums_at_once ;
+  var num_albums =  #{@albums.size};
+  var num_albums_at_once = #{num_albums_at_once};
   var album_first = 0;
-  var album_last =  num_albums_at_once - 1 ;
+  var album_last =  #{num_albums_at_once - 1};
   
   var num_image_rows = 0;
-  var num_image_rows_at_once =  num_image_rows_at_once ;
+  var num_image_rows_at_once = #{num_image_rows_at_once};
   var image_row_first = 0;
-  var image_row_last =  num_image_rows_at_once - 1 ;
+  var image_row_last = #{num_image_rows_at_once - 1};
   
   var currentX = 0;
   var currentY = 0;
