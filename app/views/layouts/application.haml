@@ -26,7 +26,7 @@
       #header_container
         = link_to(image_tag('logo.png', :alt => 'addictedTOian'), '/', :class => 'logo')
         .nav_links
-          - [ ['words', '/' ], [ 'pictures', '/pictures' ], [ 'plugs', '/plugs' ], [ 'links', '/links' ] ].each do |nav|
+          - [ ['words', '/' ], [ 'pictures', '/pictures' ], [ 'plugs', '/plugs' ] ].each do |nav|
             %div{:id => nav[0]}= link_to(image_tag('nav_'+ nav[0] + '_off.png'), nav[1])
     #main
       .content_holder
@@ -38,5 +38,7 @@
         .footer_links
           #contact= link_to(image_tag('footer_contactme'+'_off.png'), '/contact')
           #about= link_to(image_tag('footer_about'+'_off.png'), '/about')
+          #fb= link_to(image_tag('facebook_icon.png', :alt => 'FB'), 'http://www.facebook.com/ianenders', :target => '_blank')
+          #github= link_to(image_tag('github_icon.png', :alt => 'Github'), 'https://github.com/ienders', :target => '_blank')
         %p &copy; Copyright 2009 Gibnai Productions.
     = render :partial => 'shared/analytics'

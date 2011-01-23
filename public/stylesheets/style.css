@@ -1302,6 +1302,29 @@ input.search {
   color: #999999; }
 
 /*********/
+/* Links */
+/*********/
+.link_column {
+  width: 50%;
+  float: left; }
+
+.category_head {
+  margin-bottom: 10px;
+  width: 100%;
+  border-bottom: 1px solid black; }
+
+.link {
+  padding-bottom: 30px; }
+
+.link p {
+  margin: 0px;
+  padding-left: 3px; }
+
+.link_category {
+  width: 100%;
+  float: left; }
+
+/*********/
 /* Fonts */
 /*********/
 .main_content h3 {
@@ -1390,3 +1413,13 @@ input.search {
   font-size: 20px;
   color: #000000;
   padding-right: 10px; }
+
+#fb, #github {
+  position: absolute;
+  top: -4px; }
+
+#fb {
+  left: 418px; }
+
+#github {
+  left: 453px; }

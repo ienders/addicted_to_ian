@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110123002449) do
+ActiveRecord::Schema.define(:version => 20110123183722) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -38,30 +38,6 @@ ActiveRecord::Schema.define(:version => 20110123002449) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "link_photos", :force => true do |t|
-    t.integer  "parent_id"
-    t.string   "content_type"
-    t.string   "filename"
-    t.string   "thumbnail"
-    t.integer  "size"
-    t.integer  "width"
-    t.integer  "height"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "links", :force => true do |t|
-    t.string   "url"
-    t.string   "title"
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "link_photo_id"
-    t.string   "category"
-  end
-
-  add_index "links", ["category"], :name => "index_links_on_category"
 
   create_table "photo_exif_tags", :force => true do |t|
     t.integer  "photo_id"
