@@ -443,7 +443,8 @@ img, div, input {
   width: 100%;
   float: left;
   margin-top: 25px;
-  min-height: 400px; }
+  min-height: 400px;
+  position: relative; }
 
 .main_content {
   float: left;

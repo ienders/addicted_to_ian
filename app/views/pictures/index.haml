@@ -4,7 +4,7 @@
 .album_nav{'data-size' => @albums.size}
   .albums
     #back_album.arrows
-      %img{:alt => "top", :src => "/images/arrow_top.png", :style => "display: none"}/
+      %img{:alt => "top", :src => "/images/arrow_top.png", :style => "display: none"}
     - @albums.each_with_index do |album, i|
       .album_data{:id => "album_#{i}", :style => i >= 4 ? 'display: none' : ''}    
         %a.album_link{:href => "#", :rel => album.id}= image_tag(album.cover_photo_url)
@@ -22,6 +22,7 @@
           image#{album.size == 1 ? '' : 's'}
     #forward_album.arrows.no_border
       %img{:alt => "bottom", :src => "/images/arrow_bottom.png"}/
+      
 .thumb_wrapper
   #back_images.thumb_arrows{:style => "display: none"}
     %img{:alt => "top", :src => "/images/arrow_top.png"}/

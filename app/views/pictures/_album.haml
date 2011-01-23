@@ -2,62 +2,60 @@
   - partitioned_gallery = []
   - (0..album.size - 1).step(5) {|i| partitioned_gallery.push(album.photos.sort{|a, b| (a.position || 0) <=> (b.position || 0) }[i..i + 4]) }
   - partitioned_gallery.each_with_index do |row, i|
-    <div class = "thumbs" id ="thumbs_row_#{i}" #{i >= num_image_rows ? 'style = "display: none"' : ''}>
-    - row.each do |photo|
-      .gallery_image{:rel => photo.id}
-        = image_tag(                                                                    |
-            photo.thumb_url,                                                            |
-            :width  => photo.thumb_width,                                               |
-            :height => photo.thumb_height,                                              |
-            :style  => "height: #{photo.thumb_height}px; width: #{photo.thumb_width}px" |
-          )                                                                             |
-      %div{:id => "photo_filename_#{photo.id}", :style => "display: none"}= photo.public_filename
-      %div{:id => "photo_height_#{photo.id}", :style => "display: none"}= photo.height
-      %div{:id => "photo_width_#{photo.id}", :style => "display: none"}= photo.width
-      %div{:id => "photo_data_#{photo.id}", :style => "display: none"}
-        - if photo.title
-          %h3= photo.title
-        - if photo.description
-          %h4= photo.description
-        .file_info
-          file:
-          %strong= photo.filename
-        .date_info
-          - if photo.tag('CreateDate')
-            taken:
-            %strong= photo.tag('CreateDate')
-            %br/
-        .exif
-          %ul
-            - if photo.tag('Model')
-              %li
-                %strong
-                  model: #{photo.tag('Model')}
-          %ul
-            - if photo.tag('Aperture')
-              %li
-                aperture:
-                %strong= photo.tag('Aperture')
-            - if photo.tag('FocalLength')
-              %li
-                focal length:
-                %strong= photo.tag('FocalLength')
-            - if photo.tag('ISO')
-              %li
-                iso:
-                %strong= photo.tag('ISO')
-            - if photo.tag('ShutterSpeed')
-              %li
-                shutter:
-                %strong= photo.tag('ShutterSpeed')
-            - if photo.tag('Flash')
-              %li
-                flash:
-                %strong= photo.tag('Flash')
-            - if photo.tag('MeteringMode')
-              %li
-                metering:
-                %strong= photo.tag('MeteringMode')
+    .thumbs{:id => "thumbs_row_#{i}", :style => i >= num_image_rows ? 'display: none' : ''}
+      - row.each do |photo|
+        .gallery_image{:rel => photo.id}
+          = image_tag(photo.thumb_url,
+              :width  => photo.thumb_width,
+              :height => photo.thumb_height,
+              :style  => "height: #{photo.thumb_height}px; width: #{photo.thumb_width}px")
+        %div{:id => "photo_filename_#{photo.id}", :style => "display: none"}= photo.public_filename
+        %div{:id => "photo_height_#{photo.id}", :style => "display: none"}= photo.height
+        %div{:id => "photo_width_#{photo.id}", :style => "display: none"}= photo.width
+        %div{:id => "photo_data_#{photo.id}", :style => "display: none"}
+          - if photo.title
+            %h3= photo.title
+          - if photo.description
+            %h4= photo.description
+          .file_info
+            file:
+            %strong= photo.filename
+          .date_info
+            - if photo.tag('CreateDate')
+              taken:
+              %strong= photo.tag('CreateDate')
+              %br/
+          .exif
+            %ul
+              - if photo.tag('Model')
+                %li
+                  %strong
+                    model: #{photo.tag('Model')}
+            %ul
+              - if photo.tag('Aperture')
+                %li
+                  aperture:
+                  %strong= photo.tag('Aperture')
+              - if photo.tag('FocalLength')
+                %li
+                  focal length:
+                  %strong= photo.tag('FocalLength')
+              - if photo.tag('ISO')
+                %li
+                  iso:
+                  %strong= photo.tag('ISO')
+              - if photo.tag('ShutterSpeed')
+                %li
+                  shutter:
+                  %strong= photo.tag('ShutterSpeed')
+              - if photo.tag('Flash')
+                %li
+                  flash:
+                  %strong= photo.tag('Flash')
+              - if photo.tag('MeteringMode')
+                %li
+                  metering:
+                  %strong= photo.tag('MeteringMode')
     .clear
     
   :javascript
