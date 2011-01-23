@@ -33,8 +33,9 @@ namespace :deploy do
       run <<-CMD
       mkdir -p #{shared_path}/#{dir} &&
       rm -rf #{release_path}/public/#{dir} && 
-      ln -nfs #{shared_path}/#{dir} #{release_path}/public/#{dir}
-      ln -nfs #{shared_path} #{release_path}/public/stylesheets/cache
+      ln -nfs #{shared_path}/#{dir} #{release_path}/public/#{dir} && 
+      ln -nfs #{shared_path}/stylesheet_cache #{release_path}/public/stylesheets/cache &&
+      ln -nfs #{shared_path}/javascript_cache #{release_path}/public/javascripts/cache
       CMD
     end
     
