@@ -134,8 +134,8 @@ var Gallery = function() {
       $('.album_link').find('img').css('opacity', 1);
       $(this).find('img').css('opacity', 0.5);
       $.ajax({
-        url: '/pictures/album',
-        data: 'num_image_rows=4&id=' + $(this).attr('rel'),
+        url: '/pictures/album/' + $(this).attr('rel'),
+        data: 'num_image_rows=4',
         success: function(html) {
           $('#thumb_area').html(html);
         }
