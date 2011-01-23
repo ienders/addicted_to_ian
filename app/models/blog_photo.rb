@@ -23,7 +23,7 @@ class BlogPhoto < ActiveRecord::Base
     :content_type => :image, 
     :storage      => :file_system, 
     :max_size     => 10000.kilobytes,
-    :resize_to    => '608>x456'
+    :resize_to    => '608x456'
   )
   
   validates_as_attachment

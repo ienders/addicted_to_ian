@@ -1,9 +1,5 @@
 module TwitterHelper
   
-  def load_twitter_client
-    @twitter = Twitter::Client.from_config("#{RAILS_ROOT}/config/twitter.yml")
-  end
-  
   def twitter_time(time, options = {})
     start_date = options.delete(:start_date) || Time.new
     date_format = options.delete(:date_format) || :default

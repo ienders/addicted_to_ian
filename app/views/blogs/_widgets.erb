@@ -1,8 +1,0 @@
-<div id = "widgets">  
-  <% [ 'search', 'tags', 'posts', 'twitter' ].each do |widget| %>
-    <div class = "widget">
-        <h3><%= widget.humanize.downcase %></h3>
-        <%= render :partial => "widgets/blogs/#{widget}" %>
-    </div>
-  <% end %>
-</div>

@@ -1,7 +1,0 @@
-<% @categories.each do |category| %>
-  <% if @category == category %>
-    <div class = "link_category"><%= category.titleize %></div>
-  <% else %>
-    <%= link_to(category.titleize, "/links/category/#{CGI.escape(category)}", :class => 'link_category') %>
-  <% end %>
-<% end %>

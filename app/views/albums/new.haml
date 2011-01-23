@@ -1,0 +1,15 @@
+:javascript
+  var num_photos = 1;
+  function add_photo_field() {
+    num_photos++;
+     #{remote_function(:url => { :action => 'new_photo_field' }, :with => "'num=' + num_photos", :update => :new_photos, :position => :before)}
+  }
+.main_content
+  - form_for(@album, :html => { :multipart => true }) do |f|
+    %h4 Photo Album Name:
+    = f.text_field(:name, :size => 61)
+    .clear
+    = render :partial => 'photo_fields', :locals => { :num => 1 }
+    #new_photos
+      = f.submit "Create Album"
+      = link_to_function('+ Add Another Photo', "add_photo_field()")

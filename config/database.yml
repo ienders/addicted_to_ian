@@ -1,7 +1,7 @@
 development:
   adapter: mysql
   database: addicted_development
-  
+
 test:
   adapter: mysql
   database: addicted_test

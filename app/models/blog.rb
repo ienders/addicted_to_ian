@@ -14,7 +14,6 @@ class Blog < ActiveRecord::Base
 
   acts_as_taggable
   has_many :blog_photos, :dependent => :destroy
-  has_many :comments, :dependent => :destroy
   after_save :save_attachments
 
   def photo_by_filename(filename)

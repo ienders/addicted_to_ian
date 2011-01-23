@@ -1,0 +1,29 @@
+:javascript
+  var num_photos = 1;
+  function add_photo_field() {
+    num_photos++;
+     #{remote_function(:url => { :action => 'new_photo_field' }, :with => "'num=' + num_photos", :update => "new_photos_\#{obj.id}", :position => :before)}
+  }
+- form_for(obj, :html => { :multipart => true }) do |f|
+  = f.error_messages
+  = link_to_function 'cancel', "toggle('#{div}')", :class => 'admin_link', :style => 'float: right'
+  %h4 Title:
+  .clear
+  = f.text_field :title
+  .clear
+  %h4 Content:
+  .clear
+  = f.text_area :content, :rows => 30, :cols => 80
+  .clear
+  %h4 Tags:
+  .clear
+  = f.text_field :tag_list, :size => 90
+  .clear
+  = render :partial => 'blog_photo_fields', :locals => { :num => 1 }
+  - if obj.blog_photos.size > 0
+    .edit_photos
+      - obj.blog_photos.each do |blog_photo|
+        = render :partial => 'blog_photo', :object => blog_photo
+  .new_photos_entry{:id => "new_photos_#{obj.id}"}
+    = f.submit "Save"
+    = link_to_function('+ Add Another Photo', "add_photo_field()")

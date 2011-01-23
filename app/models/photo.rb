@@ -27,10 +27,10 @@ class Photo < ActiveRecord::Base
     :content_type => :image, 
     :storage      => :file_system, 
     :max_size     => 10000.kilobytes,
-    :resize_to    => '608>x456',
+    :resize_to    => '608x456',
     :thumbnails   => {
-      :thumb        => '61x46>',
-      :gallery_hero => 'crop: 100x36'
+      :thumb        => '61x46',
+      :gallery_hero => 'c100x36'
     }
   )
   
@@ -58,25 +58,5 @@ class Photo < ActiveRecord::Base
   end
 
   validates_as_attachment
-  
-  protected   
-  def resize_image(img, size)
-    return if (size == "608>x456") && id
-    original_exif = MiniExiftool.new(img.filename)
-    if (size.is_a?(String) && size =~ /^crop: (\d*)x(\d*)/i) || (size.is_a?(Array) && size.first.is_a?(String) && size.first =~ /^crop: (\d*)x(\d*)/i)
-      img.crop_resized!($1.to_i, $2.to_i)  
-      self.temp_path = write_to_temp_file(img.to_blob)  
-    else  
-      super
-    end
-      
-    if size == "608>x456"
-      %w{ CreateDate Model Aperture FocalLength ISO ShutterSpeed Flash MeteringMode }.each do |tag|
-        if !(val = original_exif[tag]).blank?
-          photo_exif_tags << PhotoExifTag.new(:tag => tag, :value => val)
-        end
-      end
-    end
-  end
   
 end

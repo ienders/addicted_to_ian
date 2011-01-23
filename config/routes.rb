@@ -1,46 +1,33 @@
-ActionController::Routing::Routes.draw do |map|
+AddictedToIan::Application.routes.draw do
 
-  # Contact
-  map.contact '/contact', :controller => 'contact', :action => 'index'
-  
-  # About
-  map.about '/about', :controller => 'about', :action => 'index'
-  map.resume '/resume', :controller => 'about', :action => 'resume'
+  devise_for :users
 
-  # RSS
-  map.blog_rss '/rss.xml', :controller => 'blogs', :action => 'rss'
+  match '/contact' => 'contact#index', :as => :contact
+  match '/about' => 'about#index', :as => :about
+  match '/resume' => 'about#resume', :as => :resume
+  match '/rss.xml' => 'blogs#rss', :as => :blog_rss
 
-  # Words
-  map.resources :blogs
-  map.resources :blog_photos
-  map.blog_calendar_day '/blogs/search/:by/:year/:month/:day', :controller => 'blogs', :action => 'search'
-  map.blog_search '/blogs/search/:by', :controller => 'blogs', :action => 'search'
-  map.blog_new_photo_field '/blog/new_photo_field', :controller => 'blogs', :action => 'new_photo_field'
-  map.post_comment '/blogs/post_comment', :controller => 'blogs', :action => 'post_comment'
-  map.delete_comment '/blogs/delete_comment/:id', :controller => 'blogs', :action => 'delete_comment'
-  
-  # Pictures
-  map.pictures '/pictures', :controller => 'pictures'
-  map.pictures_album '/pictures/album/:id', :controller => 'pictures', :action => 'album'
-  map.pictures_album '/pictures/photo/:id', :controller => 'pictures', :action => 'photo'
-  map.resources :albums # For admin only
-  map.new_photo_field '/albums/new_photo_field', :controller => 'albums', :action => 'new_photo_field'
-  map.resources :photos # For admin only
+  resources :blogs
+  resources :blog_photos
 
-  # Plugs
-  map.resources :plugs
+  match '/blogs/search/:by/:year/:month/:day' => 'blogs#search', :as => :blog_calendar_day
+  match '/blogs/search/:by' => 'blogs#search', :as => :blog_search
+  match '/blog/new_photo_field' => 'blogs#new_photo_field', :as => :blog_new_photo_field
+  match '/pictures' => 'pictures#index', :as => :pictures
+  match '/pictures/album/:id' => 'pictures#album', :as => :pictures_album
+  match '/pictures/photo/:id' => 'pictures#photo', :as => :pictures_album
 
-  # Links
-  map.link_category '/links/category/:category', :controller => 'links', :action => 'index'
-  map.resources :links
+  resources :albums
 
-  # Sessions
-  map.logout '/logout', :controller => 'sessions', :action => 'destroy'
-  map.login '/login', :controller => 'sessions', :action => 'new'
-  map.resource :session
+  match '/albums/new_photo_field' => 'albums#new_photo_field', :as => :new_photo_field
 
-  map.root :controller => 'blogs'
+  resources :photos
+  resources :plugs
 
-#  map.connect ':controller/:action/:id'
-# map.connect ':controller/:action/:id.:format'
+  match '/links/category/:category' => 'links#index', :as => :link_category
+
+  resources :links
+
+  root :to => 'blogs#index'
+
 end

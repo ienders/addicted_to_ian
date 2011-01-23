@@ -2,7 +2,6 @@ class BlogsController < ApplicationController
 
   before_filter :load_blog,     :only => [ :index, :show, :destroy, :update ]
   before_filter :load_calendar, :only => [ :index, :show ]
-  before_filter :load_twitter_client
 
   def index
     render :action => :show
@@ -60,48 +59,6 @@ class BlogsController < ApplicationController
     end
     
     load_calendar
-  end
-  
-  
-  def post_comment
-    rel = params[:comment][:blog_id]
-    @comment = Comment.new(params[:comment])
-    captcha_valid = verify_recaptcha
-    if captcha_valid && @comment.save
-      Mailer.deliver_comment(@comment)
-      render :update do |page|
-        page.insert_html(
-          :before, "new_comment_drop",
-          :partial => 'comment',
-          :object  => @comment,
-          :locals  => { :visible => true }
-        )
-        page.replace_html("comment_count", @comment.blog.comments.size)
-        page.replace_html("comment_errors", '')
-        page << "$('.reply_content').val('');"
-        page << "Recaptcha.reload();"
-      end
-    else
-      if !captcha_valid
-        render :update do |page|
-          page.replace_html("comment_errors", 'Your captcha response does not match, please try again')
-          page << "Recaptcha.reload();"
-        end        
-      else
-        render :update do |page|
-          page.replace_html("comment_errors", @comment.errors.full_messages.join('<br />'))
-          page << "Recaptcha.reload();"
-        end
-      end
-    end
-  end
-  
-  def delete_comment
-    @comment = Comment.find(params[:id])
-    @comment.destroy
-    render :update do |page|
-      page.remove "comment_#{params[:id]}"
-    end
   end
   
   protected

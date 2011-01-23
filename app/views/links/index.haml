@@ -1,0 +1,64 @@
+- if user_signed_in?
+  :javascript
+    function toggle(div, div2) {
+      $('#' + div).toggle();
+      if (div2 != null) {
+        $('#' + div2).toggle();
+      }
+      Application.cufonize();
+    }
+  :css
+    .link_column {
+      width: 50%;
+      float: left;
+    }
+  
+    .category_head {
+      margin-bottom: 10px;
+      width: 100%;
+      border-bottom: 1px solid black;
+    }
+  
+    .link {
+      padding-bottom: 30px;
+    }
+  
+    .link p {
+      margin: 0px;
+      padding-left: 3px;
+    }
+  
+    .link_category {
+      width: 100%;
+      float: left;
+    }
+.main_content
+  - if user_signed_in?
+    = link_to_function 'create', "toggle('link_create')", :class => 'admin_link'
+    #link_create.main_content{:style => "display: none"}
+      = render :partial => 'form', :locals => { :obj => Link.new, :div => 'link_create' }
+    .clear
+  %h3.category_head
+    = (@category || '').titleize
+    Links
+  .clear
+  - mid = (@links.size / 2.0).ceil
+  - [@links[0..mid - 1], @links.size == 1 ? [] : @links[mid .. @links.size - 1] ].each do |link_array|
+    .link_column
+      - link_array.each do |link|
+        .link{:id => "link_display_#{link.id}"}
+          - if link.link_photo
+            = link_to(image_tag(link.link_photo.public_filename, :alt => link.title), link.url)
+          - else
+            %h4= link_to(link.title, link.url)
+          - if user_signed_in?
+            .clear
+            = link_to_function 'edit', "toggle('link_edit_#{link.id}', 'link_display_#{link.id}')", :class => 'admin_link'
+            = link_to 'delete', link_path(link), :method => :delete, :confirm => 'Are you sure?', :class => 'admin_link'
+          = markdown(link.description)
+          .clear
+        - if user_signed_in?
+          %div{:id => "link_edit_#{link.id}", :style => "display: none"}
+            = render :partial => 'form', :locals => { :obj => link, :div => "link_edit_#{link.id}", :div2 => "link_display_#{link.id}" }
+- content_for :widgets do
+  = render :partial => 'widgets'

@@ -1,0 +1,27 @@
+.edit_photo_left
+  .edit_photo_thumb
+    = image_tag(photo.thumb_url, :width => photo.thumb_width, :height => photo.thumb_height)
+  .admin_links
+    = link_to 'delete', photo_path(photo), :method => :delete, :confirm => 'Are you sure?'
+    %br/
+    - if photo.is_cover_photo?
+      Cover Photo
+    - else
+      - form_for(photo.album, :html => { :id => "album_cover_#{photo.id}" }) do |f|
+        = hidden_field_tag 'album[cover_photo_id]', photo.id
+        = link_to_function 'make cover', "$('#album_cover_#{photo.id}').submit()"
+.photo_details
+  - form_for(photo, :html => { :id => "photo_form_#{photo.id}" }) do |f|
+    :javascript
+      $(function() {
+        $('#photo_form_ photo.id ').bind('ajaxsubmit', function() {
+           #{remote_function(:url => photo_path(photo), :method => 'put', :with => "$(this).serialize()")}
+          return false;
+        });
+      });
+        = hidden_field_tag(:id)
+    %label Title:
+    = f.text_field(:title, :size => 50, :class => 'autosaveable')
+    %label Description:
+    = f.text_area(:description, :rows => 3, :cols => 45, :class => 'autosaveable')
+.clear

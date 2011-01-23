@@ -1,0 +1,5 @@
+#widgets
+  - [ 'search', 'tags', 'posts', 'twitter' ].each do |widget|
+    .widget
+      %h3= widget.humanize.downcase
+      = render :partial => "widgets/blogs/#{widget}"

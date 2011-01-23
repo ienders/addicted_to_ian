@@ -20,7 +20,7 @@ class LinkPhoto < ActiveRecord::Base
     :content_type => :image, 
     :storage      => :file_system, 
     :max_size     => 10000.kilobytes,
-    :resize_to    => '320>x50>'
+    :resize_to    => '320x50'
   )
   
   validates_as_attachment

@@ -1,25 +1,5 @@
-RAILS_GEM_VERSION = '2.3.2' unless defined? RAILS_GEM_VERSION
+# Load the rails application
+require File.expand_path('../application', __FILE__)
 
-require File.join(File.dirname(__FILE__), 'boot')
-
-ENV['RECAPTCHA_PUBLIC_KEY']  = "6LcvrAkAAAAAAAL8Kv9wmsuT2cz3ZuFaVbxXxW3M"
-ENV['RECAPTCHA_PRIVATE_KEY'] = "6LcvrAkAAAAAAH97RXpfZvWKRT9o9IdUog61LNCv"
-
-Rails::Initializer.run do |config|
-  config.gem 'mini_exiftool'
-  config.gem 'twitter4r', :lib => 'twitter', :version => '0.3.1'
-  
-  begin
-    require 'rdiscount'
-    BlueCloth = RDiscount
-  rescue LoadError
-    require 'bluecloth'
-  end
-    
-  config.time_zone = 'Eastern Time (US & Canada)'
-
-  config.action_controller.session = {
-    :session_key => '_addicted_to_ian_session',
-    :secret      => '63ed143bd8c4b43187fae6b94a9a257ba0011f7fc68234c561abf5750b8d9d03fb3dbcd66491aa22bd2d33fcb865aa145379a44ea906bfbb2293c1a7a1f00261'
-  }
-end
+# Initialize the rails application
+AddictedToIan::Application.initialize!

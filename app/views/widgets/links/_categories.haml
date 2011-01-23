@@ -1,0 +1,5 @@
+- @categories.each do |category|
+  - if @category == category
+    .link_category= category.titleize
+  - else
+    = link_to(category.titleize, "/links/category/#{CGI.escape(category)}", :class => 'link_category')

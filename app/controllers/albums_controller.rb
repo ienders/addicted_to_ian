@@ -1,6 +1,6 @@
 class AlbumsController < ApplicationController
   
-  before_filter :login_required
+  before_filter :authenticate_user!
   before_filter :load_album, :only => [ :edit, :update, :destroy ]
   
   def new

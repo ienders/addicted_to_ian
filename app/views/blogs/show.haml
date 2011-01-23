@@ -1,0 +1,37 @@
+- if user_signed_in?
+  :javascript
+    function toggle(div) {
+      $('#blog_display').toggle();
+      $('#' + div).toggle();
+      Application.cufonize();
+    }
+
+- if !@blog
+  - if user_signed_in?
+    #blog_create.main_content
+      = render :partial => 'form', :locals => { :obj => Blog.new, :div => 'blog_create' }
+- else
+  #blog_display.main_content
+    %h3#blog_title= @blog.title
+    - if user_signed_in?
+      .clear
+      = link_to_function 'edit',   "toggle('blog_edit')", :class => 'admin_link'
+      = link_to_function 'create', "toggle('blog_create')", :class => 'admin_link'
+      = link_to 'delete', blog_path(@blog), :method => :delete, :confirm => 'Are you sure?', :class => 'admin_link'
+    .clear
+    .blog_text
+      != markdown(@blog.image_replaced_content)
+    .blog_nav
+      - if prev = @blog.previous
+        = link_to(image_tag('button_left.jpg', :class => 'previous'), blog_path(prev))
+        .previous= link_to(truncate(prev.title, :length => 30), blog_path(prev))
+      - if nxt = @blog.next
+        = link_to(image_tag('button_right.jpg', :class => 'next'), blog_path(nxt))
+        .next= link_to(truncate(nxt.title, :length => 30), blog_path(nxt))
+  - if user_signed_in?
+    #blog_edit.main_content{:style => "display: none"}
+      = render :partial => 'form', :locals => { :obj => @blog, :div => 'blog_edit' }
+    #blog_create.main_content{:style => "display: none"}
+      = render :partial => 'form', :locals => { :obj => Blog.new, :div => 'blog_create' }
+  - content_for :widgets do
+    = render :partial => 'widgets'

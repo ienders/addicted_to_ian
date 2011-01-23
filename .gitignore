@@ -1,3 +1,4 @@
+Gemfile.lock
 log/*.log
 tmp/**/*
 .DS_Store
@@ -10,3 +11,4 @@ public/plug_photos
 public/blog_photos
 public/link_photos
 config/twitter.yml
+.bundle

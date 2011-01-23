@@ -1,0 +1,11 @@
+- form_for(obj, :html => { :multipart => true }) do |f|
+  = f.error_messages
+  %h4 Title:
+  %p= f.text_field :title
+  %h4 URL:
+  %p= f.text_field :url
+  %h4 Description:
+  %p= f.text_area :description, :rows => 30, :cols => 80
+  %h4 Image:
+  %p= file_field_tag("plug[attachable][0][uploaded_data]", :size => 60)
+  = f.submit "Save"

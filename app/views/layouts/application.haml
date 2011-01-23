@@ -1,0 +1,36 @@
+!!! Strict
+%html{:lang => "en", "xml:lang" => "en", :xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "BJ-AxCSPNC8koVmBDKh5DbCcxjXmAU56jBf3Hsxqbuw", :name => "google-site-verification"}/
+    %title addictedTOian
+    %link{:href => "/images/favicon.ico", :rel => "shortcut icon", :type => "image/x-icon"}/
+    
+    - bundle do
+      = javascript_include_tag :defaults
+      = javascript_include_tag 'cufon'
+      = javascript_include_tag 'Tuffy_500.font'
+      = javascript_include_tag 'sh'
+      
+      = stylesheet_link_tag 'style'
+
+    = auto_discovery_link_tag(:rss, :controller => '/blogs', :action => 'rss')
+  %body
+    #header
+      #header_container
+        = link_to(image_tag('logo.png', :alt => 'addictedTOian'), '/', :class => 'logo')
+        .nav_links
+          - [ ['words', '/' ], [ 'pictures', '/pictures' ], [ 'plugs', '/plugs' ], [ 'links', '/links' ] ].each do |nav|
+            %div{:id => nav[0]}= link_to(image_tag('nav_'+ nav[0] + '_off.png'), nav[1])
+    #main
+      .content_holder
+        = yield
+        = yield :widgets
+    #footer
+      #footer_container
+        = link_to(image_tag('button_rss.jpg', :alt => 'RSS', :class => 'rss'), '/rss.xml')
+        .footer_links
+          #contact= link_to(image_tag('footer_contactme'+'_off.png'), '/contact')
+          #about= link_to(image_tag('footer_about'+'_off.png'), '/about')
+        %p &copy; Copyright 2009 Gibnai Productions.
+    = render :partial => 'shared/analytics'
