@@ -55,7 +55,7 @@
             .clear
             = link_to_function 'edit', "toggle('link_edit_#{link.id}', 'link_display_#{link.id}')", :class => 'admin_link'
             = link_to 'delete', link_path(link), :method => :delete, :confirm => 'Are you sure?', :class => 'admin_link'
-          = markdown(link.description)
+          != markdown(link.description)
           .clear
         - if user_signed_in?
           %div{:id => "link_edit_#{link.id}", :style => "display: none"}
