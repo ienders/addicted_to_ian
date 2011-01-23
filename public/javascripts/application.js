@@ -12,7 +12,7 @@ var Application = function() {
     },
     
     cufonize: function() {
-      Cufon.replace(['.main_content h3, .main_content h4, .widget h3, .main_content h5, .main_content h6, .month_name, .month_nav, .resume h1, .resume h3, .resume .degree, .resume .title, .about_name'], { fontFamily: 'Tuffy', hover: true });	
+      Cufon.replace(['.main_content h3, .plug_description_holder h3, .main_content h4, .widget h3, .main_content h5, .main_content h6, .month_name, .month_nav, .resume h1, .resume h3, .resume .degree, .resume .title, .about_name'], { fontFamily: 'Tuffy', hover: true });	
     	Cufon.now();
     }
   };
