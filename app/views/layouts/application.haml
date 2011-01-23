@@ -7,11 +7,15 @@
     %link{:href => "/images/favicon.ico", :rel => "shortcut icon", :type => "image/x-icon"}/
     
     - bundle do
-      = javascript_include_tag :defaults
+      = javascript_include_tag 'jquery'
+      = javascript_include_tag 'jquery-ui'
+      = javascript_include_tag 'rails'
+      = javascript_include_tag 'application'
+    
       = javascript_include_tag 'cufon'
       = javascript_include_tag 'Tuffy_500.font'
       = javascript_include_tag 'sh'
-      
+    
       = stylesheet_link_tag 'style'
 
     = yield :head
