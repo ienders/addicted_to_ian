@@ -59,13 +59,14 @@
                 metering:
                 %strong= photo.tag('MeteringMode')
     .clear
+    
   :javascript
     $(function() {
-      num_image_rows =  partitioned_gallery.size ;
+      num_image_rows = #{partitioned_gallery.size};
     
       // Hide top and bottom nav arrows if we don't need them.
-      $('#forward_images'). partitioned_gallery.size <= num_image_rows ? 'fadeOut' : 'fadeIn' ("slow");
-      $('#back_images'). partitioned_gallery.size <= num_image_rows ? 'fadeOut' : 'fadeIn' ("slow");
+      $('#forward_images').#{partitioned_gallery.size <= num_image_rows ? 'fadeOut' : 'fadeIn'}("slow");
+      $('#back_images').#{partitioned_gallery.size <= num_image_rows ? 'fadeOut' : 'fadeIn'}("slow");
     
       // Reset top/bottom arrows to the proper state for greyed out / not greyed
       $('#back_images').css('background-color', '#DDDDDD');
@@ -83,6 +84,6 @@
     
       // Reset our position in the gallery to what is visible on first load.
       image_row_first = 0;
-      image_row_last =  num_image_rows - 1 ;
+      image_row_last = #{num_image_rows - 1};
     });
   

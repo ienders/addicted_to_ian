@@ -14,6 +14,8 @@
       
       = stylesheet_link_tag 'style'
 
+    = yield :head
+
     = auto_discovery_link_tag(:rss, :controller => '/blogs', :action => 'rss')
   %body
     #header

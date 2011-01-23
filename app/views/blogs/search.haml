@@ -24,9 +24,8 @@
       %p.result_preview
         - if @by == 'keyword'
           != highlight(excerpt(markdown(blog.image_replaced_content).gsub(/<\/?[^>]*>/, ''), @value, :radius => 50), @value)
-  - else
-    != truncate(markdown(blog.image_replaced_content).gsub(/<\/?[^>]*>/, ''), 200)
-  .clear
-.clear
+        - else
+          != truncate(markdown(blog.image_replaced_content).gsub(/<\/?[^>]*>/, ''), :length => 200)
+        .clear
 - content_for :widgets do
   = render :partial => 'widgets'

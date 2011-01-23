@@ -64,7 +64,7 @@ class BlogsController < ApplicationController
   protected
   def load_blog
     if params[:id]
-      @blog = Blog.find(params[:id]).first
+      @blog = Blog.find(params[:id])
     else
       @blog = Blog.last
     end

@@ -1,182 +1,32 @@
-- num_albums_at_once = 4
-- num_image_rows_at_once = 4
-:javascript
-  var num_albums =  #{@albums.size};
-  var num_albums_at_once = #{num_albums_at_once};
-  var album_first = 0;
-  var album_last =  #{num_albums_at_once - 1};
-  
-  var num_image_rows = 0;
-  var num_image_rows_at_once = #{num_image_rows_at_once};
-  var image_row_first = 0;
-  var image_row_last = #{num_image_rows_at_once - 1};
-  
-  var currentX = 0;
-  var currentY = 0;
-  
-  $(function() {
-    $('#back_album').click(function() {
-      if (album_first == 1) {
-        $('#back_album').css('background-color', '#DDDDDD');
-        $('#back_album').find('img').fadeOut();
-      }
-      
-      if (num_albums <= num_albums_at_once || album_first == 0) {
-        return;
-      }
-      
-      $(this).effect("highlight", { color: 'orange' }, 300);
-      
-      $('#forward_album').css('background-color', 'white');
-      $('#forward_album').find('img').fadeIn();
-      
-      $('#album_' + album_last).slideToggle('fast');
-      album_last--; album_first--;
-      $('#album_' + album_first).slideToggle('fast');
-    });
-    
-    $('#forward_album').click(function() {
-      if (album_last == num_albums -2) {
-        $('#forward_album').css('background-color', '#DDDDDD');
-        $('#forward_album').find('img').fadeOut();
-      }
-      
-      if (num_albums <= num_albums_at_once || album_last == num_albums - 1) {
-        return;
-      }
-      
-      $(this).effect("highlight", { color: 'orange' }, 300);
-      
-      $('#back_album').css('background-color', 'white');
-      $('#back_album').find('img').fadeIn();
-      
-      $('#album_' + album_first).slideToggle('fast');
-      album_last++; album_first++;
-      $('#album_' + album_last).slideToggle('fast');
-    });
-    
-    $('#back_images').click(function() {
-      if (image_row_first == 1) {
-        $('#back_images').css('background-color', '#DDDDDD');
-        $('#back_images').find('img').fadeOut();
-      }
-      
-      if (num_image_rows <= num_image_rows_at_once || image_row_first == 0) {
-        return;
-      }
-      
-      $('#forward_images').css('background-color', 'white');
-      $('#forward_images').find('img').fadeIn();
+- content_for :head do
+  = javascript_include_tag 'gallery'
 
-      $(this).effect("highlight", { color: 'orange' }, 300);
-      
-      $('#thumbs_row_' + image_row_last).slideToggle('fast');
-      image_row_last--; image_row_first--;
-      $('#thumbs_row_' + image_row_first).slideToggle('fast');
-    });
-    
-    $('#forward_images').click(function() {
-      if (image_row_last == num_image_rows -2) {
-        $('#forward_images').css('background-color', '#DDDDDD');
-        $('#forward_images').find('img').fadeOut();
-      }
-      
-      if (num_image_rows <= num_image_rows_at_once || image_row_last == num_image_rows - 1) {
-        return;
-      }
-
-      $(this).effect("highlight", { color: 'orange' }, 300);
-      
-      
-      $('#back_images').css('background-color', 'white');
-      $('#back_images').find('img').fadeIn();
-      
-      $('#thumbs_row_' + image_row_first).slideToggle('fast');
-      image_row_last++; image_row_first++;
-      $('#thumbs_row_' + image_row_last).slideToggle('fast');
-    });
-    
-    
-    $('.album_link').click(function() {
-      $('.album_link').find('img').css('opacity', 1);
-      $(this).find('img').css('opacity', 0.5);
-       #{remote_function(:url  => { :action => 'album' }, :with => "'num_image_rows=\#{num_image_rows_at_once}&id=' + $(this).attr('rel')", :update => :thumb_area)}
-    });
-    
-    $('.gallery_image').live('click', function() {
-      var img = $(this);
-      $('.gallery_image').css('border', '0px').css('background-color', '#CCCCCC').css('margin-top', 0).css('margin-left', 0);
-      $('.gallery_image').find('img').css('opacity', 1);
-      $(this).css('border', '1px solid black').css('background-color', 'white').css('margin-top', -2).css('margin-left', -2);
-      $(this).find('img').css('opacity', 0.5);
-
-      var id = img.attr('rel');
-      var width = parseInt($('#photo_width_' + id).html());
-      var height = parseInt($('#photo_height_' + id).html());
-            
-      $('#picture').html('');
-      $('#picture').append($(document.createElement('img')).attr('src', $('#photo_filename_' + id).html()).css({ width: width, height: height }));
-      $('#picture').append($(document.createElement('div')).attr('id', 'image_data').css('display', 'none').html($('#photo_data_' + id).html()));
-      
-      $('#picture').find('img').css('margin-top', (parseInt($('#picture').css('height')) - height) / 2);
-      var minX = parseInt($('.pictures').offset().left);
-      var maxX = parseInt($('.pictures').offset().left) + parseInt($('.pictures').css('width'));
-      var minY = parseInt($('.pictures').offset().top);
-      var maxY = parseInt($('.pictures').offset().top) + parseInt($('.pictures').css('height'));
-      var x = parseInt(currentX);
-      var y = parseInt(currentY);    
-      if (x >= minX && x <= maxX && y >= minY && y <= maxY) {
-        $('#image_data').show();
-      }
-    });
-    
-    $('#picture').hover(
-      function () {
-        $('#image_data').fadeIn();
-      }, 
-      function () {
-        $('#image_data').fadeOut();
-      }
-    );
-    
-    $().mousemove(function(e) {
-      currentX = e.pageX;
-      currentY = e.pageY;
-    }); 
-    
-    $('#back_album').css('background-color', '#DDDDDD');
-    
-    if (num_albums <= num_albums_at_once) {
-      $('#forward_album').css('background-color', '#DDDDDD');
-      $('#forward_album').find('img').fadeOut();
-    }
-  });
-.album_nav
+.album_nav{'data-size' => @albums.size}
   .albums
     #back_album.arrows
       %img{:alt => "top", :src => "/images/arrow_top.png", :style => "display: none"}/
     - @albums.each_with_index do |album, i|
-      <div class="album_data" id = "album_#{i}" #{i >= num_albums_at_once ? 'style = "display: none"' : ''} >
-      %a.album_link{:href => "#", :rel => album.id}= image_tag(album.cover_photo_url)
-      %h4
-        = album.name
-        - if user_signed_in?
-          .admin_links
-            = link_to 'edit',   edit_album_path(album)
-            \&nbsp;&nbsp;
-            \#{link_to 'delete', album_path(album), :method => :delete, :confirm => 'Are you sure?'}
-      %h5
-        = album.date
-        %br/
-        = album.size
-        image#{album.size == 1 ? '' : 's'}
-  #forward_album.arrows.no_border
-    %img{:alt => "bottom", :src => "/images/arrow_bottom.png"}/
+      .album_data{:id => "album_#{i}", :style => i >= 4 ? 'display: none' : ''}    
+        %a.album_link{:href => "#", :rel => album.id}= image_tag(album.cover_photo_url)
+        %h4
+          = album.name
+          - if user_signed_in?
+            .admin_links
+              = link_to 'edit',   edit_album_path(album)
+              \&nbsp;&nbsp;
+              = link_to 'delete', album_path(album), :method => :delete, :confirm => 'Are you sure?'
+        %h5
+          = album.date
+          %br/
+          = album.size
+          image#{album.size == 1 ? '' : 's'}
+    #forward_album.arrows.no_border
+      %img{:alt => "bottom", :src => "/images/arrow_bottom.png"}/
 .thumb_wrapper
   #back_images.thumb_arrows{:style => "display: none"}
     %img{:alt => "top", :src => "/images/arrow_top.png"}/
   #thumb_area
-    = render :partial => 'album', :object => @albums.first, :locals => { :num_image_rows => num_image_rows_at_once }
+    = render :partial => 'album', :object => @albums.first, :locals => { :num_image_rows => 4 }
   #forward_images.thumb_arrows{:style => "display: none"}
     %img{:alt => "bottom", :src => "/images/arrow_bottom.png"}/
 .pictures
