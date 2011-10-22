@@ -7,7 +7,12 @@ AddictedToIan::Application.routes.draw do
   match '/resume' => 'about#resume', :as => :resume
   match '/rss.xml' => 'blogs#rss', :as => :blog_rss
 
-  resources :blogs
+  resources :blogs do |blogs|
+    collection do
+      get :tweets
+    end
+  end
+
   resources :blog_photos
 
   match '/blogs/search/:by/:year/:month/:day' => 'blogs#search', :as => :blog_calendar_day

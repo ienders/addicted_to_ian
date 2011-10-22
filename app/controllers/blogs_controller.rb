@@ -60,6 +60,10 @@ class BlogsController < ApplicationController
     
     load_calendar
   end
+
+  def tweets
+    render :layout => false
+  end
   
   protected
   def load_blog

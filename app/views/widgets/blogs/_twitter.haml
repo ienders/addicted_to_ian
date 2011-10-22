@@ -1,15 +1,5 @@
-.tags
-  - begin
-    - Twitter.user_timeline('ianenders', :count => 4).each do |status|
-      .tweet
-        %strong
-          = link_to(status.user.screen_name, "http://www.twitter.com/#{status.user.screen_name}")
-          \:
-        != twitter_text(status.text)
-        %br/
-        %span.tweet_info
-          = twitter_time(Time.parse(status.created_at))
-          from #{status.source}
-  - rescue Exception => e
-    - logger.warn e.inspect
-    .tweet Unable to load tweets.
+:javascript
+  $(function() {
+    Tweets.load();
+  });
+.tags#tweets Loading

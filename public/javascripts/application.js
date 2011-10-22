@@ -18,3 +18,11 @@ var Application = function() {
   };
   
 }();
+
+var Tweets = function() {
+  return {
+    load: function() {
+      $('#tweets').load('/blogs/tweets');
+    }
+  };
+}();
