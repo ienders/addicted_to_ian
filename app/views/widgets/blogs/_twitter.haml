@@ -10,3 +10,6 @@
         %span.tweet_info
           = twitter_time(Time.parse(status.created_at))
           from #{status.source}
+  - rescue Exception => e
+    - logger.warn e.inspect
+    .tweet Unable to load tweets.

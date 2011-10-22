@@ -4,7 +4,7 @@
     num_photos++;
      #{remote_function(:url => { :action => 'new_photo_field' }, :with => "'num=' + num_photos", :update => "new_photos_\#{obj.id}", :position => :before)}
   }
-- form_for(obj, :html => { :multipart => true }) do |f|
+= form_for(obj, :html => { :multipart => true }) do |f|
   = f.error_messages
   = link_to_function 'cancel', "toggle('#{div}')", :class => 'admin_link', :style => 'float: right'
   %h4 Title:

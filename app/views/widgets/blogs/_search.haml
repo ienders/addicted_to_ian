@@ -1,4 +1,4 @@
 .search_container
-  - form_tag(blog_search_path(:by => 'keyword')) do |f|
+  = form_tag(blog_search_path(:by => 'keyword')) do |f|
     = text_field_tag(:value, '', :class => 'search')
     = image_submit_tag('button_go.jpg', :class => 'go')
